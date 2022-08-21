@@ -1,19 +1,27 @@
+import 'dart:convert';
+
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:bitsdojo_window_example/pages/invoice_page.dart';
+import 'package:bitsdojo_window_example/pages/stock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 
+import 'main.dart';
+
+import 'models/stock.dart';
+import 'models/obejct.dart';
+
 final buttonColors = WindowButtonColors(
-    iconNormal:  const Color.fromARGB(255, 79, 117, 134),
+    iconNormal: const Color.fromARGB(255, 79, 117, 134),
     mouseOver: Colors.teal,
-    mouseDown:  const Color.fromARGB(255, 79, 117, 134),
-    iconMouseOver:  Colors.white,
+    mouseDown: const Color.fromARGB(255, 79, 117, 134),
+    iconMouseOver: Colors.white,
     iconMouseDown: const Color(0xFFFFD500));
 
 final closeButtonColors = WindowButtonColors(
     mouseOver: const Color(0xFFD32F2F),
     mouseDown: const Color(0xFFB71C1C),
-    iconNormal:  const Color.fromARGB(255, 79, 117, 134),
+    iconNormal: const Color.fromARGB(255, 79, 117, 134),
     iconMouseOver: Colors.white);
 
 class WindowButtons extends StatefulWidget {
@@ -32,7 +40,8 @@ class _WindowButtonsState extends State<WindowButtons> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(padding: EdgeInsets.all(1),
+    return Container(
+      padding: EdgeInsets.all(1),
       color: Colors.grey.shade900,
       child: Row(
         children: [
@@ -68,6 +77,29 @@ class _SideState extends State<Side> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          final user = Stock(
+              count: 15,
+              desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
+              name: 'Footstep CS1,VARIO',
+              partname: 'ABCDEFG',
+              totalPrice: 30000,
+              stockHistory: json.encode([
+                {
+                  'date': DateTime.now().toIso8601String(),
+                  'price': 12500,
+                  'count': 15,
+                  'supplier': 'PT.WKWKWKWK',
+                }
+              ]));
+          // final stock = Stock(
+          //           desc: '123.',name: 'sad',price: 2,stock: 2,totalPrice: 123,
+          //           );
+           objectBox.insertStock(user);
+        },
+      ),
       body: WindowBorder(
         color: const Color.fromARGB(255, 79, 117, 134),
         child: Column(
@@ -109,7 +141,8 @@ class _SideState extends State<Side> {
                       displayMode: SideMenuDisplayMode.auto,
                       hoverColor: const Color.fromARGB(255, 128, 129, 131),
                       selectedColor: Colors.grey.shade700,
-                      selectedTitleTextStyle: const TextStyle(color: Colors.white),
+                      selectedTitleTextStyle:
+                          const TextStyle(color: Colors.white),
                       selectedIconColor: Colors.white,
                       unselectedIconColor: Colors.white70,
                       unselectedTitleTextStyle:
@@ -146,17 +179,15 @@ class _SideState extends State<Side> {
                     items: [
                       SideMenuItem(
                         priority: 0,
-                        title: 'Invoice',
+                        title: 'Stock',
                         onTap: () {
                           page.jumpToPage(0);
                         },
-                        icon: const Icon(Icons.document_scanner_rounded),
-
-                        // tooltipContent: "Home",
+                        icon: const Icon(Icons.menu_book_rounded),
                       ),
                       SideMenuItem(
                         priority: 1,
-                        title: 'Surat Tugas',
+                        title: 'Supplier',
                         onTap: () {
                           page.jumpToPage(1);
                         },
@@ -164,11 +195,37 @@ class _SideState extends State<Side> {
                       ),
                       SideMenuItem(
                         priority: 2,
-                        title: 'Multi Selection',
+                        title: 'Surat Tugas',
                         onTap: () {
                           page.jumpToPage(2);
                         },
+                        icon: const Icon(Icons.engineering_rounded),
+                      ),
+                      SideMenuItem(
+                        priority: 3,
+                        title: 'Multi Selection',
+                        onTap: () {
+                          page.jumpToPage(3);
+                        },
                         icon: const Icon(Icons.menu_book_rounded),
+                      ),
+                      SideMenuItem(
+                        priority: 4,
+                        title: 'Repair',
+                        onTap: () {
+                          page.jumpToPage(4);
+                        },
+                        icon: const Icon(Icons.menu_book_rounded),
+                      ),
+                      SideMenuItem(
+                        priority: 5,
+                        title: 'Invoice',
+                        onTap: () {
+                          page.jumpToPage(5);
+                        },
+                        icon: const Icon(Icons.document_scanner_rounded),
+
+                        // tooltipContent: "Home",
                       ),
                     ],
                   ),
@@ -176,16 +233,7 @@ class _SideState extends State<Side> {
                     child: PageView(
                       controller: page,
                       children: [
-                      const InvoicePage(),
-                        Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              'Tugas',
-                              style: TextStyle(fontSize: 35),
-                            ),
-                          ),
-                        ),
+                        Container(height: 100, child: const StockPage()),
                         Container(
                           color: Colors.white,
                           child: const Center(
@@ -204,7 +252,25 @@ class _SideState extends State<Side> {
                             ),
                           ),
                         ),
-                        
+                        Container(
+                          color: Colors.white,
+                          child: const Center(
+                            child: Text(
+                              'Hidden Page',
+                              style: TextStyle(fontSize: 35),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: Colors.white,
+                          child: const Center(
+                            child: Text(
+                              'Hidden Page',
+                              style: TextStyle(fontSize: 35),
+                            ),
+                          ),
+                        ),
+                        const InvoicePage(),
                       ],
                     ),
                   ),

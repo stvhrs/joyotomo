@@ -1,0 +1,77 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:2285907381818768019",
+      "lastPropertyId": "9:4010721059192533731",
+      "name": "Stock",
+      "properties": [
+        {
+          "id": "1:7091697337229250635",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5972376349027978318",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:2993898285405302121",
+          "name": "desc",
+          "type": 9
+        },
+        {
+          "id": "6:9076521467577890943",
+          "name": "totalPrice",
+          "type": 8
+        },
+        {
+          "id": "7:122495542502483195",
+          "name": "partname",
+          "type": 9
+        },
+        {
+          "id": "8:869474652187445397",
+          "name": "count",
+          "type": 6
+        },
+        {
+          "id": "9:4010721059192533731",
+          "name": "stockHistory",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "3:6837779520086823155",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    79178292374298352,
+    6837779520086823155
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    5029163725945625190,
+    3560275596537295878,
+    8226533979625104142,
+    2333710559535321770,
+    3914074710970127131,
+    4504594082210174508,
+    6741699394503551069,
+    3284328700893342354,
+    8827132622826361588,
+    8213100152163339616,
+    7787090014640875596
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}

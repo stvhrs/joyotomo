@@ -5,7 +5,11 @@ import 'package:bitsdojo_window_example/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 
-void main() {
+import 'models/obejct.dart';
+
+late ObjectBox objectBox;
+void main() async{ 
+ objectBox = await ObjectBox.init();
   runApp(const MyApp());
   doWhenWindowReady(() {
     final win = appWindow;

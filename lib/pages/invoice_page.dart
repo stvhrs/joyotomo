@@ -1,5 +1,5 @@
+import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
@@ -19,9 +19,7 @@ class _InvoicePageState extends State<InvoicePage> {
 
   buildPdf() async {
     double base = 1000;
-    var img = (await rootBundle.load('images/logo.png'))
-        .buffer
-        .asUint8List();
+    var img = (await rootBundle.load('images/logo.png')).buffer.asUint8List();
     asu.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: ((pw.Context context) => pw.Center(
@@ -32,7 +30,8 @@ class _InvoicePageState extends State<InvoicePage> {
                   pw.Row(
                     mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
                     children: [
-                      pw.SizedBox(child: pw.Image(pw.MemoryImage(img),width: 80)),
+                      pw.SizedBox(
+                          child: pw.Image(pw.MemoryImage(img), width: 80)),
                       pw.Column(
                         children: [
                           pw.Text(
@@ -67,7 +66,14 @@ class _InvoicePageState extends State<InvoicePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    log('didi');
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    log('sss');
     return Scaffold(
       floatingActionButton: Container(
         child: Row(children: [
