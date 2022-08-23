@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:bitsdojo_window_example/widgets/stock_add.dart';
+import 'package:bitsdojo_window_example/widgets/stock_details.dart';
 import 'package:data_table_2/paginated_data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -35,21 +37,18 @@ class _StockPageState extends State<StockPage> {
       body: StreamBuilder<List<Stock>>(
           stream: _streamstocks,
           builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return const Center(
-                child: Text('Please Supplay Stock'),
-              );
-            }
-            if (snapshot.data!.isEmpty) {
-              return const Center(
-                child: Text('Please Supplay Stock'),
-              );
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: AddPartName());
             } else {
               List<Stock> stocks = [];
               if (_search != '') {
                 for (Stock element in snapshot.data!) {
-                  if (element.partname.toLowerCase().startsWith(_search) ||
-                      element.name.toLowerCase().startsWith(_search)) {
+                  if (element.partname
+                          .toLowerCase()
+                          .startsWith(_search.toLowerCase()) ||
+                      element.name
+                          .toLowerCase()
+                          .startsWith(_search.toLowerCase())) {
                     stocks.add(element);
                   }
                 }
@@ -59,7 +58,7 @@ class _StockPageState extends State<StockPage> {
               }
 
               return Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 16),
+                padding: const EdgeInsets.only(top: 20, ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -88,7 +87,8 @@ class _StockPageState extends State<StockPage> {
                                           child: TextFormField(
                                               onChanged: (val) {
                                                 setState(() {
-                                                  _selectedStock = stocks[0];
+                                                  if (stocks.isNotEmpty)
+                                                    _selectedStock = stocks[0];
                                                   _search = val.toString();
                                                 });
                                               },
@@ -98,213 +98,7 @@ class _StockPageState extends State<StockPage> {
                                                 border: InputBorder.none,
                                               )))),
                                 ),
-                                ElevatedButton.icon(
-                                    style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all(
-                                                Color.fromARGB(
-                                                    255, 79, 117, 134))),
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context2,
-                                          builder: (context) {
-                                            String p = '';
-                                            String n = '';
-                                            String d = '';
-                                            return AlertDialog(
-                                              actionsPadding: EdgeInsets.only(
-                                                  right: 15, bottom: 15),
-                                              title: Text("Insert Sperpate"),
-                                              content: IntrinsicHeight(
-                                                child: SizedBox(
-                                                  width: 500,
-                                                  child: Column(
-                                                    children: [
-                                                      Container(
-                                                        margin: const EdgeInsets
-                                                            .only(bottom: 20),
-                                                        child: TextFormField(
-                                                            onChanged: (val) {
-                                                              p = val
-                                                                  .toString();
-                                                            },
-                                                            maxLines: 1,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText:
-                                                                  'Part Name',
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10,
-                                                                      top: 10,
-                                                                      bottom:
-                                                                          10),
-                                                              fillColor:
-                                                                  Colors.white,
-                                                              hintStyle: TextStyle(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade600,
-                                                                  fontSize: 15,
-                                                                  height: 2),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                      Container(
-                                                        margin: const EdgeInsets
-                                                            .only(bottom: 20),
-                                                        child: TextFormField(
-                                                            onChanged: (val) {
-                                                              n = val
-                                                                  .toString();
-                                                            },
-                                                            maxLines: 1,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText: 'Name',
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10,
-                                                                      top: 10,
-                                                                      bottom:
-                                                                          10),
-                                                              fillColor:
-                                                                  Colors.white,
-                                                              hintStyle: TextStyle(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade600,
-                                                                  fontSize: 15,
-                                                                  height: 2),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                            )),
-                                                      ),
-                                                      Container(
-                                                        margin: const EdgeInsets
-                                                            .only(bottom: 20),
-                                                        child: TextFormField(
-                                                            onChanged: (val) {
-                                                              d = val
-                                                                  .toString();
-                                                            },
-                                                            maxLines: 3,
-                                                            decoration:
-                                                                InputDecoration(
-                                                              hintText:
-                                                                  'Description',
-                                                              contentPadding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 10,
-                                                                      top: 10,
-                                                                      bottom:
-                                                                          10),
-                                                              fillColor:
-                                                                  Colors.white,
-                                                              hintStyle: TextStyle(
-                                                                  color: Colors
-                                                                      .grey
-                                                                      .shade600,
-                                                                  fontSize: 15,
-                                                                  height: 2),
-                                                              focusedBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                              enabledBorder:
-                                                                  OutlineInputBorder(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            7),
-                                                                borderSide: BorderSide(
-                                                                    color: Colors
-                                                                        .grey
-                                                                        .shade300),
-                                                              ),
-                                                            )),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                              actions: <Widget>[
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Stock stock = Stock(
-                                                        stockHistory: json.encode([
-                {
-                 
-                },
-          
-              ]),
-                                                        partname: p,
-                                                        name: n,
-                                                        desc: d,
-                                                        count: 0,
-                                                        totalPrice: 0);
-                                                    objectBox
-                                                        .insertStock(stock);
-                                                  },
-                                                  child: Text("Insert"),
-                                                ),
-                                              ],
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(Icons.add),
-                                    label: Text('Add Part Name')),
+                                AddPartName()
                               ],
                             ),
                           ),
@@ -315,6 +109,8 @@ class _StockPageState extends State<StockPage> {
                                     padding: const EdgeInsets.only(
                                         top: 8, left: 16, right: 16),
                                     child: DataTable2(
+                                        headingRowHeight: 40,
+                                        minWidth: 300,
                                         border: TableBorder.all(
                                             width: 2,
                                             color: Colors.black,
@@ -337,10 +133,6 @@ class _StockPageState extends State<StockPage> {
                                           ),
                                           DataColumn(
                                             label: Center(
-                                                child: Text('Last Price')),
-                                          ),
-                                          DataColumn(
-                                            label: Center(
                                                 child: Text('Total Price')),
                                           ),
                                           DataColumn2(
@@ -351,6 +143,10 @@ class _StockPageState extends State<StockPage> {
                                               size: ColumnSize.S),
                                         ],
                                         rows: stocks.map((e) {
+                                          print((json
+                                              .decode(
+                                                  _selectedStock.stockHistory)
+                                              .toString()));
                                           return DataRow2(
                                               onTap: () {
                                                 setState(() {
@@ -371,11 +167,6 @@ class _StockPageState extends State<StockPage> {
                                               cells: [
                                                 DataCell(Text(e.partname)),
                                                 DataCell(Text(e.name)),
-                                                DataCell(Center(
-                                                    child: Text(formatCurrency
-                                                        .format(json.decode(
-                                                                e.stockHistory)[
-                                                            0]['price'])??''))),
                                                 DataCell(Center(
                                                     child: Text(
                                                         formatCurrency.format(
@@ -414,39 +205,59 @@ class _StockPageState extends State<StockPage> {
                         ],
                       ),
                       _divier_,
-                      Column(children: [
-                        IconButton(
-                            onPressed: () {
-                            
-                              objectBox.deleteStock(stocks[_currentIndex].id);
-                              _currentIndex = 0;
-                              _selectedStock = stocks[0];
-                              setState(() {});
-                            },
-                            icon: Icon(Icons.delete)),
-                        Text(
-                          _selectedStock.partname,
-                          style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
-                        ),
-                        Text('Description'),
-                        Text(_selectedStock.desc),
-                        
-                    ...  (json.decode(_selectedStock.stockHistory)
-                                as List<dynamic>)
-                            .map((e) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      IntrinsicWidth(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(e['count'].toString()??''),
-                              Text(DateFormat.yMMMMEEEEd("id_ID"??"")
-                                  .format(DateTime.parse(e['date']).toLocal())??""),
-                              Text(e['price'].toString()??""),
-                              Text(e['supplier'].toString()??""),
-                            ],
-                          );
-                        }).toList()
-                      ])
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    _selectedStock.partname,
+                                    style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        objectBox.deleteStock(
+                                            stocks[_currentIndex].id);
+                                        _currentIndex = 0;
+                                        if (stocks.isNotEmpty)
+                                          _selectedStock = stocks[0];
+                                        setState(() {});
+                                      },
+                                      icon: Icon(
+                                        Icons.delete,
+                                        color: Colors.red.shade900,
+                                      )),
+                                ],
+                              ),
+                              Text(
+                                _selectedStock.name,
+                                style: TextStyle(
+                                    color: Colors.grey.shade800,
+                                    fontSize: 26,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                  padding: EdgeInsets.all(8),
+                                  margin: EdgeInsets.only(bottom: 20, top: 10),
+                                  decoration: BoxDecoration(color: Colors.grey.shade300,
+                                      border: Border.all(),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Text(_selectedStock.desc)),
+                              Expanded(
+                                child: StockDetails(
+                                    stocksHistory: (json
+                                            .decode(_selectedStock.stockHistory)
+                                        as List<dynamic>),
+                                    empty:
+                                        _selectedStock.stockHistory == '[{}]'),
+                              )
+                            ]),
+                      )
                     ]),
               );
             }
@@ -454,6 +265,21 @@ class _StockPageState extends State<StockPage> {
     );
   }
 }
+
+// buildDetails(Stock stock) {
+//   return ...(json.decode(stock.stockHistory) as List<dynamic>).map((e) {
+//     return Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: [
+//         Text(e['count'].toString()),
+//         Text(DateFormat.yMMMMEEEEd("id_ID")
+//             .format(DateTime.parse(e['date']).toLocal())),
+//         Text(e['price'].toString()),
+//         Text(e['supplier'].toString()),
+//       ],
+//     );
+//   }).toList();
+// }
 
 Widget get _divier_ => Row(
       children: const [

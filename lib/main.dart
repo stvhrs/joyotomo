@@ -14,7 +14,7 @@ void main() async{
   runApp(const MyApp());initializeDateFormatting();
   doWhenWindowReady(() {
     final win = appWindow;
-    const initialSize = Size(1280 , 720);
+    const initialSize = Size(1366 , 768);
     win.minSize = initialSize;
     win.size = initialSize;
     win.alignment = Alignment.center;

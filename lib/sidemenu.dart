@@ -79,29 +79,34 @@ class _SideState extends State<Side> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          final user = Stock(
-              count: 7,
-              desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-              name: 'baj',
-              partname: 'asu',
-              totalPrice: 30000,
-              stockHistory: json.encode([
-                {
-                  'date': DateTime.now().toIso8601String(),
-                  'price': 12500,
-                  'count': 9,
-                  'supplier': 'asdasdasd',
-                }, 
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   onPressed: () {
+      //     final user = Stock(
+      //         count: 15,
+      //         desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
+      //         name: 'Footstep 50mm',
+      //         partname: 'DOLKD1-12D-2DS',
+      //         totalPrice: 30000,
+      //         stockHistory: json.encode([
+      //        {
+      //             'date': DateTime.now().toIso8601String(),
+      //             'price': 15000,
+      //             'count': -1,
+      //             'supplier': 'Di Colong Tikus',
+      //           },   {
+      //             'date': DateTime.now().toIso8601String(),
+      //             'price': -12500,
+      //             'count': 9,
+      //             'supplier': 'Lestari Jaya',
+      //           },
           
-              ]));
+      //         ]));
 
-          objectBox.insertStock(user);
-          //  objectBox.deleteAllStock();
-        },
-      ),
+      //     objectBox.insertStock(user);
+      //     //  objectBox.deleteAllStock();
+      //   },
+      // ),
       body: WindowBorder(
         color: const Color.fromARGB(255, 79, 117, 134),
         child: Column(
