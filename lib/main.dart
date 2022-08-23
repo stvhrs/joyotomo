@@ -4,16 +4,17 @@
 import 'package:bitsdojo_window_example/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'models/obejct.dart';
 
 late ObjectBox objectBox;
 void main() async{ 
  objectBox = await ObjectBox.init();
-  runApp(const MyApp());
+  runApp(const MyApp());initializeDateFormatting();
   doWhenWindowReady(() {
     final win = appWindow;
-    const initialSize = Size(1200, 720);
+    const initialSize = Size(1280 , 720);
     win.minSize = initialSize;
     win.size = initialSize;
     win.alignment = Alignment.center;

@@ -71,6 +71,8 @@ class Side extends StatefulWidget {
   _SideState createState() => _SideState();
 }
 
+bool mode = false;
+
 class _SideState extends State<Side> {
   PageController page = PageController();
 
@@ -81,23 +83,23 @@ class _SideState extends State<Side> {
         child: const Icon(Icons.add),
         onPressed: () {
           final user = Stock(
-              count: 15,
+              count: 7,
               desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-              name: 'Footstep CS1,VARIO',
-              partname: 'ABCDEFG',
+              name: 'baj',
+              partname: 'asu',
               totalPrice: 30000,
               stockHistory: json.encode([
                 {
                   'date': DateTime.now().toIso8601String(),
                   'price': 12500,
-                  'count': 15,
-                  'supplier': 'PT.WKWKWKWK',
-                }
+                  'count': 9,
+                  'supplier': 'asdasdasd',
+                }, 
+          
               ]));
-          // final stock = Stock(
-          //           desc: '123.',name: 'sad',price: 2,stock: 2,totalPrice: 123,
-          //           );
-           objectBox.insertStock(user);
+
+          objectBox.insertStock(user);
+          //  objectBox.deleteAllStock();
         },
       ),
       body: WindowBorder(
@@ -133,12 +135,14 @@ class _SideState extends State<Side> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SideMenu(
-                    controller: page,
+                    controller: page, showToggle: true,
                     // onDisplayModeChanged: (mode) {
                     //   print(mode);
                     // },
-                    style: SideMenuStyle(
-                      displayMode: SideMenuDisplayMode.auto,
+                    style: SideMenuStyle(toggleColor: Colors.white,
+                      displayMode: mode
+                          ? SideMenuDisplayMode.open
+                          : SideMenuDisplayMode.compact,
                       hoverColor: const Color.fromARGB(255, 128, 129, 131),
                       selectedColor: Colors.grey.shade700,
                       selectedTitleTextStyle:
@@ -156,7 +160,7 @@ class _SideState extends State<Side> {
                       children: [
                         ConstrainedBox(
                           constraints: const BoxConstraints(
-                            maxHeight: 150,
+                            maxHeight: 100,
                             maxWidth: 150,
                           ),
                           child: Image.asset(
@@ -169,12 +173,9 @@ class _SideState extends State<Side> {
                         ),
                       ],
                     ),
-                    footer: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        '@JOYOTOMO',
-                        style: TextStyle(fontSize: 15),
-                      ),
+                    footer: Text(
+                      '@JOYOTOMO',
+                      style: TextStyle(fontSize: 15),
                     ),
                     items: [
                       SideMenuItem(
@@ -227,13 +228,25 @@ class _SideState extends State<Side> {
 
                         // tooltipContent: "Home",
                       ),
+                      // SideMenuItem(
+                      //   priority: 6,
+                      //   title: '',
+                      //   onTap: () {
+                      //     setState(() {
+                      //       mode = !mode;
+                      //     });
+                      //   },
+                      //   icon: const Icon(Icons.arrow_back_ios_new),
+
+                      //   // tooltipContent: "Home",
+                      // ),
                     ],
                   ),
                   Expanded(
                     child: PageView(
                       controller: page,
                       children: [
-                        Container(height: 100, child: const StockPage()),
+                        Container( child: const StockPage()),
                         Container(
                           color: Colors.white,
                           child: const Center(
