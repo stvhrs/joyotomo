@@ -9,7 +9,7 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'main.dart';
 
 import 'models/stock.dart';
-import 'models/obejct.dart';
+
 
 final buttonColors = WindowButtonColors(
     iconNormal: const Color.fromARGB(255, 79, 117, 134),
@@ -41,7 +41,7 @@ class _WindowButtonsState extends State<WindowButtons> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(1),
+      padding: const EdgeInsets.all(1),
       color: Colors.grey.shade900,
       child: Row(
         children: [
@@ -79,34 +79,42 @@ class _SideState extends State<Side> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   child: const Icon(Icons.add),
-      //   onPressed: () {
-      //     final user = Stock(
-      //         count: 15,
-      //         desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-      //         name: 'Footstep 50mm',
-      //         partname: 'DOLKD1-12D-2DS',
-      //         totalPrice: 30000,
-      //         stockHistory: json.encode([
-      //        {
-      //             'date': DateTime.now().toIso8601String(),
-      //             'price': 15000,
-      //             'count': -1,
-      //             'supplier': 'Di Colong Tikus',
-      //           },   {
-      //             'date': DateTime.now().toIso8601String(),
-      //             'price': -12500,
-      //             'count': 9,
-      //             'supplier': 'Lestari Jaya',
-      //           },
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          final user = Stock(
+              count: 15,
+              desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
+              name: 'Footstep 50mm',
+              partname: 'DOLKD1-12D-2DS',
+              totalPrice: 30000,
+              stockHistory: json.encode([
+             {
+                  'date': DateTime.now().toIso8601String(),
+                  'price': 15000,
+                  'count': -1,
+                  'supplier': 'Di Colong Tikus',
+                },   {
+                  'date': DateTime.now().toIso8601String(),
+                  'price': -12500,
+                  'count': 9,
+                  'supplier': 'Lestari Jaya',
+                },
           
-      //         ]));
+              ]));
 
-      //     objectBox.insertStock(user);
-      //     //  objectBox.deleteAllStock();
-      //   },
-      // ),
+          for (var i = 0; i < 1000; i++) {
+                            user.name = '$i';
+                             user.partname = 'P$i';
+                            user.id = i;
+                            objectBox.insertStock(user);
+                          }
+                          //  objectBox.insertStock(stock);
+                        //  objectBox.deleteAllStock();
+                        //  Navigator.of(context).pop();
+          //  objectBox.deleteAllStock();
+        },
+      ),
       body: WindowBorder(
         color: const Color.fromARGB(255, 79, 117, 134),
         child: Column(
@@ -178,7 +186,7 @@ class _SideState extends State<Side> {
                         ),
                       ],
                     ),
-                    footer: Text(
+                    footer: const Text(
                       '@JOYOTOMO',
                       style: TextStyle(fontSize: 15),
                     ),

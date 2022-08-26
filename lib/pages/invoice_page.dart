@@ -77,14 +77,14 @@ class _InvoicePageState extends State<InvoicePage> {
     return Scaffold(
       floatingActionButton: Container(
         child: Row(children: [
-          Spacer(),
+          const Spacer(),
           FloatingActionButton(
-              child: Text('Save PDF'),
+              child: const Text('Save PDF'),
               onPressed: () {
                 buildPdf();
               }),
           FloatingActionButton(
-              child: Text('Print PDF'),
+              child: const Text('Print PDF'),
               onPressed: () async {
                 await printPdf();
               })
@@ -94,7 +94,7 @@ class _InvoicePageState extends State<InvoicePage> {
         child: LayoutBuilder(builder: (context, BoxConstraints constraints) {
           return Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(border: Border.all()),
               width: constraints.maxHeight / 1.4,
               height: constraints.maxHeight,
@@ -106,10 +106,10 @@ class _InvoicePageState extends State<InvoicePage> {
                       'images/logo.png',
                       width: 80,
                     ),
-                    Container(
+                    SizedBox(
                       width: 300,
                       child: Column(
-                        children: [
+                        children: const [
                           Text(
                             textAlign: TextAlign.justify,
                             'JOYOTOMO',

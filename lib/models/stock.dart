@@ -2,6 +2,7 @@ import 'package:objectbox/objectbox.dart';
 
 @Entity()
 class Stock {
+  @Id(assignable: true)
   int id;
   String name;
   String partname;

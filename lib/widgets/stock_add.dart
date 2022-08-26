@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
 
@@ -19,14 +17,14 @@ class AddPartName extends StatelessWidget {
     return ElevatedButton.icon(
         style: ButtonStyle(
             backgroundColor:
-                MaterialStateProperty.all(Color.fromARGB(255, 79, 117, 134))),
+                MaterialStateProperty.all(const Color.fromARGB(255, 79, 117, 134))),
         onPressed: () {
           showDialog(
               context: context,
               builder: (context) {
                 return AlertDialog(
-                  actionsPadding: EdgeInsets.only(right: 15, bottom: 15),
-                  title: Text("Insert Sperpate"),
+                  actionsPadding: const EdgeInsets.only(right: 15, bottom: 15),
+                  title: const Text("Insert Sperpate"),
                   content: IntrinsicHeight(
                     child: SizedBox(
                       width: 500,
@@ -133,17 +131,24 @@ class AddPartName extends StatelessWidget {
                               desc: d,
                               count: 0,
                               totalPrice: 0);
-                          objectBox.insertStock(stock);
+                          // for (var i = 0; i < 10000; i++) {
+                            // stock.name = 'id$i';
+                            //  stock.partname = 'part$i';
+                            // stock.id = i;
+                            objectBox.insertStock(stock);
+                          // }
+                          //  objectBox.insertStock(stock);
+                        //  objectBox.deleteAllStock();
                           Navigator.of(context).pop();
                         }
                       },
-                      child: Text("Insert"),
+                      child: const Text("Insert"),
                     ),
                   ],
                 );
               });
         },
-        icon: Icon(Icons.add),
-        label: Text('Add Part Name'));
+        icon: const Icon(Icons.add),
+        label: const Text('Add Part Name'));
   }
 }

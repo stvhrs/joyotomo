@@ -1,8 +1,9 @@
 import 'package:bitsdojo_window_example/models/stock.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../objectbox.g.dart';
 
-class ObjectBox {
+class ObjectBox extends ChangeNotifier {
   late final Store _store;
 
   late final Box<Stock> _stockBox;
@@ -18,10 +19,15 @@ class ObjectBox {
   }
 
   Stock? getUser(int id) => _stockBox.get(id);
-  Stream<List<Stock>> getStocks() => _stockBox
-      .query()
+  List<Stock >getall() => _stockBox.getAll();
+  List<int>? putMany(List<Stock> list) => _stockBox.putMany(list);
+  Stream<List<Stock>> getStocks() 
+  {
+    
+    return _stockBox
+      .query(Stock_.name.startsWith(''))
       .watch(triggerImmediately: true)
-      .map((query) => query.find());
+      .map((query) => query.find());}
 
   int insertStock(Stock stock) => _stockBox.put(stock);
 
