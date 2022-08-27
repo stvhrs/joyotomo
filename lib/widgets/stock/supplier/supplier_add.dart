@@ -3,11 +3,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import '../main.dart';
-import '../models/stock.dart';
 
-class AddPartName extends StatelessWidget {
-  const AddPartName({Key? key}) : super(key: key);
+class SupplierAdd extends StatelessWidget {
+  const SupplierAdd({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -122,20 +120,20 @@ class AddPartName extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         if ((p.isNotEmpty || d.isNotEmpty || n.isNotEmpty)) {
-                          Stock stock = Stock(
-                              stockHistory: json.encode([
-                                {},
-                              ]),
-                              partname: p,
-                              name: n,
-                              desc: d,
-                              count: 0,
-                              totalPrice: 0);
-                          // for (var i = 0; i < 10000; i++) {
-                            // stock.name = 'id$i';
-                            //  stock.partname = 'part$i';
-                            // stock.id = i;
-                            objectBox.insertStock(stock);
+                          // Stock stock = Stock(lastPrice: 0,
+                          //     stockHistory: json.encode([
+                          //       {},
+                          //     ]),
+                          //     partname: p,
+                          //     name: n,
+                          //     desc: d,
+                          //     count: 0,
+                          //     totalPrice: 0);
+                          // // for (var i = 0; i < 10000; i++) {
+                          //   // stock.name = 'id$i';
+                          //   //  stock.partname = 'part$i';
+                          //   // stock.id = i;
+                          //   objectBox.insertStock(stock);
                           // }
                           //  objectBox.insertStock(stock);
                         //  objectBox.deleteAllStock();
@@ -149,6 +147,6 @@ class AddPartName extends StatelessWidget {
               });
         },
         icon: const Icon(Icons.add),
-        label: const Text('Add Part Name'));
+        label: const Text('Add Suplier'));
   }
 }

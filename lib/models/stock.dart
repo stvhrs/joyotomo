@@ -8,7 +8,7 @@ class Stock {
   String partname;
   String desc;
   int count;
-
+double lastPrice;
   double totalPrice;
   String stockHistory;
 
@@ -18,6 +18,7 @@ class Stock {
     required this.partname,
     required this.name,
     required this.desc,
+    required this.lastPrice,
     required this.count,
     required this.totalPrice,
     // required this.stockHistory,

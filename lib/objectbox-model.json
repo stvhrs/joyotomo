@@ -4,74 +4,108 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:2285907381818768019",
-      "lastPropertyId": "9:4010721059192533731",
+      "id": "1:3389021589903794003",
+      "lastPropertyId": "8:735461823369923659",
       "name": "Stock",
       "properties": [
         {
-          "id": "1:7091697337229250635",
+          "id": "1:5967790982658837278",
           "name": "id",
           "type": 6,
           "flags": 129
         },
         {
-          "id": "2:5972376349027978318",
+          "id": "2:4227875349990748831",
           "name": "name",
           "type": 9
         },
         {
-          "id": "3:2993898285405302121",
-          "name": "desc",
-          "type": 9
-        },
-        {
-          "id": "6:9076521467577890943",
-          "name": "totalPrice",
-          "type": 8
-        },
-        {
-          "id": "7:122495542502483195",
+          "id": "3:886241504222142330",
           "name": "partname",
           "type": 9
         },
         {
-          "id": "8:869474652187445397",
+          "id": "4:1091455877774034921",
+          "name": "desc",
+          "type": 9
+        },
+        {
+          "id": "5:7874081669577216193",
           "name": "count",
           "type": 6
         },
         {
-          "id": "9:4010721059192533731",
+          "id": "6:4763297350789551884",
+          "name": "lastPrice",
+          "type": 8
+        },
+        {
+          "id": "7:833366697642041040",
+          "name": "totalPrice",
+          "type": 8
+        },
+        {
+          "id": "8:735461823369923659",
           "name": "stockHistory",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:7532569871822931830",
+      "lastPropertyId": "7:6071558702260463182",
+      "name": "Supplier",
+      "properties": [
+        {
+          "id": "1:4025040827335059770",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:3041223285697106141",
+          "name": "supplier",
+          "type": 9
+        },
+        {
+          "id": "3:6769316470616605937",
+          "name": "desc",
+          "type": 9
+        },
+        {
+          "id": "4:3664463052812058743",
+          "name": "count",
+          "type": 6
+        },
+        {
+          "id": "5:2388200212345552903",
+          "name": "date",
+          "type": 9
+        },
+        {
+          "id": "6:1408023126682403665",
+          "name": "totalPrice",
+          "type": 8
+        },
+        {
+          "id": "7:6071558702260463182",
+          "name": "supplierHistory",
           "type": 9
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "3:6837779520086823155",
+  "lastEntityId": "2:7532569871822931830",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
-  "retiredEntityUids": [
-    79178292374298352,
-    6837779520086823155
-  ],
+  "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    5029163725945625190,
-    3560275596537295878,
-    8226533979625104142,
-    2333710559535321770,
-    3914074710970127131,
-    4504594082210174508,
-    6741699394503551069,
-    3284328700893342354,
-    8827132622826361588,
-    8213100152163339616,
-    7787090014640875596
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

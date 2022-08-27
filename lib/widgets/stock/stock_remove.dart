@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/stock.dart';
+import '../../models/stock.dart';
 
 class StockRemove extends StatefulWidget {
   const StockRemove({Key? key}) : super(key: key);
@@ -124,8 +124,9 @@ class _StockRemoveState extends State<StockRemove> {
                                 history.add({
                                   'date': DateTime.now().toIso8601String(),
                                   'supplier': _reduceDes,
-                                  'count': _reduce - _reduce - _reduce,
-                                  'price': 12,
+                                  'count': - _reduce,
+                                  'totalPrice':-stock.lastPrice*_reduce,
+                                  'price':-stock.lastPrice,
                                 });
                                 stock.count = stock.count - _reduce;
                                 stock.stockHistory = json.encode(history);

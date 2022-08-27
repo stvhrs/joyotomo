@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:bitsdojo_window_example/models/supplier.dart';
 import 'package:bitsdojo_window_example/pages/invoice_page.dart';
+import 'package:bitsdojo_window_example/pages/supplier_page.dart';
 import 'package:bitsdojo_window_example/pages/stock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
@@ -9,7 +11,6 @@ import 'package:easy_sidemenu/easy_sidemenu.dart';
 import 'main.dart';
 
 import 'models/stock.dart';
-
 
 final buttonColors = WindowButtonColors(
     iconNormal: const Color.fromARGB(255, 79, 117, 134),
@@ -82,36 +83,58 @@ class _SideState extends State<Side> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          final user = Stock(
+          //  final user = Supplier(
+          //     date: DateTime.now().toIso8601String(),
+          //     count: 15,
+          //     desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
+          //     supplier: 'Footstep 50mm',
+          //     totalPrice: 30000,
+          //     supplierHistory: json.encode([
+          //       {
+          //         'date': DateTime.now().toIso8601String(),
+          //         'price': 15000,
+          //         'count': -1,
+          //         'totalPrice': -25000,
+          //         'supplier': 'Di Colong Tikus',
+          //       },
+          //       {
+          //         'date': DateTime.now().toIso8601String(),
+          //         'price': -12500,
+          //         'count': 9,
+          //         'totalPrice': -25000,
+          //         'supplier': 'Lestari Jaya',
+          //       },
+          //     ]));
+          final user = Supplier(
+              date: DateTime.now().toIso8601String(),
               count: 15,
               desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-              name: 'Footstep 50mm',
-              partname: 'DOLKD1-12D-2DS',
+              supplier: 'Footstep 50mm',
               totalPrice: 30000,
-              stockHistory: json.encode([
-             {
-                  'date': DateTime.now().toIso8601String(),
+              supplierHistory: json.encode([
+                {
+                  'partName':'ASD-ASCAS-ASD',
                   'price': 15000,
-                  'count': -1,
-                  'supplier': 'Di Colong Tikus',
-                },   {
-                  'date': DateTime.now().toIso8601String(),
-                  'price': -12500,
-                  'count': 9,
-                  'supplier': 'Lestari Jaya',
+                  'count': 1,
+                  'totalPrice': -25000,
                 },
-          
+                {
+                  'partName':'ASD-ASCAS-ASD',
+                  'price': 15000,
+                  'count': 1,
+                  'totalPrice': -25000,
+                },
               ]));
 
-          for (var i = 0; i < 1000; i++) {
-                            user.name = '$i';
-                             user.partname = 'P$i';
-                            user.id = i;
-                            objectBox.insertStock(user);
-                          }
-                          //  objectBox.insertStock(stock);
-                        //  objectBox.deleteAllStock();
-                        //  Navigator.of(context).pop();
+          // for (var i = 0; i < 1000; i++) {
+          //                   user.name = '$i';
+          //                    user.partname = 'P$i';
+          //                   user.id = i;
+          //                   objectBox.insertStock(user);
+          //                 }
+          objectBox.insertSupplier(user);
+          //  objectBox.deleteAllStock();
+          //  Navigator.of(context).pop();
           //  objectBox.deleteAllStock();
         },
       ),
@@ -152,7 +175,8 @@ class _SideState extends State<Side> {
                     // onDisplayModeChanged: (mode) {
                     //   print(mode);
                     // },
-                    style: SideMenuStyle(toggleColor: Colors.white,
+                    style: SideMenuStyle(
+                      toggleColor: Colors.white,
                       displayMode: mode
                           ? SideMenuDisplayMode.open
                           : SideMenuDisplayMode.compact,
@@ -259,16 +283,8 @@ class _SideState extends State<Side> {
                     child: PageView(
                       controller: page,
                       children: [
-                        Container( child: const StockPage()),
-                        Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              'Multi',
-                              style: TextStyle(fontSize: 35),
-                            ),
-                          ),
-                        ),
+                        Container(child: const StockPage()),
+                        SupplierPage(),
                         Container(
                           color: Colors.white,
                           child: const Center(

@@ -4,14 +4,14 @@ import 'dart:ffi';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
-import 'package:bitsdojo_window_example/widgets/stock_remove.dart';
+import 'package:bitsdojo_window_example/widgets/stock/stock_remove.dart';
 import 'package:data_table_2/paginated_data_table_2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../models/stock.dart';
+import '../../models/stock.dart';
 
 class StockDetails extends StatefulWidget {
   // final List<dynamic> stocksHistory;
@@ -76,7 +76,7 @@ class _StockDetailsState extends State<StockDetails> {
           Expanded(
               child: SizedBox(
             height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width / 3,
+            width: MediaQuery.of(context).size.width / 2.5,
             child: DataTable2(
                 headingRowHeight: 30,
                 border: TableBorder.all(
@@ -93,18 +93,21 @@ class _StockDetailsState extends State<StockDetails> {
                   DataColumn(
                     label: Center(child: Text('Date')),
                   ),
+                  
                   DataColumn(
                     label: Center(child: Text('Supplier')),
                   ),
                   DataColumn(
-                    label: Center(child: Text('Price item')),
+                    label: Center(child: Text('Satuan')),
                   ),
                   DataColumn2(
                       label: Center(
                           child: Text(
                         'Count',
                       )),
-                      size: ColumnSize.S),
+                      size: ColumnSize.S), DataColumn(
+                    label: Center(child: Text('Total')),
+                  ),
                 ],
                 rows: value.selectedStock.stockHistory == '[{}]'
                     ? []
@@ -141,7 +144,13 @@ class _StockDetailsState extends State<StockDetails> {
                                         style: const TextStyle(
                                             color: Colors.white),
                                         textAlign: TextAlign.center,
-                                      ))))
+                                      ),
+                                      )
+                                      
+                                      )),
+                                        DataCell(Center(
+                                  child:
+                                      Text(formatCurrency.format(e['totalPrice'])))),
                             ]);
                       }).toList()),
           ))

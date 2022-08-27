@@ -1,33 +1,34 @@
-import 'dart:convert';
+import 'package:bitsdojo_window_example/widgets/stock/supplier/supplier_add.dart';
+import 'package:flutter/material.dart';
 
 import 'package:bitsdojo_window_example/provider/triger.dart';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
-import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../main.dart';
 
-import '../models/stock.dart';
-import '../widgets/stock/stock_add.dart';
-import '../widgets/stock/stock_details.dart';
+import '../models/supplier.dart';
+import '../widgets/stock/supplier/supplier_details.dart';
 
-class StockPage extends StatefulWidget {
-  const StockPage({Key? key}) : super(key: key);
+class SupplierPage extends StatefulWidget {
+  const SupplierPage({Key? key}) : super(key: key);
 
   @override
-  State<StockPage> createState() => _StockPageState();
+  State<SupplierPage> createState() => _SupplierPageState();
 }
 
-class _StockPageState extends State<StockPage> {
-  late Stream<List<Stock>> _streamstocks;
+class _SupplierPageState extends State<SupplierPage> {
+  late Stream<List<Supplier>> _streamSuppliers;
   final int _currentIndex = 0;
-  late Stock _selectedStock;
+  late Supplier _selectedSupplier;
   String _search = '';
 
   @override
   void initState() {
-    _streamstocks = objectBox.getStocks();
+    _streamSuppliers = objectBox.getSuppliers();
     super.initState();
   }
 
@@ -42,33 +43,32 @@ class _StockPageState extends State<StockPage> {
   Widget build(BuildContext context2) {
     print('buil addll');
     return Scaffold(
-      body: StreamBuilder<List<Stock>>(
-          stream: _streamstocks,
+      body: StreamBuilder<List<Supplier>>(
+          stream: _streamSuppliers,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
               return SizedBox();
             }
             if (snapshot.data!.isEmpty) {
-              return const Center(child: AddPartName());
+              return const Center(
+                child: SupplierAdd(),
+              );
             } else {
-              List<Stock> stocks = [];
+              List<Supplier> Suppliers = [];
               if (_search != '') {
-                for (Stock element in snapshot.data!) {
-                  if (element.partname
-                          .toLowerCase()
-                          .startsWith(_search.toLowerCase()) ||
-                      element.name
-                          .toLowerCase()
-                          .startsWith(_search.toLowerCase())) {
-                    stocks.add(element);
+                for (Supplier element in snapshot.data!) {
+                  if (element.supplier
+                      .toLowerCase()
+                      .startsWith(_search.toLowerCase())) {
+                    Suppliers.add(element);
                   }
                 }
               } else {
-                stocks = snapshot.data!.reversed.toList();
+                Suppliers = snapshot.data!.reversed.toList();
 
-                _selectedStock = stocks[_currentIndex];
+                _selectedSupplier = Suppliers[_currentIndex];
                 Provider.of<Trigger>(context, listen: false)
-                    .select(_selectedStock, false);
+                    .selectSupplier(_selectedSupplier, false);
               }
 
               return Consumer<Trigger>(builder: (context, val, c) {
@@ -108,12 +108,13 @@ class _StockPageState extends State<StockPage> {
                                                 onChanged: (val) {
                                                   setState(
                                                     () {
-                                                      if (stocks.isNotEmpty) {
-                                                        _selectedStock =
-                                                            stocks[0];
+                                                      if (Suppliers
+                                                          .isNotEmpty) {
+                                                        _selectedSupplier =
+                                                            Suppliers[0];
                                                       }
-                                                      // _streamstocks =
-                                                      //     objectBox.getStocks(
+                                                      // _streamSuppliers =
+                                                      //     objectBox.getSuppliers(
                                                       //         val.toString());
                                                       _search = val.toString();
                                                       // }
@@ -122,12 +123,11 @@ class _StockPageState extends State<StockPage> {
                                                 },
                                                 decoration:
                                                     const InputDecoration(
-                                                  hintText:
-                                                      'Search Part Name/Name',
+                                                  hintText: 'Search Supplier',
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
-                                  const AddPartName()
+                                  const SupplierAdd()
                                 ],
                               ),
                             ),
@@ -141,7 +141,8 @@ class _StockPageState extends State<StockPage> {
                                         wrapInCard: false,
                                         rowsPerPage: 20,
                                         source: UserDataTableSource(
-                                            userData: stocks, context: context),
+                                            userData: Suppliers,
+                                            context: context),
                                         headingRowHeight: 40,
                                         minWidth: 300,
                                         border: TableBorder.all(
@@ -157,11 +158,11 @@ class _StockPageState extends State<StockPage> {
                                         horizontalMargin: 0,
                                         columns: const [
                                           DataColumn(
-                                            label: Center(
-                                                child: Text('Part Name')),
+                                            label: Center(child: Text('Date')),
                                           ),
                                           DataColumn(
-                                            label: Center(child: Text('Name')),
+                                            label:
+                                                Center(child: Text('Supplier')),
                                           ),
                                           DataColumn(
                                             label: Center(
@@ -171,7 +172,7 @@ class _StockPageState extends State<StockPage> {
                                             size: ColumnSize.S,
                                             label: Center(
                                                 child: Text(
-                                              'Stock',
+                                              'Count',
                                             )),
                                           ),
                                         ],
@@ -180,7 +181,7 @@ class _StockPageState extends State<StockPage> {
                           ],
                         ),
                         _divier_,
-                        StockDetails(),
+                        SupplierDetails(),
                       ]),
                 );
               });
@@ -189,21 +190,6 @@ class _StockPageState extends State<StockPage> {
     );
   }
 }
-
-// buildDetails(Stock stock) {
-//   return ...(json.decode(stock.stockHistory) as List<dynamic>).map((e) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         Text(e['count'].toString()),
-//         Text(DateFormat.yMMMMEEEEd("id_ID")
-//             .format(DateTim_user.parse(e['date']).toLocal())),
-//         Text(e['price'].toString()),
-//         Text(e['supplier'].toString()),
-//       ],
-//     );
-//   }).toList();
-// }
 
 Widget get _divier_ => Row(
       children: const [
@@ -221,10 +207,10 @@ Widget get _divier_ => Row(
     );
 
 class UserDataTableSource extends DataTableSource {
-  UserDataTableSource({required List<Stock> userData, required this.context})
+  UserDataTableSource({required List<Supplier> userData, required this.context})
       : _userData = userData;
   final BuildContext context;
-  final List<Stock> _userData;
+  final List<Supplier> _userData;
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   DataRow getRow(int index) {
@@ -234,40 +220,42 @@ class UserDataTableSource extends DataTableSource {
       return const DataRow(cells: []);
     }
     final _user = _userData[index];
-    Stock _selectedStock =
-        Provider.of<Trigger>(context, listen: true).selectedStock;
+    Supplier _selectedSupplier =
+        Provider.of<Trigger>(context, listen: true).selectedSupplier;
 
     return DataRow2.byIndex(
         color: MaterialStateProperty.all(index.isEven
             ? const Color.fromARGB(255, 193, 216, 226)
             : Colors.transparent),
         onTap: () {
-          Provider.of<Trigger>(context, listen: false).select(_user, true);
+          Provider.of<Trigger>(context, listen: false)
+              .selectSupplier(_user, true);
         },
         index: index,
         cells: [
           DataCell(Container(
               width: double.infinity,
               height: double.infinity,
-              color: _selectedStock == _user
+              color: _selectedSupplier == _user
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
-                child: Text(_user.partname),
+                child: Text(DateFormat.yMMMMEEEEd("id_ID")
+                    .format(DateTime.parse(_user.date).toLocal())),
               ))),
           DataCell(Container(
               width: double.infinity,
               height: double.infinity,
-              color: _selectedStock == _user
+              color: _selectedSupplier == _user
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
-                child: Text(_user.name),
+                child: Text(_user.totalPrice.toString()),
               ))),
           DataCell(Container(
               width: double.infinity,
               height: double.infinity,
-              color: _selectedStock == _user
+              color: _selectedSupplier == _user
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
@@ -279,7 +267,7 @@ class UserDataTableSource extends DataTableSource {
                 const EdgeInsets.only(top: 10, bottom: 10, left: 35, right: 35),
             width: double.infinity,
             height: double.infinity,
-            color: _selectedStock == _user
+            color: _selectedSupplier == _user
                 ? Colors.amber.shade200
                 : Colors.transparent,
             child: Container(
@@ -309,7 +297,7 @@ class UserDataTableSource extends DataTableSource {
   @override
   int get selectedRowCount => 0;
 
-  void sort<T>(Comparable<T> Function(Stock d) getField, bool ascending) {
+  void sort<T>(Comparable<T> Function(Supplier d) getField, bool ascending) {
     _userData.sort((a, b) {
       final aValue = getField(a);
       final bValue = getField(b);
