@@ -32,7 +32,8 @@ class ObjectBox extends ChangeNotifier {
 
   bool deleteSupplier(int id) => _supplierBox.remove(id);
 
-  deleteAllStock() => _supplierBox.removeAll();
+  deleteAllSupplier() => _supplierBox.removeAll();
+  deleteAllStock() => _stockBox.removeAll();
 
 
 

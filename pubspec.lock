@@ -225,6 +225,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.6"
+  dropdownfield2:
+    dependency: "direct main"
+    description:
+      name: dropdownfield2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   easy_sidemenu:
     dependency: "direct main"
     description:

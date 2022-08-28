@@ -83,13 +83,13 @@ class _SideState extends State<Side> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          //  final user = Supplier(
-          //     date: DateTime.now().toIso8601String(),
+          //  final user =Stock(
+          //    lastPrice: 23,name: 'asdasd',partname: 'asdasd',
           //     count: 15,
           //     desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-          //     supplier: 'Footstep 50mm',
+            
           //     totalPrice: 30000,
-          //     supplierHistory: json.encode([
+          //   stockHistory: json.encode([
           //       {
           //         'date': DateTime.now().toIso8601String(),
           //         'price': 15000,
@@ -105,35 +105,16 @@ class _SideState extends State<Side> {
           //         'supplier': 'Lestari Jaya',
           //       },
           //     ]));
-          final user = Supplier(
-              date: DateTime.now().toIso8601String(),
-              count: 15,
-              desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-              supplier: 'Footstep 50mm',
-              totalPrice: 30000,
-              supplierHistory: json.encode([
-                {
-                  'partName':'ASD-ASCAS-ASD',
-                  'price': 15000,
-                  'count': 1,
-                  'totalPrice': -25000,
-                },
-                {
-                  'partName':'ASD-ASCAS-ASD',
-                  'price': 15000,
-                  'count': 1,
-                  'totalPrice': -25000,
-                },
-              ]));
+        
 
-          // for (var i = 0; i < 1000; i++) {
-          //                   user.name = '$i';
-          //                    user.partname = 'P$i';
-          //                   user.id = i;
-          //                   objectBox.insertStock(user);
-          //                 }
-          objectBox.insertSupplier(user);
-          //  objectBox.deleteAllStock();
+          // // for (var i = 0; i < 1000; i++) {
+          // //                   user.name = '$i';
+          // //                    user.partname = 'P$i';
+          // //                   user.id = i;
+          // //                   objectBox.insertStock(user);
+          // //                 }
+          // objectBox.insertStock(user);
+            objectBox.deleteAllSupplier();
           //  Navigator.of(context).pop();
           //  objectBox.deleteAllStock();
         },

@@ -7,6 +7,7 @@ import 'package:bitsdojo_window_example/models/supplier.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
+import 'package:dropdownfield2/dropdownfield2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -22,6 +23,7 @@ class SupplierDetails extends StatefulWidget {
 }
 
 class _SupplierDetailsState extends State<SupplierDetails> {
+ 
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,6 @@ class _SupplierDetailsState extends State<SupplierDetails> {
               .reversed
               .toList();
 
-      log(history.toString());
       return IntrinsicWidth(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Text(
@@ -47,6 +48,7 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(5)),
               child: Text(value.selectedSupplier.desc)),
+         
           Expanded(
               child: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -66,7 +68,8 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                 columns: const [
                   DataColumn(
                     label: Center(child: Text('PartName')),
-                  ), DataColumn(
+                  ),
+                  DataColumn(
                     label: Center(child: Text('Satuan')),
                   ),
                   DataColumn2(
@@ -85,8 +88,8 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                           ? Colors.amber.shade200
                           : Colors.white),
                       cells: [
+                        DataCell(Center(child: Text(e['partName']))),
                         DataCell(Center(
-                            child: Text(e['partName']))),DataCell(Center(
                             child: Text(formatCurrency.format(e['price'])))),
                         DataCell(Center(
                             child: Container(

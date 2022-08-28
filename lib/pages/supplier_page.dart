@@ -50,7 +50,9 @@ class _SupplierPageState extends State<SupplierPage> {
               return SizedBox();
             }
             if (snapshot.data!.isEmpty) {
-              return const Center(
+               Provider.of<Trigger>(context, listen: false)
+                    .selectListSupplier([],false);
+              return  Center(
                 child: SupplierAdd(),
               );
             } else {
@@ -69,6 +71,8 @@ class _SupplierPageState extends State<SupplierPage> {
                 _selectedSupplier = Suppliers[_currentIndex];
                 Provider.of<Trigger>(context, listen: false)
                     .selectSupplier(_selectedSupplier, false);
+                Provider.of<Trigger>(context, listen: false)
+                    .selectListSupplier(Suppliers,false);
               }
 
               return Consumer<Trigger>(builder: (context, val, c) {
@@ -127,7 +131,7 @@ class _SupplierPageState extends State<SupplierPage> {
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
-                                  const SupplierAdd()
+                                 SupplierAdd()
                                 ],
                               ),
                             ),

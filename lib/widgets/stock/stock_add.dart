@@ -1,7 +1,9 @@
 import 'dart:convert';
 
-
+import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../main.dart';
 import '../../models/stock.dart';
@@ -14,10 +16,11 @@ class AddPartName extends StatelessWidget {
     String p = '';
     String n = '';
     String d = '';
+
     return ElevatedButton.icon(
         style: ButtonStyle(
-            backgroundColor:
-                MaterialStateProperty.all(const Color.fromARGB(255, 79, 117, 134))),
+            backgroundColor: MaterialStateProperty.all(
+                const Color.fromARGB(255, 79, 117, 134))),
         onPressed: () {
           showDialog(
               context: context,
@@ -122,23 +125,22 @@ class AddPartName extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         if ((p.isNotEmpty || d.isNotEmpty || n.isNotEmpty)) {
-                          Stock stock = Stock(lastPrice: 0,
-                              stockHistory: json.encode([
-                                {},
-                              ]),
+                          Stock stock = Stock(
+                              lastPrice: 0,
+                              stockHistory: json.encode([]),
                               partname: p,
                               name: n,
                               desc: d,
                               count: 0,
                               totalPrice: 0);
                           // for (var i = 0; i < 10000; i++) {
-                            // stock.name = 'id$i';
-                            //  stock.partname = 'part$i';
-                            // stock.id = i;
-                            objectBox.insertStock(stock);
+                          // stock.name = 'id$i';
+                          //  stock.partname = 'part$i';
+                          // stock.id = i;
+                          objectBox.insertStock(stock);
                           // }
                           //  objectBox.insertStock(stock);
-                        //  objectBox.deleteAllStock();
+                          //  objectBox.deleteAllStock();
                           Navigator.of(context).pop();
                         }
                       },

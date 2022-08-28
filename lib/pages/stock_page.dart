@@ -49,7 +49,7 @@ class _StockPageState extends State<StockPage> {
               return SizedBox();
             }
             if (snapshot.data!.isEmpty) {
-              return const Center(child: AddPartName());
+              return Center(child: AddPartName());
             } else {
               List<Stock> stocks = [];
               if (_search != '') {
@@ -69,6 +69,8 @@ class _StockPageState extends State<StockPage> {
                 _selectedStock = stocks[_currentIndex];
                 Provider.of<Trigger>(context, listen: false)
                     .select(_selectedStock, false);
+                Provider.of<Trigger>(context, listen: false)
+                    .selectListStock(stocks, false);
               }
 
               return Consumer<Trigger>(builder: (context, val, c) {
@@ -127,7 +129,7 @@ class _StockPageState extends State<StockPage> {
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
-                                  const AddPartName()
+                                 AddPartName()
                                 ],
                               ),
                             ),

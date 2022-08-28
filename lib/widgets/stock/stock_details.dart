@@ -71,7 +71,7 @@ class _StockDetailsState extends State<StockDetails> {
                   borderRadius: BorderRadius.circular(5)),
               child: Text(value.selectedStock.desc)),
               
-               (value.selectedStock.stockHistory != '[{}]')? StockRemove():SizedBox(),
+               (value.selectedStock.stockHistory != '[]')? StockRemove():SizedBox(),
          
           Expanded(
               child: SizedBox(
@@ -109,7 +109,7 @@ class _StockDetailsState extends State<StockDetails> {
                     label: Center(child: Text('Total')),
                   ),
                 ],
-                rows: value.selectedStock.stockHistory == '[{}]'
+                rows: value.selectedStock.stockHistory == '[]'
                     ? []
                     : history.map((e) {
                         return DataRow2(
