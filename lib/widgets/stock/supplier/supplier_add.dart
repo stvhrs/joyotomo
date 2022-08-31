@@ -142,7 +142,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                         return AlertDialog(
                             actionsPadding:
                                 const EdgeInsets.only(right: 15, bottom: 15),
-                            title: const Text("Reduce Stock"),
+                            title: const Text("Kulakan"),
                             content: StatefulBuilder(
                               builder: (BuildContext context,
                                       StateSetter setState) =>
@@ -153,42 +153,6 @@ class _SupplierAddState extends State<SupplierAdd> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (jumlahOpsi > 1) {
-                                                    _updatedStock.removeAt(
-                                                        jumlahOpsi - 1);
-                                                    data.removeAt(
-                                                        jumlahOpsi - 1);
-                                                    jumlahOpsi = jumlahOpsi - 1;
-                                                  }
-                                                });
-                                              },
-                                              icon: Icon(Icons.remove_circle)),
-                                          Text(jumlahOpsi.toString()),
-                                          IconButton(
-                                              onPressed: () {
-                                                if (jumlahOpsi ==
-                                                    _updatedStock.length) {
-                                                  setState(() {
-                                                    jumlahOpsi = jumlahOpsi + 1;
-                                                    data.add({
-                                                      'date': DateTime.now()
-                                                          .toIso8601String(),
-                                                      'supplier': _supplier,
-                                                      'count': 1,
-                                                      'totalPrice': 0,
-                                                      'price': 0,
-                                                    });
-                                                  });
-                                                }
-                                              },
-                                              icon: Icon(Icons.add_circle)),
-                                        ],
-                                      ),
                                       DropDownField(
                                         required: true,
                                         strict: true,
@@ -236,7 +200,46 @@ class _SupplierAddState extends State<SupplierAdd> {
                                       ...List.generate(
                                           jumlahOpsi,
                                           (index) =>
-                                              _buildPartName(index, context))
+                                              _buildPartName(index, context)),
+                                      Row(
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  if (jumlahOpsi > 1 &&
+                                                      jumlahOpsi ==
+                                                          _updatedStock
+                                                              .length) {
+                                                    _updatedStock.removeAt(
+                                                        jumlahOpsi - 1);
+                                                    data.removeAt(
+                                                        jumlahOpsi - 1);
+                                                    jumlahOpsi = jumlahOpsi - 1;
+                                                  }
+                                                });
+                                              },
+                                              icon: Icon(Icons.remove_circle)),
+                                          // Text(jumlahOpsi.toString()),
+                                          IconButton(
+                                              onPressed: () {
+                                                if (jumlahOpsi ==
+                                                    _updatedStock.length) {
+                                                  setState(() {
+                                                    jumlahOpsi = jumlahOpsi + 1;
+                                                    data.add({
+                                                      'date': DateTime.now()
+                                                          .toIso8601String(),
+                                                      'supplier': _supplier,
+                                                      'count': 1,
+                                                      'totalPrice': 0,
+                                                      'price': 0,
+                                                    });
+                                                  });
+                                                }
+                                              },
+                                              icon: Icon(Icons.add_circle)),
+                                        ],
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -255,7 +258,24 @@ class _SupplierAddState extends State<SupplierAdd> {
                                     for (var i = 0;
                                         i < _updatedStock.length;
                                         i++) {
+                                      final supp = Supplier(
+                                          date:
+                                              DateTime.now().toIso8601String(),
+                                          supplierHistory: json.encode([
+                                            {
+                                              'count': 0,
+                                              'partName': 'asdsd',
+                                              'price': 0,
+                                              'totalPrice': 0
+                                            }
+                                          ]),
+                                          supplier: 'test',
+                                          desc: 'desc',
+                                          count: 69,
+                                          totalPrice: 69);
                                       Stock stock = _updatedStock[i];
+                                      supp.items.add(stock);
+                                       objectBox.insertSupplier(supp);
                                       List history =
                                           json.decode(stock.stockHistory);
                                       data[i]['supplier'] = _supplier;
@@ -266,23 +286,23 @@ class _SupplierAddState extends State<SupplierAdd> {
                                       stock.lastPrice = 100;
                                       log(history.toString());
                                       objectBox.insertStock(stock);
-                                      objectBox.insertSupplier(Supplier(
-                                          date:
-                                              DateTime.now().toIso8601String(),
-                                          supplierHistory:json.encode( [
-                                            {
-                                            
-                                              'count': 0,  'partName': 'asdsd',
-                                              'price': 0,
-                                              'totalPrice': 0
-                                            }
-                                          ]),
-                                          supplier: _supplier,
-                                          desc: d,
-                                          count: 99,
-                                          totalPrice: 99));
-                                      Navigator.of(context).pop();
-                                    }
+                                      // objectBox.insertSupplier(Supplier(
+                                      //     date:
+                                      //         DateTime.now().toIso8601String(),
+                                      //     supplierHistory: json.encode([
+                                      //       {
+                                      //         'count': 0,
+                                      //         'partName': 'asdsd',
+                                      //         'price': 0,
+                                      //         'totalPrice': 0
+                                      //       }
+                                      //     ]),
+                                      //     supplier: _supplier,
+                                      //     desc: d,
+                                      //     count: 99,
+                                      //     totalPrice: 99));
+                                    
+                                    }  Navigator.of(context).pop();
                                   }
                                 },
                                 child: const Text("Reduce"),

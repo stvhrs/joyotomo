@@ -114,9 +114,9 @@ class _SideState extends State<Side> {
           // //                   objectBox.insertStock(user);
           // //                 }
           // objectBox.insertStock(user);
-            objectBox.deleteAllSupplier();
+             objectBox.deleteAllSupplier();
           //  Navigator.of(context).pop();
-          //  objectBox.deleteAllStock();
+            objectBox.deleteAllStock();
         },
       ),
       body: WindowBorder(

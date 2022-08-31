@@ -35,7 +35,8 @@ class _SupplierPageState extends State<SupplierPage> {
   @override
   void didChangeDependencies() {
     print('didi');
-
+Provider.of<Trigger>(context, listen: false)
+                    .selectListSupplier([],false);
     super.didChangeDependencies();
   }
 
@@ -52,6 +53,7 @@ class _SupplierPageState extends State<SupplierPage> {
             if (snapshot.data!.isEmpty) {
                Provider.of<Trigger>(context, listen: false)
                     .selectListSupplier([],false);
+                       
               return  Center(
                 child: SupplierAdd(),
               );
@@ -254,7 +256,7 @@ class UserDataTableSource extends DataTableSource {
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
-                child: Text(_user.totalPrice.toString()),
+                child: Text(_user.items[0].name),
               ))),
           DataCell(Container(
               width: double.infinity,

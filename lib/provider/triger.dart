@@ -6,17 +6,19 @@ import 'package:flutter/cupertino.dart';
 import '../models/stock.dart';
 
 class Trigger extends ChangeNotifier {
-  late List<Stock> listSelectedStock;
-  late List<Supplier> listSelectedSupplier;
+   List<Stock> listSelectedStock=[];
+ List<Supplier> listSelectedSupplier=[];
   late Stock selectedStock;
   late Supplier selectedSupplier;
 
   select(Stock stock, bool listen) {
+    
     selectedStock = stock;
     if (listen) notifyListeners();
   }
    selectSupplier(Supplier supplier, bool listen) {
     selectedSupplier = supplier;
+    
     if (listen) notifyListeners();
   }
   selectListSupplier(List<Supplier> suppliers, bool listen) {
