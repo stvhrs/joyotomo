@@ -256,7 +256,7 @@ class UserDataTableSource extends DataTableSource {
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
-                child: Text(_user.items[0].name),
+                child: Text(_user.supplier),
               ))),
           DataCell(Container(
               width: double.infinity,

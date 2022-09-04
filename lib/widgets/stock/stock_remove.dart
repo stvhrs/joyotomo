@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
+import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -120,16 +121,16 @@ class _StockRemoveState extends State<StockRemove> {
                           actions: <Widget>[
                             ElevatedButton(
                               onPressed: () {
-                                List history = json.decode(stock.stockHistory);
-                                history.add({
-                                  'date': DateTime.now().toIso8601String(),
-                                  'supplier': _reduceDes,
-                                  'count': - _reduce,
-                                  'totalPrice':-stock.lastPrice*_reduce,
-                                  'price':-stock.lastPrice,
-                                });
+                                late StockHistory history;
+                                history = StockHistory(
+                                    supplier: _reduceDes,
+                                    date: DateTime.now().toIso8601String(),
+                                    price: -stock.lastPrice,
+                                    count: -_reduce,
+                                    totalPrice: -stock.lastPrice * _reduce);
                                 stock.count = stock.count - _reduce;
-                                stock.stockHistory = json.encode(history);
+
+                                stock.items.add(history);
                                 objectBox.insertStock(stock);
                                 Navigator.of(context).pop();
                               },

@@ -14,108 +14,183 @@ import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart';
 
 import 'models/stock.dart';
+import 'models/stock_history.dart';
 import 'models/supplier.dart';
+import 'models/supplier_history.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 1252766900041958831),
+      id: const IdUid(1, 5172474104323874019),
       name: 'Stock',
-      lastPropertyId: const IdUid(8, 8798623721479684008),
+      lastPropertyId: const IdUid(7, 5791046997250019872),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 887741908349108947),
+            id: const IdUid(1, 898843647539086841),
             name: 'id',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 2415169424026116275),
+            id: const IdUid(2, 241095903948734328),
             name: 'name',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 1521207866946176829),
+            id: const IdUid(3, 7393100222852980084),
             name: 'partname',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 4504548529484073183),
+            id: const IdUid(4, 1307345088179857506),
             name: 'desc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6396394982734615742),
+            id: const IdUid(5, 3127748686168046482),
             name: 'count',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 3158419655842419145),
+            id: const IdUid(6, 5683772445217035368),
             name: 'lastPrice',
             type: 8,
             flags: 0),
         ModelProperty(
-            id: const IdUid(7, 1621580619266432455),
+            id: const IdUid(7, 5791046997250019872),
             name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[
+        ModelRelation(
+            id: const IdUid(1, 6459399398230391853),
+            name: 'items',
+            targetId: const IdUid(2, 4985186484628358543))
+      ],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(2, 4985186484628358543),
+      name: 'StockHistory',
+      lastPropertyId: const IdUid(6, 7046557823376505369),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 4234573687941491413),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 7097650528938352860),
+            name: 'date',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 8870695530852544804),
+            name: 'supplier',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 8813497951331478009),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 7050327185930906142),
+            name: 'price',
             type: 8,
             flags: 0),
         ModelProperty(
-            id: const IdUid(8, 8798623721479684008),
-            name: 'stockHistory',
-            type: 9,
+            id: const IdUid(6, 7046557823376505369),
+            name: 'totalPrice',
+            type: 8,
             flags: 0)
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 6322181137298754354),
+      id: const IdUid(3, 6969889068049069330),
       name: 'Supplier',
-      lastPropertyId: const IdUid(7, 2993247752997137308),
+      lastPropertyId: const IdUid(6, 6876693806783154073),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 5898784678578951353),
+            id: const IdUid(1, 3178573867488025493),
             name: 'id',
             type: 6,
             flags: 129),
         ModelProperty(
-            id: const IdUid(2, 6864811391147170812),
+            id: const IdUid(2, 9140426680274193237),
             name: 'supplier',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 1064727871268971164),
+            id: const IdUid(3, 5680268228196982252),
             name: 'desc',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 5887281560469213603),
+            id: const IdUid(4, 3388215526658503540),
             name: 'count',
             type: 6,
             flags: 0),
         ModelProperty(
-            id: const IdUid(5, 6397672134805511372),
+            id: const IdUid(5, 2859909099310288108),
             name: 'date',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(6, 1910779872142268105),
+            id: const IdUid(6, 6876693806783154073),
             name: 'totalPrice',
             type: 8,
-            flags: 0),
-        ModelProperty(
-            id: const IdUid(7, 2993247752997137308),
-            name: 'supplierHistory',
-            type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[
         ModelRelation(
-            id: const IdUid(1, 7659474020456914509),
+            id: const IdUid(2, 5532195133722584715),
             name: 'items',
-            targetId: const IdUid(1, 1252766900041958831))
+            targetId: const IdUid(4, 8577844043565327978))
       ],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(4, 8577844043565327978),
+      name: 'SupplierHistory',
+      lastPropertyId: const IdUid(6, 5972625551270898158),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 3897262296091274605),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 5532853036151464018),
+            name: 'partName',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 4438219845454252168),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 2161082357857933507),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 6504877467750985538),
+            name: 'price',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 5972625551270898158),
+            name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -139,9 +214,9 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 6322181137298754354),
+      lastEntityId: const IdUid(4, 8577844043565327978),
       lastIndexId: const IdUid(0, 0),
-      lastRelationId: const IdUid(1, 7659474020456914509),
+      lastRelationId: const IdUid(2, 5532195133722584715),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
@@ -155,7 +230,8 @@ ModelDefinition getObjectBoxModel() {
     Stock: EntityDefinition<Stock>(
         model: _entities[0],
         toOneRelations: (Stock object) => [],
-        toManyRelations: (Stock object) => {},
+        toManyRelations: (Stock object) =>
+            {RelInfo<Stock>.toMany(1, object.id): object.items},
         getId: (Stock object) => object.id,
         setId: (Stock object, int id) {
           object.id = id;
@@ -164,8 +240,7 @@ ModelDefinition getObjectBoxModel() {
           final nameOffset = fbb.writeString(object.name);
           final partnameOffset = fbb.writeString(object.partname);
           final descOffset = fbb.writeString(object.desc);
-          final stockHistoryOffset = fbb.writeString(object.stockHistory);
-          fbb.startTable(9);
+          fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
           fbb.addOffset(2, partnameOffset);
@@ -173,7 +248,6 @@ ModelDefinition getObjectBoxModel() {
           fbb.addInt64(4, object.count);
           fbb.addFloat64(5, object.lastPrice);
           fbb.addFloat64(6, object.totalPrice);
-          fbb.addOffset(7, stockHistoryOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -183,8 +257,6 @@ ModelDefinition getObjectBoxModel() {
 
           final object = Stock(
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
-              stockHistory: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 18, ''),
               partname: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 8, ''),
               name: const fb.StringReader(asciiOptimization: true)
@@ -197,14 +269,55 @@ ModelDefinition getObjectBoxModel() {
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
               totalPrice: const fb.Float64Reader()
                   .vTableGet(buffer, rootOffset, 16, 0));
+          InternalToManyAccess.setRelInfo(object.items, store,
+              RelInfo<Stock>.toMany(1, object.id), store.box<Stock>());
+          return object;
+        }),
+    StockHistory: EntityDefinition<StockHistory>(
+        model: _entities[1],
+        toOneRelations: (StockHistory object) => [],
+        toManyRelations: (StockHistory object) => {},
+        getId: (StockHistory object) => object.id,
+        setId: (StockHistory object, int id) {
+          object.id = id;
+        },
+        objectToFB: (StockHistory object, fb.Builder fbb) {
+          final dateOffset = fbb.writeString(object.date);
+          final supplierOffset = fbb.writeString(object.supplier);
+          fbb.startTable(7);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, dateOffset);
+          fbb.addOffset(2, supplierOffset);
+          fbb.addInt64(3, object.count);
+          fbb.addFloat64(4, object.price);
+          fbb.addFloat64(5, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = StockHistory(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              supplier: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              date: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              price:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 14, 0));
 
           return object;
         }),
     Supplier: EntityDefinition<Supplier>(
-        model: _entities[1],
+        model: _entities[2],
         toOneRelations: (Supplier object) => [],
         toManyRelations: (Supplier object) =>
-            {RelInfo<Supplier>.toMany(1, object.id): object.items},
+            {RelInfo<Supplier>.toMany(2, object.id): object.items},
         getId: (Supplier object) => object.id,
         setId: (Supplier object, int id) {
           object.id = id;
@@ -213,15 +326,13 @@ ModelDefinition getObjectBoxModel() {
           final supplierOffset = fbb.writeString(object.supplier);
           final descOffset = fbb.writeString(object.desc);
           final dateOffset = fbb.writeString(object.date);
-          final supplierHistoryOffset = fbb.writeString(object.supplierHistory);
-          fbb.startTable(8);
+          fbb.startTable(7);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, supplierOffset);
           fbb.addOffset(2, descOffset);
           fbb.addInt64(3, object.count);
           fbb.addOffset(4, dateOffset);
           fbb.addFloat64(5, object.totalPrice);
-          fbb.addOffset(6, supplierHistoryOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -233,8 +344,6 @@ ModelDefinition getObjectBoxModel() {
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
               date: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 12, ''),
-              supplierHistory: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 16, ''),
               supplier: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 6, ''),
               desc: const fb.StringReader(asciiOptimization: true)
@@ -244,7 +353,47 @@ ModelDefinition getObjectBoxModel() {
               totalPrice: const fb.Float64Reader()
                   .vTableGet(buffer, rootOffset, 14, 0));
           InternalToManyAccess.setRelInfo(object.items, store,
-              RelInfo<Supplier>.toMany(1, object.id), store.box<Supplier>());
+              RelInfo<Supplier>.toMany(2, object.id), store.box<Supplier>());
+          return object;
+        }),
+    SupplierHistory: EntityDefinition<SupplierHistory>(
+        model: _entities[3],
+        toOneRelations: (SupplierHistory object) => [],
+        toManyRelations: (SupplierHistory object) => {},
+        getId: (SupplierHistory object) => object.id,
+        setId: (SupplierHistory object, int id) {
+          object.id = id;
+        },
+        objectToFB: (SupplierHistory object, fb.Builder fbb) {
+          final partNameOffset = fbb.writeString(object.partName);
+          final nameOffset = fbb.writeString(object.name);
+          fbb.startTable(7);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, partNameOffset);
+          fbb.addOffset(2, nameOffset);
+          fbb.addInt64(3, object.count);
+          fbb.addFloat64(4, object.price);
+          fbb.addFloat64(5, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = SupplierHistory(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              partName: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0),
+              price:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 14, 0));
+
           return object;
         })
   };
@@ -278,39 +427,89 @@ class Stock_ {
   static final totalPrice =
       QueryDoubleProperty<Stock>(_entities[0].properties[6]);
 
-  /// see [Stock.stockHistory]
-  static final stockHistory =
-      QueryStringProperty<Stock>(_entities[0].properties[7]);
+  /// see [Stock.items]
+  static final items =
+      QueryRelationToMany<Stock, StockHistory>(_entities[0].relations[0]);
+}
+
+/// [StockHistory] entity fields to define ObjectBox queries.
+class StockHistory_ {
+  /// see [StockHistory.id]
+  static final id =
+      QueryIntegerProperty<StockHistory>(_entities[1].properties[0]);
+
+  /// see [StockHistory.date]
+  static final date =
+      QueryStringProperty<StockHistory>(_entities[1].properties[1]);
+
+  /// see [StockHistory.supplier]
+  static final supplier =
+      QueryStringProperty<StockHistory>(_entities[1].properties[2]);
+
+  /// see [StockHistory.count]
+  static final count =
+      QueryIntegerProperty<StockHistory>(_entities[1].properties[3]);
+
+  /// see [StockHistory.price]
+  static final price =
+      QueryDoubleProperty<StockHistory>(_entities[1].properties[4]);
+
+  /// see [StockHistory.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<StockHistory>(_entities[1].properties[5]);
 }
 
 /// [Supplier] entity fields to define ObjectBox queries.
 class Supplier_ {
   /// see [Supplier.id]
-  static final id = QueryIntegerProperty<Supplier>(_entities[1].properties[0]);
+  static final id = QueryIntegerProperty<Supplier>(_entities[2].properties[0]);
 
   /// see [Supplier.supplier]
   static final supplier =
-      QueryStringProperty<Supplier>(_entities[1].properties[1]);
+      QueryStringProperty<Supplier>(_entities[2].properties[1]);
 
   /// see [Supplier.desc]
-  static final desc = QueryStringProperty<Supplier>(_entities[1].properties[2]);
+  static final desc = QueryStringProperty<Supplier>(_entities[2].properties[2]);
 
   /// see [Supplier.count]
   static final count =
-      QueryIntegerProperty<Supplier>(_entities[1].properties[3]);
+      QueryIntegerProperty<Supplier>(_entities[2].properties[3]);
 
   /// see [Supplier.date]
-  static final date = QueryStringProperty<Supplier>(_entities[1].properties[4]);
+  static final date = QueryStringProperty<Supplier>(_entities[2].properties[4]);
 
   /// see [Supplier.totalPrice]
   static final totalPrice =
-      QueryDoubleProperty<Supplier>(_entities[1].properties[5]);
-
-  /// see [Supplier.supplierHistory]
-  static final supplierHistory =
-      QueryStringProperty<Supplier>(_entities[1].properties[6]);
+      QueryDoubleProperty<Supplier>(_entities[2].properties[5]);
 
   /// see [Supplier.items]
   static final items =
-      QueryRelationToMany<Supplier, Stock>(_entities[1].relations[0]);
+      QueryRelationToMany<Supplier, SupplierHistory>(_entities[2].relations[0]);
+}
+
+/// [SupplierHistory] entity fields to define ObjectBox queries.
+class SupplierHistory_ {
+  /// see [SupplierHistory.id]
+  static final id =
+      QueryIntegerProperty<SupplierHistory>(_entities[3].properties[0]);
+
+  /// see [SupplierHistory.partName]
+  static final partName =
+      QueryStringProperty<SupplierHistory>(_entities[3].properties[1]);
+
+  /// see [SupplierHistory.name]
+  static final name =
+      QueryStringProperty<SupplierHistory>(_entities[3].properties[2]);
+
+  /// see [SupplierHistory.count]
+  static final count =
+      QueryIntegerProperty<SupplierHistory>(_entities[3].properties[3]);
+
+  /// see [SupplierHistory.price]
+  static final price =
+      QueryDoubleProperty<SupplierHistory>(_entities[3].properties[4]);
+
+  /// see [SupplierHistory.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<SupplierHistory>(_entities[3].properties[5]);
 }

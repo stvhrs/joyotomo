@@ -127,7 +127,7 @@ class AddPartName extends StatelessWidget {
                         if ((p.isNotEmpty || d.isNotEmpty || n.isNotEmpty)) {
                           Stock stock = Stock(
                               lastPrice: 0,
-                              stockHistory: json.encode([]),
+                             
                               partname: p,
                               name: n,
                               desc: d,

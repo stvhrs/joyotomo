@@ -1,3 +1,4 @@
+import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -7,14 +8,15 @@ class Stock {
   String name;
   String partname;
   String desc;
+   final items = ToMany<StockHistory>();
   int count;
 double lastPrice;
   double totalPrice;
-  String stockHistory;
+  
 
   Stock({
     this.id = 0,
-    required this.stockHistory,
+   
     required this.partname,
     required this.name,
     required this.desc,

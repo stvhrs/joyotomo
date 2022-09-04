@@ -3,10 +3,13 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
+import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/models/supplier.dart';
+import 'package:bitsdojo_window_example/models/supplier_history.dart';
 import 'package:bitsdojo_window_example/widgets/stock/supplier/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:objectbox/src/relations/to_many.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/stock.dart';
@@ -26,34 +29,14 @@ class _SupplierAddState extends State<SupplierAdd> {
 
   String _supplier = '';
 
-  List<Map<String, dynamic>> data = [
-    {
-      'date': DateTime.now().toIso8601String(),
-      'supplier': '',
-      'count': 1,
-      'totalPrice': 0,
-      'price': 0,
-    }
+  List<StockHistory> data = [
+    StockHistory(supplier: '', date: '', price: 0, count: 1, totalPrice: 0)
   ];
-  // @override
-  // void initState() {
-  //   objectBox.insertSupplier(Supplier(
-  //       date: DateTime.now().toIso8601String(),
-  //       supplierHistory: '[]',
-  //       supplier: 'Mandiri',
-  //       desc: 'dad',
-  //       count: 1,
-  //       totalPrice: 1000));
-  //   super.initState();
-  // }
 
   Widget _buildPartName(int i, BuildContext context) {
     List<Stock> stocks =
         Provider.of<Trigger>(context, listen: false).listSelectedStock;
-    log(data.toString());
-    for (var element in _updatedStock) {
-      log(element.partname);
-    }
+
     return StatefulBuilder(
         builder: (BuildContext context, StateSetter setState) => Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,14 +54,10 @@ class _SupplierAddState extends State<SupplierAdd> {
                           _updatedStock.insert(
                               i,
                               stocks.firstWhere(
-                                  (element) => element.partname == val)!);
-                          log(_updatedStock.length.toString());
+                                  (element) => element.partname == val));
                         }
 
                         setState(() {});
-                      } else {
-                        // stock = null;
-                        //  setState(() {});
                       }
                     },
                     strict: true,
@@ -90,18 +69,20 @@ class _SupplierAddState extends State<SupplierAdd> {
                 IconButton(
                     onPressed: () {
                       setState(() {});
-                      if (data[i]['count'] > 1) {
+                      if (data[i].count > 1) {
                         setState(() {
-                          data[i]['count']--;
+                          data[i].count--;
+                          // _updatedStock[i].count--;
                         });
                       }
                     },
                     icon: Icon(Icons.remove_circle)),
-                Text(data[i]['count'].toString()),
+                Text(data[i].count.toString()),
                 IconButton(
                     onPressed: () {
                       setState(() {
-                        data[i]['count']++;
+                        data[i].count++;
+                        // _updatedStock[i].count++;
                       });
                     },
                     icon: Icon(Icons.add_circle)),
@@ -226,14 +207,12 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                     _updatedStock.length) {
                                                   setState(() {
                                                     jumlahOpsi = jumlahOpsi + 1;
-                                                    data.add({
-                                                      'date': DateTime.now()
-                                                          .toIso8601String(),
-                                                      'supplier': _supplier,
-                                                      'count': 1,
-                                                      'totalPrice': 0,
-                                                      'price': 0,
-                                                    });
+                                                    data.add(StockHistory(
+                                                        supplier: '',
+                                                        date: '',
+                                                        price: 0,
+                                                        count: 1,
+                                                        totalPrice: 0));
                                                   });
                                                 }
                                               },
@@ -248,61 +227,54 @@ class _SupplierAddState extends State<SupplierAdd> {
                             actions: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                                  log(_supplier);
                                   _supplier = _controller.text;
-                                  if (_supplier != '') {
-                                    log(data.toString());
-                                    for (var element in _updatedStock) {
-                                      log(element.partname);
-                                    }
+                                  Stock tempStock;
+                                  Supplier tempSupplier;
+                                  if (_supplier != '' &&
+                                      _updatedStock.isNotEmpty) {
+                                    tempSupplier = Supplier(
+                                        date: DateTime.now().toIso8601String(),
+                                        supplier: _supplier,
+                                        desc: 'desc',
+                                        count: 69,
+                                        totalPrice: 69);
                                     for (var i = 0;
                                         i < _updatedStock.length;
                                         i++) {
-                                      final supp = Supplier(
+                                      tempStock = _updatedStock[i];
+                                      tempStock.count = data[i].count;
+                                      tempSupplier.items.add(SupplierHistory(
+                                          name: tempStock.name,
+                                          partName: tempStock.partname,
+                                          count: tempStock.count,
+                                          price: tempStock.lastPrice,
+                                          totalPrice: tempStock.totalPrice));
+                                    }
+
+                                    /// UPDATE STOCK VALUE
+                                    for (var i = 0;
+                                        i < _updatedStock.length;
+                                        i++) {
+                                      Stock tempStock;
+                                      late StockHistory history;
+                                      tempStock = _updatedStock[i];
+                                      history = StockHistory(
+                                          supplier: _supplier,
                                           date:
                                               DateTime.now().toIso8601String(),
-                                          supplierHistory: json.encode([
-                                            {
-                                              'count': 0,
-                                              'partName': 'asdsd',
-                                              'price': 0,
-                                              'totalPrice': 0
-                                            }
-                                          ]),
-                                          supplier: 'test',
-                                          desc: 'desc',
-                                          count: 69,
-                                          totalPrice: 69);
-                                      Stock stock = _updatedStock[i];
-                                      supp.items.add(stock);
-                                       objectBox.insertSupplier(supp);
-                                      List history =
-                                          json.decode(stock.stockHistory);
-                                      data[i]['supplier'] = _supplier;
-                                      history.add(data[i]);
-                                      stock.stockHistory = json.encode(history);
-                                      stock.count = stock.count +
-                                          (data[i]['count'] as int);
-                                      stock.lastPrice = 100;
-                                      log(history.toString());
-                                      objectBox.insertStock(stock);
-                                      // objectBox.insertSupplier(Supplier(
-                                      //     date:
-                                      //         DateTime.now().toIso8601String(),
-                                      //     supplierHistory: json.encode([
-                                      //       {
-                                      //         'count': 0,
-                                      //         'partName': 'asdsd',
-                                      //         'price': 0,
-                                      //         'totalPrice': 0
-                                      //       }
-                                      //     ]),
-                                      //     supplier: _supplier,
-                                      //     desc: d,
-                                      //     count: 99,
-                                      //     totalPrice: 99));
-                                    
-                                    }  Navigator.of(context).pop();
+                                          price: data[i].price,
+                                          count: data[i].count,
+                                          totalPrice: data[i].totalPrice);
+
+                                      tempStock.items.add(history);
+
+                                      tempStock.count = (data[i].count);
+                                      tempStock.lastPrice = 100;
+
+                                      objectBox.insertStock(tempStock);
+                                    }
+                                    objectBox.insertSupplier(tempSupplier);
+                                    Navigator.of(context).pop();
                                   }
                                 },
                                 child: const Text("Reduce"),
@@ -314,13 +286,12 @@ class _SupplierAddState extends State<SupplierAdd> {
                     _updatedStock = [];
                     _supplier = '';
                     data = [
-                      {
-                        'date': DateTime.now().toIso8601String(),
-                        'supplier': '',
-                        'count': 1,
-                        'totalPrice': 0,
-                        'price': 0,
-                      }
+                      StockHistory(
+                          supplier: '',
+                          date: '',
+                          price: 0,
+                          count: 1,
+                          totalPrice: 0)
                     ];
                   });
                 },

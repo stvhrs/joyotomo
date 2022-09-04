@@ -4,6 +4,7 @@ import 'dart:ffi';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/supplier.dart';
+import 'package:bitsdojo_window_example/models/supplier_history.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
@@ -29,10 +30,8 @@ class _SupplierDetailsState extends State<SupplierDetails> {
   Widget build(BuildContext context) {
     print('detail');
     return Consumer<Trigger>(builder: (context, value, cshild) {
-      final List<dynamic> history =
-          (json.decode(value.selectedSupplier.supplierHistory) as List<dynamic>)
-              .reversed
-              .toList();
+      final List<SupplierHistory> history =
+          value.selectedSupplier.items.reversed.toList();
 
       return IntrinsicWidth(
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -88,27 +87,27 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                           ? Colors.amber.shade200
                           : Colors.white),
                       cells: [
-                        DataCell(Center(child: Text(e['partName']))),
+                        DataCell(Center(child: Text(e.partName))),
                         DataCell(Center(
-                            child: Text(formatCurrency.format(e['price'])))),
+                            child: Text(formatCurrency.format(e.price)))),
                         DataCell(Center(
                             child: Container(
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
                           decoration: BoxDecoration(
-                              color: e['count'] < 0
+                              color: e.count< 0
                                   ? Colors.red.shade400
                                   : Colors.green.shade400,
                               borderRadius: BorderRadius.circular(10)),
                           child: Text(
-                            (e['count'].toString()),
+                            (e.count.toString()),
                             style: const TextStyle(color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ))),
                         DataCell(Center(
                             child:
-                                Text(formatCurrency.format(e['totalPrice'])))),
+                                Text(formatCurrency.format(e.totalPrice)))),
                       ]);
                 }).toList()),
           ))

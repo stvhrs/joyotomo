@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:bitsdojo_window_example/main.dart';
+import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
 import 'package:bitsdojo_window_example/widgets/stock/stock_remove.dart';
 import 'package:data_table_2/paginated_data_table_2.dart';
@@ -23,14 +24,13 @@ class StockDetails extends StatefulWidget {
 }
 
 class _StockDetailsState extends State<StockDetails> {
- 
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
     print('detail');
     return Consumer<Trigger>(builder: (context, value, cshild) {
-      final List<dynamic> history =
-          (json.decode(value.selectedStock.stockHistory) as List<dynamic>).reversed.toList();
+      final List<StockHistory> history =
+          value.selectedStock.items.reversed.toList();
 
       log(history.toString());
       return IntrinsicWidth(
@@ -62,7 +62,7 @@ class _StockDetailsState extends State<StockDetails> {
                 fontSize: 26,
                 fontWeight: FontWeight.bold),
           ),
-        Container(
+          Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.only(bottom: 40, top: 10),
               decoration: BoxDecoration(
@@ -70,9 +70,9 @@ class _StockDetailsState extends State<StockDetails> {
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(5)),
               child: Text(value.selectedStock.desc)),
-              
-               (value.selectedStock.stockHistory != '[]')? StockRemove():SizedBox(),
-         
+          (value.selectedStock.items.isNotEmpty)
+              ? StockRemove()
+              : SizedBox(),
           Expanded(
               child: SizedBox(
             height: MediaQuery.of(context).size.height,
@@ -93,7 +93,6 @@ class _StockDetailsState extends State<StockDetails> {
                   DataColumn(
                     label: Center(child: Text('Date')),
                   ),
-                  
                   DataColumn(
                     label: Center(child: Text('Supplier')),
                   ),
@@ -105,11 +104,12 @@ class _StockDetailsState extends State<StockDetails> {
                           child: Text(
                         'Count',
                       )),
-                      size: ColumnSize.S), DataColumn(
+                      size: ColumnSize.S),
+                  DataColumn(
                     label: Center(child: Text('Total')),
                   ),
                 ],
-                rows: value.selectedStock.stockHistory == '[]'
+                rows: value.selectedStock.items.isEmpty
                     ? []
                     : history.map((e) {
                         return DataRow2(
@@ -120,37 +120,30 @@ class _StockDetailsState extends State<StockDetails> {
                             cells: [
                               DataCell(
                                 Text(DateFormat.yMMMMEEEEd("id_ID").format(
-                                    DateTime.parse(e['date']).toLocal())),
+                                    DateTime.parse(e.date).toLocal())),
                               ),
-                              DataCell(Text(e['supplier'])),
+                              DataCell(Text(e.supplier)),
                               DataCell(Center(
                                   child:
-                                      Text(formatCurrency.format(e['price'])))),
+                                      Text(formatCurrency.format(e.price)))),
                               DataCell(Center(
                                   child: Container(
-                                      padding: const EdgeInsets.only(
-                                          left: 10,
-                                          right: 10,
-                                          top: 2,
-                                          bottom: 2),
-                                      decoration: BoxDecoration(
-                                          color: e['count'] < 0
-                                              ? Colors.red.shade400
-                                              : Colors.green.shade400,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Text(
-                                        (e['count'].toString()),
-                                        style: const TextStyle(
-                                            color: Colors.white),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      )
-                                      
-                                      )),
-                                        DataCell(Center(
-                                  child:
-                                      Text(formatCurrency.format(e['totalPrice'])))),
+                                padding: const EdgeInsets.only(
+                                    left: 10, right: 10, top: 2, bottom: 2),
+                                decoration: BoxDecoration(
+                                    color: e.count< 0
+                                        ? Colors.red.shade400
+                                        : Colors.green.shade400,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Text(
+                                  (e.count.toString()),
+                                  style: const TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ))),
+                              DataCell(Center(
+                                  child: Text(
+                                      formatCurrency.format(e.totalPrice)))),
                             ]);
                       }).toList()),
           ))
