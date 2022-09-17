@@ -1,4 +1,4 @@
-import 'package:bitsdojo_window_example/widgets/stock/supplier/supplier_add.dart';
+import 'package:bitsdojo_window_example/widgets/stock/supplier_add.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bitsdojo_window_example/provider/triger.dart';
@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 
 import '../models/supplier.dart';
-import '../widgets/stock/supplier/supplier_details.dart';
+import '../widgets/stock/supplier_details.dart';
 
 class SupplierPage extends StatefulWidget {
   const SupplierPage({Key? key}) : super(key: key);

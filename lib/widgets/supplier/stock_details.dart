@@ -5,7 +5,7 @@ import 'dart:ffi';
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
-import 'package:bitsdojo_window_example/widgets/stock/stock_remove.dart';
+import 'package:bitsdojo_window_example/widgets/supplier/stock_remove.dart';
 import 'package:data_table_2/paginated_data_table_2.dart';
 
 import 'package:flutter/material.dart';

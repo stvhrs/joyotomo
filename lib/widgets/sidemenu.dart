@@ -8,9 +8,9 @@ import 'package:bitsdojo_window_example/pages/stock_page.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 
-import 'main.dart';
+import '../main.dart';
 
-import 'models/stock.dart';
+import '../models/stock.dart';
 
 final buttonColors = WindowButtonColors(
     iconNormal: const Color.fromARGB(255, 79, 117, 134),

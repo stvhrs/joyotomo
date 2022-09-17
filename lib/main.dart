@@ -2,7 +2,7 @@
 // https://github.com/bitsdojo/bitsdojo_window#getting-started
 
 import 'package:bitsdojo_window_example/provider/triger.dart';
-import 'package:bitsdojo_window_example/sidemenu.dart';
+import 'package:bitsdojo_window_example/widgets/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:intl/date_symbol_data_local.dart';
