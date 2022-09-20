@@ -34,9 +34,7 @@ class _SupplierPageState extends State<SupplierPage> {
 
   @override
   void didChangeDependencies() {
-    print('didi');
-Provider.of<Trigger>(context, listen: false)
-                    .selectListSupplier([],false);
+    Provider.of<Trigger>(context, listen: false).selectListSupplier([], false);
     super.didChangeDependencies();
   }
 
@@ -48,33 +46,33 @@ Provider.of<Trigger>(context, listen: false)
           stream: _streamSuppliers,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return SizedBox();
+              return const SizedBox();
             }
             if (snapshot.data!.isEmpty) {
-               Provider.of<Trigger>(context, listen: false)
-                    .selectListSupplier([],false);
-                       
-              return  Center(
+              Provider.of<Trigger>(context, listen: false)
+                  .selectListSupplier([], false);
+
+              return Center(
                 child: SupplierAdd(),
               );
             } else {
-              List<Supplier> Suppliers = [];
+              List<Supplier> suppliers = [];
               if (_search != '') {
                 for (Supplier element in snapshot.data!) {
                   if (element.supplier
                       .toLowerCase()
                       .startsWith(_search.toLowerCase())) {
-                    Suppliers.add(element);
+                    suppliers.add(element);
                   }
                 }
               } else {
-                Suppliers = snapshot.data!.reversed.toList();
+                suppliers = snapshot.data!.reversed.toList();
 
-                _selectedSupplier = Suppliers[_currentIndex];
+                _selectedSupplier = suppliers[_currentIndex];
                 Provider.of<Trigger>(context, listen: false)
                     .selectSupplier(_selectedSupplier, false);
                 Provider.of<Trigger>(context, listen: false)
-                    .selectListSupplier(Suppliers,false);
+                    .selectListSupplier(suppliers, false);
               }
 
               return Consumer<Trigger>(builder: (context, val, c) {
@@ -114,16 +112,13 @@ Provider.of<Trigger>(context, listen: false)
                                                 onChanged: (val) {
                                                   setState(
                                                     () {
-                                                      if (Suppliers
+                                                      if (suppliers
                                                           .isNotEmpty) {
                                                         _selectedSupplier =
-                                                            Suppliers[0];
+                                                            suppliers[0];
                                                       }
-                                                      // _streamSuppliers =
-                                                      //     objectBox.getSuppliers(
-                                                      //         val.toString());
+
                                                       _search = val.toString();
-                                                      // }
                                                     },
                                                   );
                                                 },
@@ -133,7 +128,7 @@ Provider.of<Trigger>(context, listen: false)
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
-                                 SupplierAdd()
+                                  const SupplierAdd()
                                 ],
                               ),
                             ),
@@ -147,7 +142,7 @@ Provider.of<Trigger>(context, listen: false)
                                         wrapInCard: false,
                                         rowsPerPage: 20,
                                         source: UserDataTableSource(
-                                            userData: Suppliers,
+                                            userData: suppliers,
                                             context: context),
                                         headingRowHeight: 40,
                                         minWidth: 300,
@@ -187,7 +182,7 @@ Provider.of<Trigger>(context, listen: false)
                           ],
                         ),
                         _divier_,
-                        SupplierDetails(),
+                        const SupplierDetails(),
                       ]),
                 );
               });
@@ -281,7 +276,7 @@ class UserDataTableSource extends DataTableSource {
                 // margin: const EdgeInsets.only(
                 //     left: 30, right: 30, top: 10, bottom: 10),
                 decoration: BoxDecoration(
-                    color:  Colors.green.shade400,
+                    color: Colors.green.shade400,
                     borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   (_user.count.toString()),

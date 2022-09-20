@@ -1,4 +1,5 @@
-import 'dart:convert';
+
+// ignore_for_file: deprecated_member_use
 
 import 'package:bitsdojo_window_example/provider/triger.dart';
 
@@ -11,7 +12,6 @@ import '../main.dart';
 import '../models/stock.dart';
 import '../widgets/stock/stock_add.dart';
 import '../widgets/stock/stock_details.dart';
-
 
 class StockPage extends StatefulWidget {
   const StockPage({Key? key}) : super(key: key);
@@ -33,24 +33,16 @@ class _StockPageState extends State<StockPage> {
   }
 
   @override
-  void didChangeDependencies() {
-    print('didi');
-
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context2) {
-    print('buil addll');
     return Scaffold(
       body: StreamBuilder<List<Stock>>(
           stream: _streamstocks,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return SizedBox();
+              return const SizedBox();
             }
             if (snapshot.data!.isEmpty) {
-              return Center(child: AddPartName());
+              return const Center(child: AddPartName());
             } else {
               List<Stock> stocks = [];
               if (_search != '') {
@@ -66,10 +58,9 @@ class _StockPageState extends State<StockPage> {
                 }
               } else {
                 stocks = snapshot.data!.reversed.toList();
-
                 _selectedStock = stocks[_currentIndex];
                 Provider.of<Trigger>(context, listen: false)
-                    .select(_selectedStock, false);
+                    .selectStock(_selectedStock, false);
                 Provider.of<Trigger>(context, listen: false)
                     .selectListStock(stocks, false);
               }
@@ -130,7 +121,7 @@ class _StockPageState extends State<StockPage> {
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
-                                 AddPartName()
+                                  const AddPartName()
                                 ],
                               ),
                             ),
@@ -183,7 +174,7 @@ class _StockPageState extends State<StockPage> {
                           ],
                         ),
                         _divier_,
-                        StockDetails(),
+                        const StockDetails(),
                       ]),
                 );
               });
@@ -192,21 +183,6 @@ class _StockPageState extends State<StockPage> {
     );
   }
 }
-
-// buildDetails(Stock stock) {
-//   return ...(json.decode(stock.stockHistory) as List<dynamic>).map((e) {
-//     return Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: [
-//         Text(e['count'].toString()),
-//         Text(DateFormat.yMMMMEEEEd("id_ID")
-//             .format(DateTim_user.parse(e['date']).toLocal())),
-//         Text(e['price'].toString()),
-//         Text(e['supplier'].toString()),
-//       ],
-//     );
-//   }).toList();
-// }
 
 Widget get _divier_ => Row(
       children: const [
@@ -245,7 +221,7 @@ class UserDataTableSource extends DataTableSource {
             ? const Color.fromARGB(255, 193, 216, 226)
             : Colors.transparent),
         onTap: () {
-          Provider.of<Trigger>(context, listen: false).select(_user, true);
+          Provider.of<Trigger>(context, listen: false).selectStock(_user, true);
         },
         index: index,
         cells: [

@@ -1,7 +1,10 @@
 
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// ignore: must_be_immutable
 class DropDownField extends FormField<String> {
   final dynamic value;
   final Widget? icon;
@@ -11,6 +14,7 @@ class DropDownField extends FormField<String> {
   final TextStyle labelStyle;
   final TextStyle textStyle;
   final bool required;
+  // ignore: annotate_overrides
   final bool enabled;
   final List<dynamic>? items;
   final List<TextInputFormatter>? inputFormatters;
@@ -24,23 +28,23 @@ class DropDownField extends FormField<String> {
       {Key? key,
       this.controller,
       this.value,
-      this.required: false,
+      this.required = false,
       this.icon,
       this.hintText,
-      this.hintStyle: const TextStyle(
+      this.hintStyle = const TextStyle(
           fontWeight: FontWeight.normal, color: Colors.grey, fontSize: 18.0),
       this.labelText,
-      this.labelStyle: const TextStyle(
+      this.labelStyle = const TextStyle(
           fontWeight: FontWeight.normal, color: Colors.grey, fontSize: 18.0),
       this.inputFormatters,
       this.items,
-      this.textStyle: const TextStyle(
+      this.textStyle = const TextStyle(
           fontWeight: FontWeight.bold, color: Colors.black, fontSize: 14.0),
       this.setter,
       this.onValueChanged,
-      this.itemsVisibleInDropdown: 3,
-      this.enabled: true,
-      this.strict: true})
+      this.itemsVisibleInDropdown = 3,
+      this.enabled = true,
+      this.strict = true})
       : super(
           key: key,
           initialValue: controller != null ? controller.text : (value ?? ''),
@@ -53,7 +57,7 @@ class DropDownField extends FormField<String> {
                 filled: true,
                 icon: icon,
                 suffixIcon: IconButton(
-                    icon: Icon(Icons.arrow_drop_down,
+                    icon: const Icon(Icons.arrow_drop_down,
                         size: 30.0, color: Colors.black),
                     onPressed: () {
                       SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -85,8 +89,9 @@ class DropDownField extends FormField<String> {
                         maxLines: 1,
                         validator: (String? newValue) {
                           if (required) {
-                            if (newValue == null || newValue.isEmpty)
+                            if (newValue == null || newValue.isEmpty) {
                               return 'This field cannot be empty!';
+                            }
                           }
 
                           //Items null check added since there could be an initial brief period of time
@@ -94,8 +99,9 @@ class DropDownField extends FormField<String> {
                           if (items != null) {
                             if (strict &&
                                 newValue!.isNotEmpty &&
-                                !items.contains(newValue))
+                                !items.contains(newValue)) {
                               return 'Invalid value in this field!';
+                            }
                           }
 
                           return null;
@@ -118,9 +124,9 @@ class DropDownField extends FormField<String> {
                           cacheExtent: 0.0,
                           scrollDirection: Axis.vertical,
                           controller: _scrollController,
-                          padding: EdgeInsets.only(left: 40.0),
+                          padding: const EdgeInsets.only(left: 40.0),
                           children: items!.isNotEmpty
-                              ? ListTile.divideTiles(
+                              ? ListTile.divideTiles(color: Colors.grey.shade800,
                                       context: field.context,
                                       tiles: state._getChildren(state._items!))
                                   .toList()
@@ -164,9 +170,10 @@ class DropDownFieldState extends FormFieldState<String> {
       oldWidget.controller?.removeListener(_handleControllerChanged);
       widget.controller?.addListener(_handleControllerChanged);
 
-      if (oldWidget.controller != null && widget.controller == null)
+      if (oldWidget.controller != null && widget.controller == null) {
         _controller =
             TextEditingController.fromValue(oldWidget.controller!.value);
+      }
       if (widget.controller != null) {
         setValue(widget.controller!.text);
         if (oldWidget.controller == null) _controller = null;
@@ -205,8 +212,9 @@ class DropDownFieldState extends FormFieldState<String> {
     List<ListTile> childItems = [];
     for (var item in items) {
       if (_searchText.isNotEmpty) {
-        if (item.toUpperCase().contains(_searchText.toUpperCase()))
+        if (item.toUpperCase().contains(_searchText.toUpperCase())) {
           childItems.add(_getListTile(item));
+        }
       } else {
         childItems.add(_getListTile(item));
       }
@@ -234,8 +242,9 @@ class DropDownFieldState extends FormFieldState<String> {
   }
 
   void _handleControllerChanged() {
-    if (_effectiveController!.text != value)
+    if (_effectiveController!.text != value) {
       didChange(_effectiveController!.text);
+    }
 
     if (_effectiveController!.text.isEmpty) {
       setState(() {

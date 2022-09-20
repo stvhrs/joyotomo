@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:bitsdojo_window_example/models/supplier.dart';
 import 'package:bitsdojo_window_example/pages/invoice_page.dart';
 import 'package:bitsdojo_window_example/pages/supplier_page.dart';
 import 'package:bitsdojo_window_example/pages/stock_page.dart';
@@ -9,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:easy_sidemenu/easy_sidemenu.dart';
 
 import '../main.dart';
-
-import '../models/stock.dart';
 
 final buttonColors = WindowButtonColors(
     iconNormal: const Color.fromARGB(255, 79, 117, 134),
@@ -83,40 +78,9 @@ class _SideState extends State<Side> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          //  final user =Stock(
-          //    lastPrice: 23,name: 'asdasd',partname: 'asdasd',
-          //     count: 15,
-          //     desc: 'Footstep bisa untuk CS1, VARIO 2010, SUPRA GTR',
-            
-          //     totalPrice: 30000,
-          //   stockHistory: json.encode([
-          //       {
-          //         'date': DateTime.now().toIso8601String(),
-          //         'price': 15000,
-          //         'count': -1,
-          //         'totalPrice': -25000,
-          //         'supplier': 'Di Colong Tikus',
-          //       },
-          //       {
-          //         'date': DateTime.now().toIso8601String(),
-          //         'price': -12500,
-          //         'count': 9,
-          //         'totalPrice': -25000,
-          //         'supplier': 'Lestari Jaya',
-          //       },
-          //     ]));
-        
+          objectBox.deleteAllSupplier();
 
-          // // for (var i = 0; i < 1000; i++) {
-          // //                   user.name = '$i';
-          // //                    user.partname = 'P$i';
-          // //                   user.id = i;
-          // //                   objectBox.insertStock(user);
-          // //                 }
-          // objectBox.insertStock(user);
-             objectBox.deleteAllSupplier();
-          //  Navigator.of(context).pop();
-            objectBox.deleteAllStock();
+          objectBox.deleteAllStock();
         },
       ),
       body: WindowBorder(
@@ -243,29 +207,15 @@ class _SideState extends State<Side> {
                           page.jumpToPage(5);
                         },
                         icon: const Icon(Icons.document_scanner_rounded),
-
-                        // tooltipContent: "Home",
                       ),
-                      // SideMenuItem(
-                      //   priority: 6,
-                      //   title: '',
-                      //   onTap: () {
-                      //     setState(() {
-                      //       mode = !mode;
-                      //     });
-                      //   },
-                      //   icon: const Icon(Icons.arrow_back_ios_new),
-
-                      //   // tooltipContent: "Home",
-                      // ),
                     ],
                   ),
                   Expanded(
                     child: PageView(
                       controller: page,
                       children: [
-                        Container(child: const StockPage()),
-                        SupplierPage(),
+                        const StockPage(),
+                        const SupplierPage(),
                         Container(
                           color: Colors.white,
                           child: const Center(

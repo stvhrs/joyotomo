@@ -1,6 +1,4 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:ffi';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
@@ -27,7 +25,7 @@ class _StockDetailsState extends State<StockDetails> {
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
-    print('detail');
+   
     return Consumer<Trigger>(builder: (context, value, cshild) {
       final List<StockHistory> history =
           value.selectedStock.items.reversed.toList();
@@ -71,8 +69,8 @@ class _StockDetailsState extends State<StockDetails> {
                   borderRadius: BorderRadius.circular(5)),
               child: Text(value.selectedStock.desc)),
           (value.selectedStock.items.isNotEmpty)
-              ? StockRemove()
-              : SizedBox(),
+              ? const StockRemove()
+              : const SizedBox(),
           Expanded(
               child: SizedBox(
             height: MediaQuery.of(context).size.height,

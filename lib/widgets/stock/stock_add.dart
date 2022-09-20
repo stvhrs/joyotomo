@@ -1,9 +1,4 @@
-import 'dart:convert';
-
-import 'package:bitsdojo_window_example/provider/triger.dart';
-import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../main.dart';
 import '../../models/stock.dart';
@@ -36,30 +31,11 @@ class AddPartName extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.only(bottom: 20),
                             child: TextFormField(
-                                onChanged: (val) {
-                                  p = val.toString();
-                                },
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                  hintText: 'Part Name',
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10),
-                                  fillColor: Colors.white,
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 15,
-                                      height: 2),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey.shade300),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey.shade300),
-                                  ),
-                                )),
+                              onChanged: (val) {
+                                p = val.toString();
+                              },
+                              maxLines: 1,
+                            ),
                           ),
                           Container(
                             margin: const EdgeInsets.only(bottom: 20),
@@ -127,7 +103,6 @@ class AddPartName extends StatelessWidget {
                         if ((p.isNotEmpty || d.isNotEmpty || n.isNotEmpty)) {
                           Stock stock = Stock(
                               lastPrice: 0,
-                             
                               partname: p,
                               name: n,
                               desc: d,

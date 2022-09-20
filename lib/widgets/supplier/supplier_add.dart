@@ -8,7 +8,6 @@ import 'package:bitsdojo_window_example/helper/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:objectbox/src/relations/to_many.dart';
 import 'package:provider/provider.dart';
 
 import '../../helper/currency.dart';
@@ -17,6 +16,8 @@ import '../../provider/triger.dart';
 
 
 class SupplierAdd extends StatefulWidget {
+  const SupplierAdd({super.key});
+
   @override
   State<SupplierAdd> createState() => _SupplierAddState();
 }
@@ -25,7 +26,7 @@ class _SupplierAddState extends State<SupplierAdd> {
   String _desc = '';
   String _supplier = '';
 
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   int jumlahOpsi = 1;
 
   List<Stock> _updatedStock = [];
@@ -44,7 +45,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                 SizedBox(
                   width: 200,
                   child: DropDownField(
-                    inputFormatters: [],
+                    inputFormatters: const [],
                     required: true,
                     onValueChanged: (val) {
                       if (stocks
@@ -66,7 +67,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                     items: stocks.map((e) => e.partname).toList(),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 SizedBox(
                   width: 200,
                   child: TextField(
@@ -94,7 +95,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                         });
                       }
                     },
-                    icon: Icon(Icons.remove_circle)),
+                    icon: const Icon(Icons.remove_circle)),
                 Text(_updatedStockHistory[i].count.toString()),
                 IconButton(
                     onPressed: () {
@@ -103,7 +104,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                         // _updatedStock[i].count++;
                       });
                     },
-                    icon: Icon(Icons.add_circle)),
+                    icon: const Icon(Icons.add_circle)),
               ],
             ));
   }
@@ -126,7 +127,7 @@ class _SupplierAddState extends State<SupplierAdd> {
     }
 
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 10),
       child: ElevatedButton.icon(
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
@@ -154,7 +155,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                     children: [
                                       DropDownField(
                                         required: true,
-                                        inputFormatters: [],
+                                        inputFormatters: const [],
                                         strict: true,
                                         controller: _controller,
                                         labelText: 'Supplier',
@@ -167,7 +168,9 @@ class _SupplierAddState extends State<SupplierAdd> {
                                         margin:
                                             const EdgeInsets.only(bottom: 20),
                                         child: TextFormField(
-                                            onChanged: (val) {},
+                                            onChanged: (val) {
+                                              _desc=val;
+                                            },
                                             maxLines: 3,
                                             decoration: InputDecoration(
                                               hintText: 'Description',
@@ -219,7 +222,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                   }
                                                 });
                                               },
-                                              icon: Icon(Icons.remove_circle)),
+                                              icon: const Icon(Icons.remove_circle)),
                                           // Text(jumlahOpsi.toString()),
                                           IconButton(
                                               onPressed: () {
@@ -237,7 +240,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                   });
                                                 }
                                               },
-                                              icon: Icon(Icons.add_circle)),
+                                              icon: const Icon(Icons.add_circle)),
                                         ],
                                       ),
                                     ],

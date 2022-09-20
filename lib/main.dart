@@ -10,18 +10,20 @@ import 'package:provider/provider.dart';
 import 'provider/object.dart';
 
 late ObjectBox objectBox;
-void main() async{ 
- objectBox = await ObjectBox.init();
-  runApp( MultiProvider(
+void main() async {
+  objectBox = await ObjectBox.init();
+  runApp(
+    MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Trigger()),
-     
       ],
       child: const MyApp(),
-    ),);initializeDateFormatting();
+    ),
+  );
+  initializeDateFormatting();
   doWhenWindowReady(() {
     final win = appWindow;
-    const initialSize = Size(1366 , 768);
+    const initialSize = Size(1366, 768);
     win.minSize = initialSize;
     win.size = initialSize;
     win.alignment = Alignment.center;
@@ -35,10 +37,30 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+        theme: ThemeData(inputDecorationTheme:InputDecorationTheme(
+                                
+                                  contentPadding: const EdgeInsets.only(
+                                      left: 10, top: 10, bottom: 10),
+                                  fillColor: Colors.white,
+                                  hintStyle: TextStyle(
+                                      color: Colors.grey.shade600,
+                                      fontSize: 15,
+                                      height: 2),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey.shade300),
+                                  ),
+                                ) ,
+          primaryColor: Colors.green,accentColor:const Color.fromARGB(255, 79, 117, 134)
+        ),
         debugShowCheckedModeBanner: false,
-        home: Side(
-          
-        ));
+        home: Side());
   }
 }

@@ -1,11 +1,8 @@
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/provider/triger.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,9 +30,9 @@ class _StockRemoveState extends State<StockRemove> {
     Stock stock = Provider.of<Trigger>(context, listen: false).selectedStock;
     return Row(
       children: [
-        Spacer(),
+        const Spacer(),
         Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           child: ElevatedButton.icon(
               style: ButtonStyle(
                   alignment: Alignment.centerRight,
@@ -67,7 +64,7 @@ class _StockRemoveState extends State<StockRemove> {
                                                 }
                                               });
                                             },
-                                            icon: Icon(Icons.remove_circle)),
+                                            icon: const Icon(Icons.remove_circle)),
                                         Text(_reduce.toString()),
                                         IconButton(
                                             onPressed: () {
@@ -77,7 +74,7 @@ class _StockRemoveState extends State<StockRemove> {
                                                 });
                                               }
                                             },
-                                            icon: Icon(Icons.add_circle)),
+                                            icon: const Icon(Icons.add_circle)),
                                       ],
                                     ),
                                     Container(
@@ -142,11 +139,11 @@ class _StockRemoveState extends State<StockRemove> {
                   _reduceDes = '';
                 });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.warning_amber_rounded,
                 color: Colors.red,
               ),
-              label: Text(
+              label: const Text(
                 'Accident',
                 style: TextStyle(color: Colors.red),
               )),

@@ -1,4 +1,3 @@
-import 'package:bitsdojo_window_example/models/stock.dart';
 import 'package:bitsdojo_window_example/models/supplier_history.dart';
 import 'package:objectbox/objectbox.dart';
 
