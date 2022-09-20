@@ -61,6 +61,7 @@ class DropDownField extends FormField<String> {
                         size: 30.0, color: Colors.black),
                     onPressed: () {
                       SystemChannels.textInput.invokeMethod('TextInput.hide');
+                      // ignore: invalid_use_of_protected_member
                       state.setState(() {
                         state._showdropdown = !state._showdropdown;
                       });
@@ -115,7 +116,7 @@ class DropDownField extends FormField<String> {
                 ),
                 !state._showdropdown
                     ? Container()
-                    : Container(
+                    : Container(  
                         alignment: Alignment.topCenter,
                         height: itemsVisibleInDropdown *
                             48.0, //limit to default 3 items in dropdownlist view and then remaining scrolls
@@ -124,7 +125,7 @@ class DropDownField extends FormField<String> {
                           cacheExtent: 0.0,
                           scrollDirection: Axis.vertical,
                           controller: _scrollController,
-                          padding: const EdgeInsets.only(left: 40.0),
+                          padding: const EdgeInsets.only(left:10),
                           children: items!.isNotEmpty
                               ? ListTile.divideTiles(color: Colors.grey.shade800,
                                       context: field.context,

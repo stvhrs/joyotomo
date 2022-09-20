@@ -1,7 +1,7 @@
 
 // ignore_for_file: deprecated_member_use
 
-import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:bitsdojo_window_example/provider/trigger.dart';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
 import 'package:flutter/material.dart';

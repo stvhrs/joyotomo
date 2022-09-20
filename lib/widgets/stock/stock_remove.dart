@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
-import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:bitsdojo_window_example/provider/trigger.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,11 +19,7 @@ class StockRemove extends StatefulWidget {
 class _StockRemoveState extends State<StockRemove> {
   int _reduce = 1;
   String _reduceDes = '';
-  @override
-  void dispose() {
-    log('diso');
-    super.dispose();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +33,7 @@ class _StockRemoveState extends State<StockRemove> {
               style: ButtonStyle(
                   alignment: Alignment.centerRight,
                   backgroundColor: MaterialStateProperty.all(Colors.white)),
-              onPressed: () {
+              onPressed:stock.count==0?(){}: () {
                 showDialog(
                     context: context,
                     builder: (context) {

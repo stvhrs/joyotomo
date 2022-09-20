@@ -1,7 +1,7 @@
 // Don't forget to make the changes mentioned in
 // https://github.com/bitsdojo/bitsdojo_window#getting-started
 
-import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:bitsdojo_window_example/provider/trigger.dart';
 import 'package:bitsdojo_window_example/widgets/sidemenu.dart';
 import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
@@ -38,29 +38,35 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(inputDecorationTheme:InputDecorationTheme(
-                                
-                                  contentPadding: const EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10),
-                                  fillColor: Colors.white,
-                                  hintStyle: TextStyle(
-                                      color: Colors.grey.shade600,
-                                      fontSize: 15,
-                                      height: 2),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey.shade300),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey.shade300),
-                                  ),
-                                ) ,
-          primaryColor: Colors.green,accentColor:const Color.fromARGB(255, 79, 117, 134)
-        ),
+        theme: ThemeData(
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      const Color.fromARGB(255, 79, 117, 134))),
+            ),
+            iconTheme:
+                const IconThemeData(color: Color.fromARGB(255, 79, 117, 134)),
+            buttonTheme: const ButtonThemeData(
+                buttonColor: Color.fromARGB(255, 79, 117, 134)),
+            inputDecorationTheme: InputDecorationTheme(
+              contentPadding:
+                  const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+              fillColor: Colors.white,
+              hintStyle: TextStyle(
+                  color: Colors.grey.shade600, fontSize: 15, height: 2),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(7),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(7),
+                borderSide: BorderSide(color: Colors.grey.shade300),
+              ),
+            ),
+            primaryColor: Colors.green,
+            colorScheme: ColorScheme.fromSwatch()
+                .copyWith(secondary: const Color.fromARGB(255, 79, 117, 134))),
         debugShowCheckedModeBanner: false,
-        home: Side());
+        home: const Side());
   }
 }

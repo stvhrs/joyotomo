@@ -1,8 +1,9 @@
 import 'package:bitsdojo_window_example/widgets/supplier/supplier_add.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:bitsdojo_window_example/provider/trigger.dart';
 
+// ignore: deprecated_member_use
 import 'package:data_table_2/paginated_data_table_2.dart';
 
 import 'package:intl/intl.dart';
@@ -40,7 +41,7 @@ class _SupplierPageState extends State<SupplierPage> {
 
   @override
   Widget build(BuildContext context2) {
-    print('buil addll');
+  
     return Scaffold(
       body: StreamBuilder<List<Supplier>>(
           stream: _streamSuppliers,
@@ -52,7 +53,7 @@ class _SupplierPageState extends State<SupplierPage> {
               Provider.of<Trigger>(context, listen: false)
                   .selectListSupplier([], false);
 
-              return Center(
+              return const Center(
                 child: SupplierAdd(),
               );
             } else {

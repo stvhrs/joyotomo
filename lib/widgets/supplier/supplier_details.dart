@@ -1,7 +1,8 @@
 
 import 'package:bitsdojo_window_example/models/supplier_history.dart';
-import 'package:bitsdojo_window_example/provider/triger.dart';
+import 'package:bitsdojo_window_example/provider/trigger.dart';
 
+// ignore: deprecated_member_use
 import 'package:data_table_2/paginated_data_table_2.dart';
 
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
@@ -12,8 +12,7 @@ import 'package:provider/provider.dart';
 
 import '../../helper/currency.dart';
 import '../../models/stock.dart';
-import '../../provider/triger.dart';
-
+import '../../provider/trigger.dart';
 
 class SupplierAdd extends StatefulWidget {
   const SupplierAdd({super.key});
@@ -73,7 +72,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                   child: TextField(
                     onChanged: (value) {
                       if (_updatedStock.isNotEmpty) {
-                        _updatedStock[i].lastPrice = NumberFormat.currency(
+                        _updatedStockHistory[i].price = NumberFormat.currency(
                                 locale: 'id_ID', symbol: 'Rp ')
                             .parse(value)
                             .toDouble();
@@ -169,7 +168,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                             const EdgeInsets.only(bottom: 20),
                                         child: TextFormField(
                                             onChanged: (val) {
-                                              _desc=val;
+                                              _desc = val;
                                             },
                                             maxLines: 3,
                                             decoration: InputDecoration(
@@ -222,7 +221,8 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                   }
                                                 });
                                               },
-                                              icon: const Icon(Icons.remove_circle)),
+                                              icon: const Icon(
+                                                  Icons.remove_circle)),
                                           // Text(jumlahOpsi.toString()),
                                           IconButton(
                                               onPressed: () {
@@ -240,7 +240,8 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                   });
                                                 }
                                               },
-                                              icon: const Icon(Icons.add_circle)),
+                                              icon:
+                                                  const Icon(Icons.add_circle)),
                                         ],
                                       ),
                                     ],
@@ -250,73 +251,96 @@ class _SupplierAddState extends State<SupplierAdd> {
                             ),
                             actions: <Widget>[
                               ElevatedButton(
-                                onPressed: () {
-                                  _supplier = _controller.text;
-                                  Stock tempStock;
-                                  Supplier tempSupplier;
-                                  int itemsCount = 0;
-                                  double itemsTotalPrice = 0;
+                                onPressed :() {
+                                        _supplier = _controller.text;
+                                        int itemsCount = 0;
+                                        double itemsTotalPrice = 0;
+                                        Supplier tempSupplier = Supplier(
+                                            date: DateTime.now()
+                                                .toIso8601String(),
+                                            supplier: _supplier,
+                                            desc: _desc,
+                                            count: itemsCount,
+                                            totalPrice: itemsTotalPrice);
 
-                                  if (_supplier != '' &&
-                                      _updatedStock.isNotEmpty) {
-                                    tempSupplier = Supplier(
-                                        date: DateTime.now().toIso8601String(),
-                                        supplier: _supplier,
-                                        desc: _desc,
-                                        count: itemsCount,
-                                        totalPrice: itemsTotalPrice);
+                                        if (_supplier != '' &&
+                                            _updatedStock.isNotEmpty) {
+                                          //SUPPLEIER HISTORY
+                                          for (var i = 0;
+                                              i < _updatedStock.length;
+                                              i++) {
+                                            tempSupplier.items.add(
+                                                SupplierHistory(
+                                                    name: _updatedStock[i].name,
+                                                    partName:
+                                                        _updatedStock[i]
+                                                            .partname,
+                                                    count:
+                                                        _updatedStockHistory[i]
+                                                            .count,
+                                                    price:
+                                                        _updatedStockHistory[i]
+                                                            .price,
+                                                    totalPrice:
+                                                        _updatedStockHistory[i]
+                                                                .price *
+                                                            _updatedStockHistory[
+                                                                    i]
+                                                                .count));
+                                          }
 
-                                    for (var i = 0;
-                                        i < _updatedStock.length;
-                                        i++) {
-                                      tempStock = _updatedStock[i];
-                                      tempStock.count =
-                                          _updatedStockHistory[i].count;
-                                      tempSupplier.items.add(SupplierHistory(
-                                          name: tempStock.name,
-                                          partName: tempStock.partname,
-                                          count: tempStock.count,
-                                          price: tempStock.lastPrice,
-                                          totalPrice: tempStock.lastPrice *
-                                              tempStock.count));
-                                    }
+                                          /// UPDATE STOCK HISTORY
+                                          for (var i = 0;
+                                              i < _updatedStock.length;
+                                              i++) {
+                                            StockHistory history = StockHistory(
+                                                supplier: _supplier,
+                                                date: DateTime.now()
+                                                    .toIso8601String(),
+                                                price: _updatedStockHistory[i]
+                                                    .price,
+                                                count: _updatedStockHistory[i]
+                                                    .count,
+                                                totalPrice:
+                                                    _updatedStockHistory[i]
+                                                            .price *
+                                                        _updatedStockHistory[i]
+                                                            .count);
+                                            //UPDATE STOCK
+                                            _updatedStock[i].items.add(history);
 
-                                    /// UPDATE STOCK VALUE
-                                    for (var i = 0;
-                                        i < _updatedStock.length;
-                                        i++) {
-                                      Stock tempStock = _updatedStock[i];
-                                      StockHistory history = StockHistory(
-                                          supplier: _supplier,
-                                          date:
-                                              DateTime.now().toIso8601String(),
-                                          price: tempStock.lastPrice,
-                                          count: tempStock.count,
-                                          totalPrice: tempStock.lastPrice *
-                                              tempStock.count);
+                                            _updatedStock[i].totalPrice =
+                                                _updatedStock[i].totalPrice +
+                                                    (_updatedStockHistory[i]
+                                                            .price *
+                                                        _updatedStockHistory[i]
+                                                            .count);
 
-                                      tempStock.items.add(history);
+                                            _updatedStock[i].count =
+                                                _updatedStock[i].count +
+                                                    _updatedStockHistory[i]
+                                                        .count;
 
-                                      tempStock.totalPrice =
-                                          tempStock.totalPrice +
-                                              (tempStock.lastPrice *
-                                                  tempStock.count);
+                                            ///ADD SUPPLIER
+                                            tempSupplier.count = tempSupplier
+                                                    .count +
+                                                _updatedStockHistory[i].count;
 
-                                      ///ADD SUPPLIER
-                                      tempSupplier.count = tempSupplier.count +
-                                          _updatedStockHistory[i].count;
+                                            tempSupplier.totalPrice =
+                                                tempSupplier.totalPrice +
+                                                    _updatedStockHistory[i]
+                                                            .price *
+                                                        _updatedStockHistory[i]
+                                                            .count;
 
-                                      tempSupplier.totalPrice =
-                                          tempSupplier.totalPrice +
-                                              tempStock.lastPrice *
-                                                  _updatedStockHistory[i].count;
-
-                                      objectBox.insertStock(tempStock);
-                                    }
-                                    objectBox.insertSupplier(tempSupplier);
-                                    Navigator.of(context).pop();
-                                  }
-                                },
+                                            objectBox
+                                                .insertStock(_updatedStock[i]);
+                                          }
+                                          objectBox
+                                              .insertSupplier(tempSupplier);
+                                          Navigator.of(context).pop();
+                                        }
+                                      },
                                 child: const Text("Reduce"),
                               ),
                             ]);

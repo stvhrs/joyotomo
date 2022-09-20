@@ -65,31 +65,25 @@ class _InvoicePageState extends State<InvoicePage> {
         onLayout: (PdfPageFormat format) async => asu.save());
   }
 
-  @override
-  void didChangeDependencies() {
-    log('didi');
-    super.didChangeDependencies();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
-    log('sss');
+   
     return Scaffold(
-      floatingActionButton: Container(
-        child: Row(children: [
-          const Spacer(),
-          FloatingActionButton(
-              child: const Text('Save PDF'),
-              onPressed: () {
-                buildPdf();
-              }),
-          FloatingActionButton(
-              child: const Text('Print PDF'),
-              onPressed: () async {
-                await printPdf();
-              })
-        ]),
-      ),
+      floatingActionButton: Row(children: [
+        const Spacer(),
+        FloatingActionButton(
+            child: const Text('Save PDF'),
+            onPressed: () {
+              buildPdf();
+            }),
+        FloatingActionButton(
+            child: const Text('Print PDF'),
+            onPressed: () async {
+              await printPdf();
+            })
+      ]),
       body: Center(
         child: LayoutBuilder(builder: (context, BoxConstraints constraints) {
           return Container(
