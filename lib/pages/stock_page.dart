@@ -9,8 +9,8 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 
 import '../models/stock.dart';
-import '../widgets/supplier/stock_add.dart';
-import '../widgets/supplier/stock_details.dart';
+import '../widgets/stock/stock_add.dart';
+import '../widgets/stock/stock_details.dart';
 
 
 class StockPage extends StatefulWidget {

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
-import 'models/obejct.dart';
+import 'provider/object.dart';
 
 late ObjectBox objectBox;
 void main() async{ 

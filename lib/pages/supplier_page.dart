@@ -1,4 +1,4 @@
-import 'package:bitsdojo_window_example/widgets/stock/supplier_add.dart';
+import 'package:bitsdojo_window_example/widgets/supplier/supplier_add.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bitsdojo_window_example/provider/triger.dart';
@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 
 import '../models/supplier.dart';
-import '../widgets/stock/supplier_details.dart';
+import '../widgets/supplier/supplier_details.dart';
 
 class SupplierPage extends StatefulWidget {
   const SupplierPage({Key? key}) : super(key: key);
@@ -281,9 +281,7 @@ class UserDataTableSource extends DataTableSource {
                 // margin: const EdgeInsets.only(
                 //     left: 30, right: 30, top: 10, bottom: 10),
                 decoration: BoxDecoration(
-                    color: _user.count < 11
-                        ? Colors.red.shade400
-                        : Colors.green.shade400,
+                    color:  Colors.green.shade400,
                     borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   (_user.count.toString()),

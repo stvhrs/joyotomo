@@ -1,48 +1,20 @@
-import 'dart:collection';
-import 'dart:convert';
-import 'dart:developer';
+
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';
 import 'package:bitsdojo_window_example/models/supplier.dart';
 import 'package:bitsdojo_window_example/models/supplier_history.dart';
-import 'package:bitsdojo_window_example/widgets/dropdown.dart';
+import 'package:bitsdojo_window_example/helper/dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:objectbox/src/relations/to_many.dart';
 import 'package:provider/provider.dart';
 
+import '../../helper/currency.dart';
 import '../../models/stock.dart';
 import '../../provider/triger.dart';
 
-class CurrencyInputFormatter extends TextInputFormatter {
-  @override
-  TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
-    if (newValue.selection.baseOffset == 0) {
-      return newValue;
-    }
-
-    final oldValueText = oldValue.text.replaceAll(RegExp(r'[^0-9]'), '');
-    String newValueText = newValue.text;
-
-    // We manually remove the value we want to remove
-    // If oldValueText == newValue.text it means we deleted a non digit number.
-    if (oldValueText == newValue.text) {
-      newValueText = newValueText.substring(0, newValue.selection.end - 1) +
-          newValueText.substring(newValue.selection.end, newValueText.length);
-    }
-
-    double value = double.parse(double.parse(newValueText).toStringAsFixed(2));
-    final formatter = NumberFormat.currency(locale: "id_ID", symbol: 'Rp ');
-    String newText = formatter.format(value / 100);
-
-    return newValue.copyWith(
-        text: newText,
-        selection: TextSelection.collapsed(offset: newText.length));
-  }
-}
 
 class SupplierAdd extends StatefulWidget {
   @override
@@ -50,15 +22,14 @@ class SupplierAdd extends StatefulWidget {
 }
 
 class _SupplierAddState extends State<SupplierAdd> {
-  String d = '';
+  String _desc = '';
+  String _supplier = '';
+
   TextEditingController _controller = TextEditingController();
   int jumlahOpsi = 1;
 
   List<Stock> _updatedStock = [];
-
-  String _supplier = '';
-
-  List<StockHistory> data = [
+  List<StockHistory> _updatedStockHistory = [
     StockHistory(supplier: '', date: '', price: 0, count: 1, totalPrice: 0)
   ];
 
@@ -100,11 +71,11 @@ class _SupplierAddState extends State<SupplierAdd> {
                   width: 200,
                   child: TextField(
                     onChanged: (value) {
-                   
-                   
                       if (_updatedStock.isNotEmpty) {
-                       
-                        _updatedStock[i].totalPrice =NumberFormat.currency(locale: 'id_ID',symbol: 'Rp ').parse(value).toDouble();
+                        _updatedStock[i].lastPrice = NumberFormat.currency(
+                                locale: 'id_ID', symbol: 'Rp ')
+                            .parse(value)
+                            .toDouble();
                       }
                     },
                     inputFormatters: [
@@ -116,19 +87,19 @@ class _SupplierAddState extends State<SupplierAdd> {
                 IconButton(
                     onPressed: () {
                       setState(() {});
-                      if (data[i].count > 1) {
+                      if (_updatedStockHistory[i].count > 1) {
                         setState(() {
-                          data[i].count--;
+                          _updatedStockHistory[i].count--;
                           // _updatedStock[i].count--;
                         });
                       }
                     },
                     icon: Icon(Icons.remove_circle)),
-                Text(data[i].count.toString()),
+                Text(_updatedStockHistory[i].count.toString()),
                 IconButton(
                     onPressed: () {
                       setState(() {
-                        data[i].count++;
+                        _updatedStockHistory[i].count++;
                         // _updatedStock[i].count++;
                       });
                     },
@@ -241,8 +212,9 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                               .length) {
                                                     _updatedStock.removeAt(
                                                         jumlahOpsi - 1);
-                                                    data.removeAt(
-                                                        jumlahOpsi - 1);
+                                                    _updatedStockHistory
+                                                        .removeAt(
+                                                            jumlahOpsi - 1);
                                                     jumlahOpsi = jumlahOpsi - 1;
                                                   }
                                                 });
@@ -255,12 +227,13 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                     _updatedStock.length) {
                                                   setState(() {
                                                     jumlahOpsi = jumlahOpsi + 1;
-                                                    data.add(StockHistory(
-                                                        supplier: '',
-                                                        date: '',
-                                                        price: 0,
-                                                        count: 1,
-                                                        totalPrice: 0));
+                                                    _updatedStockHistory.add(
+                                                        StockHistory(
+                                                            supplier: '',
+                                                            date: '',
+                                                            price: 0,
+                                                            count: 1,
+                                                            totalPrice: 0));
                                                   });
                                                 }
                                               },
@@ -278,47 +251,62 @@ class _SupplierAddState extends State<SupplierAdd> {
                                   _supplier = _controller.text;
                                   Stock tempStock;
                                   Supplier tempSupplier;
+                                  int itemsCount = 0;
+                                  double itemsTotalPrice = 0;
 
                                   if (_supplier != '' &&
                                       _updatedStock.isNotEmpty) {
                                     tempSupplier = Supplier(
                                         date: DateTime.now().toIso8601String(),
                                         supplier: _supplier,
-                                        desc: 'desc',
-                                        count: 69,
-                                        totalPrice: 69);
+                                        desc: _desc,
+                                        count: itemsCount,
+                                        totalPrice: itemsTotalPrice);
+
                                     for (var i = 0;
                                         i < _updatedStock.length;
                                         i++) {
                                       tempStock = _updatedStock[i];
-                                      tempStock.count = data[i].count;
+                                      tempStock.count =
+                                          _updatedStockHistory[i].count;
                                       tempSupplier.items.add(SupplierHistory(
                                           name: tempStock.name,
                                           partName: tempStock.partname,
                                           count: tempStock.count,
                                           price: tempStock.lastPrice,
-                                          totalPrice: tempStock.totalPrice));
+                                          totalPrice: tempStock.lastPrice *
+                                              tempStock.count));
                                     }
 
                                     /// UPDATE STOCK VALUE
                                     for (var i = 0;
                                         i < _updatedStock.length;
                                         i++) {
-                                      Stock tempStock;
-                                      late StockHistory history;
-                                      tempStock = _updatedStock[i];
-                                      history = StockHistory(
+                                      Stock tempStock = _updatedStock[i];
+                                      StockHistory history = StockHistory(
                                           supplier: _supplier,
                                           date:
                                               DateTime.now().toIso8601String(),
-                                          price: data[i].price,
-                                          count: data[i].count,
-                                          totalPrice: data[i].totalPrice);
+                                          price: tempStock.lastPrice,
+                                          count: tempStock.count,
+                                          totalPrice: tempStock.lastPrice *
+                                              tempStock.count);
 
                                       tempStock.items.add(history);
 
-                                      tempStock.count = (data[i].count);
-                                      tempStock.lastPrice = 200;
+                                      tempStock.totalPrice =
+                                          tempStock.totalPrice +
+                                              (tempStock.lastPrice *
+                                                  tempStock.count);
+
+                                      ///ADD SUPPLIER
+                                      tempSupplier.count = tempSupplier.count +
+                                          _updatedStockHistory[i].count;
+
+                                      tempSupplier.totalPrice =
+                                          tempSupplier.totalPrice +
+                                              tempStock.lastPrice *
+                                                  _updatedStockHistory[i].count;
 
                                       objectBox.insertStock(tempStock);
                                     }
@@ -330,11 +318,11 @@ class _SupplierAddState extends State<SupplierAdd> {
                               ),
                             ]);
                       }).then((value) {
-                    d = '';
+                    _desc = '';
                     jumlahOpsi = 1;
                     _updatedStock = [];
                     _supplier = '';
-                    data = [
+                    _updatedStockHistory = [
                       StockHistory(
                           supplier: '',
                           date: '',
