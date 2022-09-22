@@ -2,6 +2,7 @@ import 'package:bitsdojo_window_example/models/stock.dart';
 import 'package:bitsdojo_window_example/models/supplier.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../models/customer.dart';
 import '../objectbox.g.dart';
 
 class ObjectBox extends ChangeNotifier {
@@ -9,10 +10,12 @@ class ObjectBox extends ChangeNotifier {
 
   late final Box<Stock> _stockBox;
   late final Box<Supplier> _supplierBox;
+  late final Box<Customer> _customerBox;
 
   ObjectBox._init(this._store) {
     _stockBox = Box<Stock>(_store);
     _supplierBox = Box<Supplier>(_store);
+    _customerBox=Box<Customer>(_store);
   }
 
   static Future<ObjectBox> init() async {
@@ -28,6 +31,7 @@ class ObjectBox extends ChangeNotifier {
         .watch(triggerImmediately: true)
         .map((query) => query.find());
   }
+
   int insertSupplier(Supplier stock) => _supplierBox.put(stock);
 
   bool deleteSupplier(int id) => _supplierBox.remove(id);
@@ -35,11 +39,7 @@ class ObjectBox extends ChangeNotifier {
   deleteAllSupplier() => _supplierBox.removeAll();
   deleteAllStock() => _stockBox.removeAll();
 
-
-
   ///Stock
-  List<Stock> getall() => _stockBox.getAll();
-
   Stream<List<Stock>> getStocks() {
     return _stockBox
         .query(Stock_.name.startsWith(''))
@@ -50,4 +50,16 @@ class ObjectBox extends ChangeNotifier {
   int insertStock(Stock stock) => _stockBox.put(stock);
 
   bool deleteStock(int id) => _stockBox.remove(id);
+
+  ///Customer
+  Stream<List<Customer>> getCustomers() {
+    return _customerBox
+        .query()
+        .watch(triggerImmediately: true)
+        .map((query) => query.find());
+  }
+
+  int insertCustomer(Customer customer) => _customerBox.put(customer);
+
+  bool deleteCustomer(int id) => _stockBox.remove(id);
 }

@@ -1,4 +1,5 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:bitsdojo_window_example/pages/customer_page.dart';
 import 'package:bitsdojo_window_example/pages/invoice_page.dart';
 import 'package:bitsdojo_window_example/pages/supplier_page.dart';
 import 'package:bitsdojo_window_example/pages/stock_page.dart';
@@ -174,11 +175,11 @@ class _SideState extends State<Side> {
                         onTap: () {
                           page.jumpToPage(1);
                         },
-                        icon: const Icon(Icons.engineering_rounded),
+                        icon: const Icon(Icons.document_scanner_sharp),
                       ),
                       SideMenuItem(
                         priority: 2,
-                        title: 'Flow',
+                        title: 'Customer',
                         onTap: () {
                           page.jumpToPage(2);
                         },
@@ -193,34 +194,9 @@ class _SideState extends State<Side> {
                       children: [
                         const StockPage(),
                         const SupplierPage(),
-                        Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              'Hidden Page',
-                              style: TextStyle(fontSize: 35),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              'Hidden Page',
-                              style: TextStyle(fontSize: 35),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: Colors.white,
-                          child: const Center(
-                            child: Text(
-                              'Hidden Page',
-                              style: TextStyle(fontSize: 35),
-                            ),
-                          ),
-                        ),
-                        const InvoicePage(),
+                        
+                     
+                        const CustomerPage(),
                       ],
                     ),
                   ),

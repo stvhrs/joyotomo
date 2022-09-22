@@ -2,23 +2,39 @@ import 'package:objectbox/objectbox.dart';
 
 @Entity()
 class Spk {
-  @Id(assignable: true)
+ @Id(assignable: true)
   int id;
-  String name;
-  String partname;
-  String desc;
+  String jtId;
+  String customerName;
+  String policeNumber;
+  String namaKendaraan;
+  String date;
+  String alamat;
+  String analisa;
+  String keluhanKonsumen;
+  String catatan;
+  String namaMekanik;
+  double estimasiBiyaya;
+  String estimasiSelesai;
+  String namaInspeektor;
+  String namaAdvisor;
 
-  int count;
-  double lastPrice;
-  double totalPrice;
 
-  Spk({
-    this.id = 0,
-    required this.partname,
-    required this.name,
-    required this.desc,
-    required this.lastPrice,
-    required this.count,
-    required this.totalPrice,
-  });
+ Spk(
+      {this.id = 0,
+      required this.jtId,
+      required this.customerName,
+      required this.policeNumber,
+      required this.namaKendaraan,
+      required this.date,
+      required this.alamat,
+      required this.analisa,
+      required this.keluhanKonsumen,
+      required this.catatan,
+      required this.namaMekanik,
+      required this.estimasiBiyaya,
+      required this.estimasiSelesai,
+      required this.namaAdvisor,
+      required this.namaInspeektor,
+      });
 }

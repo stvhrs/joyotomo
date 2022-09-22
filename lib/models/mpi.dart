@@ -1,24 +1,18 @@
 import 'package:objectbox/objectbox.dart';
 
+import 'mpi/mpiItem.dart';
+
 @Entity()
 class Mpi {
   @Id(assignable: true)
   int id;
-  String name;
-  String partname;
-  String desc;
-
-  int count;
-  double lastPrice;
-  double totalPrice;
+  String mpiId;
+  final items=ToMany<MpiItem>();
 
   Mpi({
     this.id = 0,
-    required this.partname,
-    required this.name,
-    required this.desc,
-    required this.lastPrice,
-    required this.count,
-    required this.totalPrice,
+    required this.mpiId,
+    // required this.ftrBrakes,
   });
+  
 }
