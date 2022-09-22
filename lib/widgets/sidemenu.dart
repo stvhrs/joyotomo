@@ -178,36 +178,13 @@ class _SideState extends State<Side> {
                       ),
                       SideMenuItem(
                         priority: 2,
-                        title: 'Surat Tugas',
+                        title: 'Flow',
                         onTap: () {
                           page.jumpToPage(2);
                         },
                         icon: const Icon(Icons.engineering_rounded),
                       ),
-                      SideMenuItem(
-                        priority: 3,
-                        title: 'Multi Selection',
-                        onTap: () {
-                          page.jumpToPage(3);
-                        },
-                        icon: const Icon(Icons.menu_book_rounded),
-                      ),
-                      SideMenuItem(
-                        priority: 4,
-                        title: 'Repair',
-                        onTap: () {
-                          page.jumpToPage(4);
-                        },
-                        icon: const Icon(Icons.menu_book_rounded),
-                      ),
-                      SideMenuItem(
-                        priority: 5,
-                        title: 'Invoice',
-                        onTap: () {
-                          page.jumpToPage(5);
-                        },
-                        icon: const Icon(Icons.document_scanner_rounded),
-                      ),
+                     
                     ],
                   ),
                   Expanded(

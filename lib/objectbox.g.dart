@@ -13,6 +13,11 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart';
 
+import 'models/customer.dart';
+import 'models/invoice.dart';
+import 'models/mpi.dart';
+import 'models/repair.dart';
+import 'models/spk.dart';
 import 'models/stock.dart';
 import 'models/stock_history.dart';
 import 'models/supplier.dart';
@@ -191,6 +196,234 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(5, 7196996581795471509),
+      name: 'Customer',
+      lastPropertyId: const IdUid(7, 972185411099250929),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 8332935324220498583),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 2559268662591453941),
+            name: 'customerName',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 2132177515035368676),
+            name: 'policeNumber',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 3628621183980066091),
+            name: 'spkId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(1, 5472966605712396796),
+            relationTarget: 'Spk'),
+        ModelProperty(
+            id: const IdUid(5, 8562769076870476715),
+            name: 'invId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(2, 1523166526337342567),
+            relationTarget: 'Invoice'),
+        ModelProperty(
+            id: const IdUid(6, 9091942968690159300),
+            name: 'repairId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(3, 3677240409554458320),
+            relationTarget: 'Repair'),
+        ModelProperty(
+            id: const IdUid(7, 972185411099250929),
+            name: 'mpiId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(4, 3267829025998556704),
+            relationTarget: 'Mpi')
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(6, 2527218249377962499),
+      name: 'Invoice',
+      lastPropertyId: const IdUid(7, 9081521299219461370),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 1167787500271225001),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 3646578591882942623),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 9221075118330723022),
+            name: 'partname',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 7333339028367438938),
+            name: 'desc',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 4239866769546037716),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 5586014103929858312),
+            name: 'lastPrice',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 9081521299219461370),
+            name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(7, 4733213235597589054),
+      name: 'Mpi',
+      lastPropertyId: const IdUid(7, 825996802385755163),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 8050624455589438629),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 4988076888834377370),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 4518535284842920721),
+            name: 'partname',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 7462271224947894638),
+            name: 'desc',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 4195062180308810683),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 4432725465046912835),
+            name: 'lastPrice',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 825996802385755163),
+            name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(8, 3698746756628045206),
+      name: 'Repair',
+      lastPropertyId: const IdUid(7, 8214028256394288082),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 4635104423153399574),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 2584968897459711830),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 1275935350778553645),
+            name: 'partname',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 2563543169147972608),
+            name: 'desc',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 2106009725506785505),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 3582426376575497151),
+            name: 'lastPrice',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 8214028256394288082),
+            name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(9, 4284014222613450838),
+      name: 'Spk',
+      lastPropertyId: const IdUid(7, 447746605431922475),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 864426932791923349),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 1549740615702465545),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 2178771682208092899),
+            name: 'partname',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 1662991340758727584),
+            name: 'desc',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 510551672781079387),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(6, 6056636925026389126),
+            name: 'lastPrice',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 447746605431922475),
+            name: 'totalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -214,8 +447,8 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(4, 8577844043565327978),
-      lastIndexId: const IdUid(0, 0),
+      lastEntityId: const IdUid(9, 4284014222613450838),
+      lastIndexId: const IdUid(4, 3267829025998556704),
       lastRelationId: const IdUid(2, 5532195133722584715),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [],
@@ -395,6 +628,229 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGet(buffer, rootOffset, 14, 0));
 
           return object;
+        }),
+    Customer: EntityDefinition<Customer>(
+        model: _entities[4],
+        toOneRelations: (Customer object) =>
+            [object.spk, object.inv, object.repair, object.mpi],
+        toManyRelations: (Customer object) => {},
+        getId: (Customer object) => object.id,
+        setId: (Customer object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Customer object, fb.Builder fbb) {
+          final customerNameOffset = fbb.writeString(object.customerName);
+          final policeNumberOffset = fbb.writeString(object.policeNumber);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, customerNameOffset);
+          fbb.addOffset(2, policeNumberOffset);
+          fbb.addInt64(3, object.spk.targetId);
+          fbb.addInt64(4, object.inv.targetId);
+          fbb.addInt64(5, object.repair.targetId);
+          fbb.addInt64(6, object.mpi.targetId);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Customer(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              customerName: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              policeNumber: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''));
+          object.spk.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.spk.attach(store);
+          object.inv.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
+          object.inv.attach(store);
+          object.repair.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
+          object.repair.attach(store);
+          object.mpi.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
+          object.mpi.attach(store);
+          return object;
+        }),
+    Invoice: EntityDefinition<Invoice>(
+        model: _entities[5],
+        toOneRelations: (Invoice object) => [],
+        toManyRelations: (Invoice object) => {},
+        getId: (Invoice object) => object.id,
+        setId: (Invoice object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Invoice object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final partnameOffset = fbb.writeString(object.partname);
+          final descOffset = fbb.writeString(object.desc);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, partnameOffset);
+          fbb.addOffset(3, descOffset);
+          fbb.addInt64(4, object.count);
+          fbb.addFloat64(5, object.lastPrice);
+          fbb.addFloat64(6, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Invoice(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              partname: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              desc: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              lastPrice:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 16, 0));
+
+          return object;
+        }),
+    Mpi: EntityDefinition<Mpi>(
+        model: _entities[6],
+        toOneRelations: (Mpi object) => [],
+        toManyRelations: (Mpi object) => {},
+        getId: (Mpi object) => object.id,
+        setId: (Mpi object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Mpi object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final partnameOffset = fbb.writeString(object.partname);
+          final descOffset = fbb.writeString(object.desc);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, partnameOffset);
+          fbb.addOffset(3, descOffset);
+          fbb.addInt64(4, object.count);
+          fbb.addFloat64(5, object.lastPrice);
+          fbb.addFloat64(6, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Mpi(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              partname: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              desc: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              lastPrice:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 16, 0));
+
+          return object;
+        }),
+    Repair: EntityDefinition<Repair>(
+        model: _entities[7],
+        toOneRelations: (Repair object) => [],
+        toManyRelations: (Repair object) => {},
+        getId: (Repair object) => object.id,
+        setId: (Repair object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Repair object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final partnameOffset = fbb.writeString(object.partname);
+          final descOffset = fbb.writeString(object.desc);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, partnameOffset);
+          fbb.addOffset(3, descOffset);
+          fbb.addInt64(4, object.count);
+          fbb.addFloat64(5, object.lastPrice);
+          fbb.addFloat64(6, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Repair(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              partname: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              desc: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              lastPrice:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 16, 0));
+
+          return object;
+        }),
+    Spk: EntityDefinition<Spk>(
+        model: _entities[8],
+        toOneRelations: (Spk object) => [],
+        toManyRelations: (Spk object) => {},
+        getId: (Spk object) => object.id,
+        setId: (Spk object, int id) {
+          object.id = id;
+        },
+        objectToFB: (Spk object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final partnameOffset = fbb.writeString(object.partname);
+          final descOffset = fbb.writeString(object.desc);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, partnameOffset);
+          fbb.addOffset(3, descOffset);
+          fbb.addInt64(4, object.count);
+          fbb.addFloat64(5, object.lastPrice);
+          fbb.addFloat64(6, object.totalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = Spk(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              partname: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              desc: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              lastPrice:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 14, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              totalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 16, 0));
+
+          return object;
         })
   };
 
@@ -512,4 +968,139 @@ class SupplierHistory_ {
   /// see [SupplierHistory.totalPrice]
   static final totalPrice =
       QueryDoubleProperty<SupplierHistory>(_entities[3].properties[5]);
+}
+
+/// [Customer] entity fields to define ObjectBox queries.
+class Customer_ {
+  /// see [Customer.id]
+  static final id = QueryIntegerProperty<Customer>(_entities[4].properties[0]);
+
+  /// see [Customer.customerName]
+  static final customerName =
+      QueryStringProperty<Customer>(_entities[4].properties[1]);
+
+  /// see [Customer.policeNumber]
+  static final policeNumber =
+      QueryStringProperty<Customer>(_entities[4].properties[2]);
+
+  /// see [Customer.spk]
+  static final spk =
+      QueryRelationToOne<Customer, Spk>(_entities[4].properties[3]);
+
+  /// see [Customer.inv]
+  static final inv =
+      QueryRelationToOne<Customer, Invoice>(_entities[4].properties[4]);
+
+  /// see [Customer.repair]
+  static final repair =
+      QueryRelationToOne<Customer, Repair>(_entities[4].properties[5]);
+
+  /// see [Customer.mpi]
+  static final mpi =
+      QueryRelationToOne<Customer, Mpi>(_entities[4].properties[6]);
+}
+
+/// [Invoice] entity fields to define ObjectBox queries.
+class Invoice_ {
+  /// see [Invoice.id]
+  static final id = QueryIntegerProperty<Invoice>(_entities[5].properties[0]);
+
+  /// see [Invoice.name]
+  static final name = QueryStringProperty<Invoice>(_entities[5].properties[1]);
+
+  /// see [Invoice.partname]
+  static final partname =
+      QueryStringProperty<Invoice>(_entities[5].properties[2]);
+
+  /// see [Invoice.desc]
+  static final desc = QueryStringProperty<Invoice>(_entities[5].properties[3]);
+
+  /// see [Invoice.count]
+  static final count =
+      QueryIntegerProperty<Invoice>(_entities[5].properties[4]);
+
+  /// see [Invoice.lastPrice]
+  static final lastPrice =
+      QueryDoubleProperty<Invoice>(_entities[5].properties[5]);
+
+  /// see [Invoice.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<Invoice>(_entities[5].properties[6]);
+}
+
+/// [Mpi] entity fields to define ObjectBox queries.
+class Mpi_ {
+  /// see [Mpi.id]
+  static final id = QueryIntegerProperty<Mpi>(_entities[6].properties[0]);
+
+  /// see [Mpi.name]
+  static final name = QueryStringProperty<Mpi>(_entities[6].properties[1]);
+
+  /// see [Mpi.partname]
+  static final partname = QueryStringProperty<Mpi>(_entities[6].properties[2]);
+
+  /// see [Mpi.desc]
+  static final desc = QueryStringProperty<Mpi>(_entities[6].properties[3]);
+
+  /// see [Mpi.count]
+  static final count = QueryIntegerProperty<Mpi>(_entities[6].properties[4]);
+
+  /// see [Mpi.lastPrice]
+  static final lastPrice = QueryDoubleProperty<Mpi>(_entities[6].properties[5]);
+
+  /// see [Mpi.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<Mpi>(_entities[6].properties[6]);
+}
+
+/// [Repair] entity fields to define ObjectBox queries.
+class Repair_ {
+  /// see [Repair.id]
+  static final id = QueryIntegerProperty<Repair>(_entities[7].properties[0]);
+
+  /// see [Repair.name]
+  static final name = QueryStringProperty<Repair>(_entities[7].properties[1]);
+
+  /// see [Repair.partname]
+  static final partname =
+      QueryStringProperty<Repair>(_entities[7].properties[2]);
+
+  /// see [Repair.desc]
+  static final desc = QueryStringProperty<Repair>(_entities[7].properties[3]);
+
+  /// see [Repair.count]
+  static final count = QueryIntegerProperty<Repair>(_entities[7].properties[4]);
+
+  /// see [Repair.lastPrice]
+  static final lastPrice =
+      QueryDoubleProperty<Repair>(_entities[7].properties[5]);
+
+  /// see [Repair.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<Repair>(_entities[7].properties[6]);
+}
+
+/// [Spk] entity fields to define ObjectBox queries.
+class Spk_ {
+  /// see [Spk.id]
+  static final id = QueryIntegerProperty<Spk>(_entities[8].properties[0]);
+
+  /// see [Spk.name]
+  static final name = QueryStringProperty<Spk>(_entities[8].properties[1]);
+
+  /// see [Spk.partname]
+  static final partname = QueryStringProperty<Spk>(_entities[8].properties[2]);
+
+  /// see [Spk.desc]
+  static final desc = QueryStringProperty<Spk>(_entities[8].properties[3]);
+
+  /// see [Spk.count]
+  static final count = QueryIntegerProperty<Spk>(_entities[8].properties[4]);
+
+  /// see [Spk.lastPrice]
+  static final lastPrice = QueryDoubleProperty<Spk>(_entities[8].properties[5]);
+
+  /// see [Spk.totalPrice]
+  static final totalPrice =
+      QueryDoubleProperty<Spk>(_entities[8].properties[6]);
 }
