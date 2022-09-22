@@ -74,7 +74,7 @@ class CustomerAdd extends StatelessWidget {
                             margin: const EdgeInsets.only(bottom: 20),
                             child: TextFormField(
                                 onChanged: (val) {
-                                  nomorPolisi = val.toString();
+                                  namaKendaraan = val.toString();
                                 },
                                 maxLines: 1,
                                 decoration: InputDecoration(

@@ -1,18 +1,19 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-class InvoicePage extends StatefulWidget {
-  const InvoicePage({Key? key}) : super(key: key);
+class InvoiceDoc extends StatefulWidget {
+  const InvoiceDoc({Key? key}) : super(key: key);
   @override
-  State<InvoicePage> createState() => _InvoicePageState();
+  State<InvoiceDoc> createState() => _InvoiceDocState();
 }
 
-class _InvoicePageState extends State<InvoicePage> {
+class _InvoiceDocState extends State<InvoiceDoc> {
   String defaul = 'Masih Kosong';
 
   var asu = pw.Document();
@@ -93,49 +94,7 @@ class _InvoicePageState extends State<InvoicePage> {
               width: constraints.maxHeight / 1.4,
               height: constraints.maxHeight,
               child: Column(children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      'images/logo.png',
-                      width: 80,
-                    ),
-                    SizedBox(
-                      width: 300,
-                      child: Column(
-                        children: const [
-                          Text(
-                            textAlign: TextAlign.justify,
-                            'JOYOTOMO',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 23,
-                                fontStyle: FontStyle.italic),
-                          ),
-                          Text(
-                            textAlign: TextAlign.justify,
-                            'Gemolong, Gandurejo, 4567',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                          Text(
-                            textAlign: TextAlign.justify,
-                            'TELP:08578181929    FAX:10283211',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              Kop(),
                 TextFormField(
                   initialValue: defaul,
                   onChanged: (value) {

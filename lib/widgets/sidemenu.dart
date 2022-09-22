@@ -1,6 +1,6 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:bitsdojo_window_example/pages/customer_page.dart';
-import 'package:bitsdojo_window_example/pages/invoice_page.dart';
+
 import 'package:bitsdojo_window_example/pages/supplier_page.dart';
 import 'package:bitsdojo_window_example/pages/stock_page.dart';
 import 'package:flutter/material.dart';

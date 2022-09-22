@@ -61,5 +61,5 @@ class ObjectBox extends ChangeNotifier {
 
   int insertCustomer(Customer customer) => _customerBox.put(customer);
 
-  bool deleteCustomer(int id) => _stockBox.remove(id);
+  bool deleteCustomer(int id) => _customerBox.remove(id);
 }

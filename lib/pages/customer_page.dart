@@ -116,7 +116,7 @@ class _CustomerPageState extends State<CustomerPage> {
                                               },
                                               decoration: const InputDecoration(
                                                 hintText:
-                                                    'Search Part Name/Name',
+                                                    'Search CS/XXX',
                                                 border: InputBorder.none,
                                               )))),
                                 ),
