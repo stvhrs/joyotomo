@@ -27,6 +27,14 @@ class CustomerDetails extends StatefulWidget {
 }
 
 class _CustomerDetailsState extends State<CustomerDetails> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _trans.addListener(() {});
+  }
+
+  TransformationController _trans = TransformationController();
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
@@ -75,42 +83,98 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                 ),
               )),
           Row(
-            children: [
-              Transform(
-                transform: scaleXYZTransform(scaleX: 0.5, scaleY: 0.5),
-                child: Transform.rotate(
-                  angle: -math.pi / 2.0,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [   InteractiveViewer(
+                boundaryMargin: EdgeInsets.all(double.infinity),
+                clipBehavior: Clip.none,
+                transformationController: _trans,
+                child: Container(
+                    margin: EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(8)),
+                    height: 297,
+                    width: 210,
+                    child: MouseRegion(
+                        cursor: SystemMouseCursors.zoomIn,
+                        onExit: (event) {
+                          _trans.value = Matrix4.identity();
+                        },
+                        onEnter: (value) {
+                          _trans.value = Matrix4(
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            -100,
+                            -150,
+                            0,
+                            1,
+                          );
+                        },
+                        // onTap: () {
+                        //
+                        // },
+                        child: Center(child: Text('g')))),
+              ),
+              InteractiveViewer(
+                  boundaryMargin: EdgeInsets.all(double.infinity),
+                  clipBehavior: Clip.none,
+                  panEnabled: false,
+                  child: Container(
+                      margin: EdgeInsets.only(right: 20),
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade300,
+                          borderRadius: BorderRadius.circular(8)),
+                      height: 297,
+                      width: 210,
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => RealizationDoc(
+                                  customer: value.selectedCustomer),
+                            ));
+                          },
+                          child: Text('g')))),
+
+              Container(
+                  margin: EdgeInsets.only(right: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(8)),
+                  height: 297,
+                  width: 210,
                   child: InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              SpkDoc(customer: value.selectedCustomer),
+                              MpiDoc(customer: value.selectedCustomer),
                         ));
                       },
-                      child: Container(
-                          color: Colors.green,
-                          height: 300,
-                          width: 440,
-                          child: Kop())),
-                ),
-              ),
-              // Transform(
-              //     transform: scaleXYZTransform(scaleX: .8, scaleY: .8),
-              //     child: Transform.rotate(
-              //         angle: -math.pi / 2.0,
-              //         child: SizedBox(
-              //   height: 200,
-              //   width: 300,
-              //   child: InkWell(
-              //             onTap: () {
-              //               Navigator.of(context).push(MaterialPageRoute(
-              //                 builder: (context) =>
-              //                     SpkDoc(customer: value.selectedCustomer),
-              //               ));
-              //             },
-              //             child: SpkDoc(customer: value.selectedCustomer))),
-              //   ),
-              // ),
+                      child: Text('g'))),
+              Container(
+                  margin: EdgeInsets.only(right: 20),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(8)),
+                  height: 297,
+                  width: 210,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => InvoiceDoc(),
+                        ));
+                      },
+                      child: Text('g'))),
+
               // Transform.scale(
               //     scale: 0.1,
               //     child: SizedBox(

@@ -5,7 +5,7 @@ import '../../main.dart';
 import '../../models/stock.dart';
 
 class CustomerAdd extends StatelessWidget {
-  final String csId;
+  final int csId;
   const CustomerAdd({Key? key, required this.csId}) : super(key: key);
 
   @override
@@ -139,7 +139,7 @@ class CustomerAdd extends StatelessWidget {
                               customerName: namaCustomer,
                               policeNumber: nomorPolisi,
                               namaKendaraan: namaKendaraan,
-                              csId: csId);
+                              csId: 'CS/JT/000000'.replaceRange(12-csId.toString().length, 12, csId.toString()) );
                           // for (var i = 0; i < 10000; i++) {
                           // stock.name = 'id$i';
                           //  stock.partname = 'part$i';

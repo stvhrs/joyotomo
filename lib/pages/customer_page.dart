@@ -46,7 +46,7 @@ class _CustomerPageState extends State<CustomerPage> {
             if (snapshot.data!.isEmpty) {
               return const Center(
                   child: CustomerAdd(
-                csId: 'CS/1',
+                csId:1,
               ));
             } else {
               List<Customer> customers = [];
@@ -83,7 +83,7 @@ class _CustomerPageState extends State<CustomerPage> {
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [  CustomerAdd(csId: 'CS/'+customers.length.toString()),
+                              children: [  CustomerAdd(csId:customers.length),
                                 Container(
                                   width: MediaQuery.of(context).size.width / 6,
                                   padding: const EdgeInsets.only(
@@ -116,7 +116,7 @@ class _CustomerPageState extends State<CustomerPage> {
                                               },
                                               decoration: const InputDecoration(
                                                 hintText:
-                                                    'Search CS/XXX',
+                                                    'Pemilik / Kendaraan',
                                                 border: InputBorder.none,
                                               )))),
                                 ),
@@ -138,7 +138,7 @@ class _CustomerPageState extends State<CustomerPage> {
                                                           listen: false)
                                                       .selectCustomer(e, true);
                                                 },
-                                                child: Text(e.customerName)))
+                                                child: Text(e.csId)))
                                             .toList(),
                                       ))))
                         ]),
