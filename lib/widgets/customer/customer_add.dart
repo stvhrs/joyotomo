@@ -1,8 +1,10 @@
 import 'package:bitsdojo_window_example/models/customer.dart';
+import 'package:bitsdojo_window_example/models/spk.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
-import '../../models/stock.dart';
+import '../../models/customer.dart';
+import '../../objectbox.g.dart';
 
 class CustomerAdd extends StatelessWidget {
   final int csId;
@@ -13,7 +15,7 @@ class CustomerAdd extends StatelessWidget {
     String namaCustomer = '';
     String nomorPolisi = '';
     String alamat = '';
-    String namaKendaraan='';
+    String namaKendaraan = '';
 
     return ElevatedButton.icon(
         style: ButtonStyle(
@@ -70,7 +72,8 @@ class CustomerAdd extends StatelessWidget {
                                         BorderSide(color: Colors.grey.shade300),
                                   ),
                                 )),
-                          ),  Container(
+                          ),
+                          Container(
                             margin: const EdgeInsets.only(bottom: 20),
                             child: TextFormField(
                                 onChanged: (val) {
@@ -133,21 +136,42 @@ class CustomerAdd extends StatelessWidget {
                   actions: <Widget>[
                     ElevatedButton(
                       onPressed: () {
-                        if ((namaCustomer.isNotEmpty || nomorPolisi.isNotEmpty || namaKendaraan.isNotEmpty)) {
-                          Customer stock = Customer(
+                        if ((namaCustomer.isNotEmpty ||
+                            nomorPolisi.isNotEmpty ||
+                            namaKendaraan.isNotEmpty)) {
+                          Customer customer = Customer(
                               alamat: alamat,
                               customerName: namaCustomer,
                               policeNumber: nomorPolisi,
                               namaKendaraan: namaKendaraan,
-                              csId: 'CS/JT/000000'.replaceRange(12-csId.toString().length, 12, csId.toString()) );
-                          // for (var i = 0; i < 10000; i++) {
-                          // stock.name = 'id$i';
-                          //  stock.partname = 'part$i';
-                          // stock.id = i;
-                          objectBox.insertCustomer(stock);
+                              csId: 'CS/JT/000000'.replaceRange(
+                                  12 - csId.toString().length,
+                                  12,
+                                  csId.toString()));
+                        
+                          customer.spk = ToOne<Spk>(
+                              target: Spk(
+                                  jtId: 'SPK/JT/000000'.replaceRange(
+                                      12 - csId.toString().length,
+                                      12,
+                                      csId.toString()),
+                                  customerName: namaCustomer,
+                                  policeNumber: nomorPolisi,
+                                  namaKendaraan: namaKendaraan,
+                                  date: 'jko9',
+                                  alamat: alamat,
+                                  analisa: 'analisa',
+                                  keluhanKonsumen: 'keluhanKonsumen',
+                                  catatan: 'catatan',
+                                  namaMekanik: 'namaMekanik',
+                                  estimasiBiyaya: 99.99,
+                                  estimasiSelesai: 'l',
+                                  namaAdvisor: 'namaAdvisor',
+                                  namaInspeektor: 'namaInspeektor'));
+                          objectBox.insertCustomer(customer);
                           // }
-                          //  objectBox.insertStock(stock);
-                          //  objectBox.deleteAllStock();
+                          //  objectBox.insertcustomer(customer);
+                          //  objectBox.deleteAllcustomer();
                           Navigator.of(context).pop();
                         }
                       },

@@ -132,7 +132,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                   child: Container(
                       margin: EdgeInsets.only(right: 20),
                       decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
+                          color: Colors.transparent,
                           borderRadius: BorderRadius.circular(8)),
                       height: 297,
                       width: 210,
@@ -156,7 +156,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              MpiDoc(customer: value.selectedCustomer),
+                            SpkDoc(customer: value.selectedCustomer),
                         ));
                       },
                       child: Text('g'))),

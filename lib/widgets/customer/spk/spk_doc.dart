@@ -1,3 +1,5 @@
+import 'package:bitsdojo_window_example/helper/styling.dart' as sty;
+import 'package:bitsdojo_window_example/models/spk.dart';
 import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -52,11 +54,18 @@ class _SpkDocState extends State<SpkDoc> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                            'Perintah Bengkel: ${widget.customer.csId}'),
-                                        TextFormField(initialValue: 'Catatan'),
-                                        TextFormField(
-                                            initialValue:
-                                                widget.customer.customerName),
+                                            'Perintah Bengkel: ${widget.customer.spk.target!.jtId}'),
+                                        Row(
+                                          children: [
+                                            IntrinsicWidth(child: TextFormField(initialValue: 'Catatan')),IntrinsicWidth(
+                                              child: TextFormField(
+  
+                                              initialValue:
+                                                  widget.customer.customerName),
+                                            ),
+                                          ],
+                                        ),
+                                        
                                         TextFormField(
                                             initialValue:
                                                 widget.customer.namaKendaraan),
