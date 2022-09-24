@@ -5,15 +5,10 @@ import 'package:bitsdojo_window_example/provider/trigger.dart';
 import 'package:bitsdojo_window_example/widgets/customer/customer_add.dart';
 import 'package:bitsdojo_window_example/widgets/customer/customer_detail.dart';
 
-import 'package:data_table_2/paginated_data_table_2.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 
-import '../models/stock.dart';
-import '../widgets/stock/stock_add.dart';
-import '../widgets/stock/stock_details.dart';
 
 class CustomerPage extends StatefulWidget {
   const CustomerPage({Key? key}) : super(key: key);
@@ -83,7 +78,7 @@ class _CustomerPageState extends State<CustomerPage> {
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [  CustomerAdd(csId:customers.length),
+                              children: [  CustomerAdd(csId:customers.length+1),
                                 Container(
                                   width: MediaQuery.of(context).size.width / 6,
                                   padding: const EdgeInsets.only(

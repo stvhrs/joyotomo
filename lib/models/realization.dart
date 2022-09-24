@@ -1,6 +1,6 @@
-import 'package:bitsdojo_window_example/models/mpi.dart';
 import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
 import 'package:bitsdojo_window_example/models/stock.dart';
+import 'package:bitsdojo_window_example/models/stockService/stock_realization.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
@@ -11,7 +11,7 @@ class Realization {
   int selesai;
   double biyaya;
   final mpiItems=ToMany<MpiItem>();
-  final stockItems=ToMany<Stock>();
+  final stockItems=ToMany<StockRalization>();
   bool done;
 
   Realization({

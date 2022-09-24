@@ -21,6 +21,7 @@ import 'models/mpi/mpiItem.dart';
 import 'models/realization.dart';
 import 'models/spk.dart';
 import 'models/stock.dart';
+import 'models/stockService/stock_realization.dart';
 import 'models/stock_history.dart';
 import 'models/supplier.dart';
 import 'models/supplier_history.dart';
@@ -295,7 +296,12 @@ final _entities = <ModelEntity>[
             indexId: const IdUid(6, 4697681690646665617),
             relationTarget: 'Realization')
       ],
-      relations: <ModelRelation>[],
+      relations: <ModelRelation>[
+        ModelRelation(
+            id: const IdUid(7, 8614891470761808861),
+            name: 'payments',
+            targetId: const IdUid(16, 2643118097585550812))
+      ],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
       id: const IdUid(7, 4733213235597589054),
@@ -484,7 +490,7 @@ final _entities = <ModelEntity>[
         ModelRelation(
             id: const IdUid(6, 4956430653713072539),
             name: 'stockItems',
-            targetId: const IdUid(1, 5172474104323874019))
+            targetId: const IdUid(17, 8195345395726640836))
       ],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
@@ -520,6 +526,62 @@ final _entities = <ModelEntity>[
             flags: 0)
       ],
       relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[]),
+  ModelEntity(
+      id: const IdUid(17, 8195345395726640836),
+      name: 'StockRalization',
+      lastPropertyId: const IdUid(11, 7986507982088994077),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 1744870554907766160),
+            name: 'id',
+            type: 6,
+            flags: 129),
+        ModelProperty(
+            id: const IdUid(2, 2106511143362269778),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 7075543084188139484),
+            name: 'partname',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 2887029109266866758),
+            name: 'desc',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(5, 5838489540086523103),
+            name: 'count',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 4790610728772895853),
+            name: 'realizationId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(7, 8158560541332333015),
+            relationTarget: 'Stock'),
+        ModelProperty(
+            id: const IdUid(9, 4942085319565489395),
+            name: 'price',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(10, 5217193877392610780),
+            name: 'servicePrice',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(11, 7986507982088994077),
+            name: 'toalPrice',
+            type: 8,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[])
 ];
 
@@ -543,9 +605,9 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(16, 2643118097585550812),
-      lastIndexId: const IdUid(6, 4697681690646665617),
-      lastRelationId: const IdUid(6, 4956430653713072539),
+      lastEntityId: const IdUid(17, 8195345395726640836),
+      lastIndexId: const IdUid(7, 8158560541332333015),
+      lastRelationId: const IdUid(7, 8614891470761808861),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [
         3698746756628045206,
@@ -604,7 +666,9 @@ ModelDefinition getObjectBoxModel() {
         6830985656715567,
         966243336564191732,
         7737946404995954756,
-        6221755903044557682
+        6221755903044557682,
+        5752991276839350254,
+        7160171960415368155
       ],
       retiredRelationUids: const [3757225277181594334],
       modelVersion: 5,
@@ -843,7 +907,8 @@ ModelDefinition getObjectBoxModel() {
     Invoice: EntityDefinition<Invoice>(
         model: _entities[5],
         toOneRelations: (Invoice object) => [object.realization],
-        toManyRelations: (Invoice object) => {},
+        toManyRelations: (Invoice object) =>
+            {RelInfo<Invoice>.toMany(7, object.id): object.payments},
         getId: (Invoice object) => object.id,
         setId: (Invoice object, int id) {
           object.id = id;
@@ -871,6 +936,8 @@ ModelDefinition getObjectBoxModel() {
           object.realization.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 22, 0);
           object.realization.attach(store);
+          InternalToManyAccess.setRelInfo(object.payments, store,
+              RelInfo<Invoice>.toMany(7, object.id), store.box<Invoice>());
           return object;
         }),
     Mpi: EntityDefinition<Mpi>(
@@ -1099,6 +1166,56 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGet(buffer, rootOffset, 10, ''));
 
           return object;
+        }),
+    StockRalization: EntityDefinition<StockRalization>(
+        model: _entities[11],
+        toOneRelations: (StockRalization object) => [object.realization],
+        toManyRelations: (StockRalization object) => {},
+        getId: (StockRalization object) => object.id,
+        setId: (StockRalization object, int id) {
+          object.id = id;
+        },
+        objectToFB: (StockRalization object, fb.Builder fbb) {
+          final nameOffset = fbb.writeString(object.name);
+          final partnameOffset = fbb.writeString(object.partname);
+          final descOffset = fbb.writeString(object.desc);
+          fbb.startTable(12);
+          fbb.addInt64(0, object.id);
+          fbb.addOffset(1, nameOffset);
+          fbb.addOffset(2, partnameOffset);
+          fbb.addOffset(3, descOffset);
+          fbb.addInt64(4, object.count);
+          fbb.addInt64(7, object.realization.targetId);
+          fbb.addFloat64(8, object.price);
+          fbb.addFloat64(9, object.servicePrice);
+          fbb.addFloat64(10, object.toalPrice);
+          fbb.finish(fbb.endTable());
+          return object.id;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = StockRalization(
+              id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0),
+              partname: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
+              name: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 6, ''),
+              desc: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, ''),
+              price:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 20, 0),
+              count:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0),
+              servicePrice:
+                  const fb.Float64Reader().vTableGet(buffer, rootOffset, 22, 0),
+              toalPrice: const fb.Float64Reader()
+                  .vTableGet(buffer, rootOffset, 24, 0));
+          object.realization.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0);
+          object.realization.attach(store);
+          return object;
         })
   };
 
@@ -1273,6 +1390,10 @@ class Invoice_ {
   /// see [Invoice.realization]
   static final realization =
       QueryRelationToOne<Invoice, Realization>(_entities[5].properties[3]);
+
+  /// see [Invoice.payments]
+  static final payments =
+      QueryRelationToMany<Invoice, Payment>(_entities[5].relations[0]);
 }
 
 /// [Mpi] entity fields to define ObjectBox queries.
@@ -1396,8 +1517,8 @@ class Realization_ {
       QueryRelationToMany<Realization, MpiItem>(_entities[9].relations[0]);
 
   /// see [Realization.stockItems]
-  static final stockItems =
-      QueryRelationToMany<Realization, Stock>(_entities[9].relations[1]);
+  static final stockItems = QueryRelationToMany<Realization, StockRalization>(
+      _entities[9].relations[1]);
 }
 
 /// [Payment] entity fields to define ObjectBox queries.
@@ -1417,4 +1538,43 @@ class Payment_ {
 
   /// see [Payment.date]
   static final date = QueryStringProperty<Payment>(_entities[10].properties[4]);
+}
+
+/// [StockRalization] entity fields to define ObjectBox queries.
+class StockRalization_ {
+  /// see [StockRalization.id]
+  static final id =
+      QueryIntegerProperty<StockRalization>(_entities[11].properties[0]);
+
+  /// see [StockRalization.name]
+  static final name =
+      QueryStringProperty<StockRalization>(_entities[11].properties[1]);
+
+  /// see [StockRalization.partname]
+  static final partname =
+      QueryStringProperty<StockRalization>(_entities[11].properties[2]);
+
+  /// see [StockRalization.desc]
+  static final desc =
+      QueryStringProperty<StockRalization>(_entities[11].properties[3]);
+
+  /// see [StockRalization.count]
+  static final count =
+      QueryIntegerProperty<StockRalization>(_entities[11].properties[4]);
+
+  /// see [StockRalization.realization]
+  static final realization =
+      QueryRelationToOne<StockRalization, Stock>(_entities[11].properties[5]);
+
+  /// see [StockRalization.price]
+  static final price =
+      QueryDoubleProperty<StockRalization>(_entities[11].properties[6]);
+
+  /// see [StockRalization.servicePrice]
+  static final servicePrice =
+      QueryDoubleProperty<StockRalization>(_entities[11].properties[7]);
+
+  /// see [StockRalization.toalPrice]
+  static final toalPrice =
+      QueryDoubleProperty<StockRalization>(_entities[11].properties[8]);
 }

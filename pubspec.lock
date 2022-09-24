@@ -36,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
-  auto_size_widget:
-    dependency: "direct main"
-    description:
-      name: auto_size_widget
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.4"
   badges:
     dependency: transitive
     description:
@@ -225,13 +218,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.6"
-  dropdownfield2:
-    dependency: "direct main"
-    description:
-      name: dropdownfield2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.7"
   easy_sidemenu:
     dependency: "direct main"
     description:
@@ -492,7 +478,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.19"
+    version: "2.0.20"
   path_provider_ios:
     dependency: transitive
     description:
@@ -821,5 +807,5 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.17.6 <3.0.0"
+  dart: ">=2.17.0 <3.0.0"
   flutter: ">=2.8.1"

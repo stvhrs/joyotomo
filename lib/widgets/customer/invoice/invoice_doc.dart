@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +93,7 @@ class _InvoiceDocState extends State<InvoiceDoc> {
               width: MediaQuery.of(context).size.height / 1.4,
               height: constraints.maxHeight,
               child: Column(children: [
-              Kop(),
+              const Kop(),
                 TextFormField(
                   initialValue: defaul,
                   onChanged: (value) {

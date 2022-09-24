@@ -11,9 +11,13 @@ class Kop extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              'images/logo.png',
-              width: 80,
+            InkWell(onTap: (){
+              Navigator.of(context).pop();
+            },
+              child: Image.asset(
+                'images/logo.png',
+                width: 80,
+              ),
             ),
             SizedBox(
               width: 300,

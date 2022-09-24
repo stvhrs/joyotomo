@@ -191,12 +191,12 @@ class _SideState extends State<Side> {
                   Expanded(
                     child: PageView(
                       controller: page,
-                      children: [
-                        const StockPage(),
-                        const SupplierPage(),
+                      children: const [
+                        StockPage(),
+                        SupplierPage(),
                         
                      
-                        const CustomerPage(),
+                        CustomerPage(),
                       ],
                     ),
                   ),

@@ -1,6 +1,8 @@
 import 'package:bitsdojo_window_example/models/realization.dart';
 import 'package:objectbox/objectbox.dart';
 
+import 'invoice/payment.dart';
+
 @Entity()
 class Invoice {
   @Id(assignable: true)
@@ -8,6 +10,7 @@ class Invoice {
   String invId;
   double saldo;
   ToOne<Realization> realization = ToOne<Realization>();
+    ToMany<Payment> payments = ToMany<Payment>();
 //  Map<String,dynamic> rincianPembayaran;
   Invoice({
     this.id = 0,

@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
 
@@ -6,12 +5,8 @@ import 'package:bitsdojo_window_example/models/customer.dart';
 import 'package:bitsdojo_window_example/provider/trigger.dart';
 import 'package:bitsdojo_window_example/widgets/customer/invoice/invoice_doc.dart';
 import 'package:bitsdojo_window_example/widgets/customer/realization/realization_doc.dart';
-import 'package:bitsdojo_window_example/widgets/customer/mpi/mpi_doc.dart';
 import 'package:bitsdojo_window_example/widgets/customer/spk/spk_doc.dart';
-import 'package:bitsdojo_window_example/widgets/kop.dart';
-import 'dart:math' as math;
 // ignore: deprecated_member_use
-import 'package:data_table_2/paginated_data_table_2.dart';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -34,7 +29,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     _trans.addListener(() {});
   }
 
-  TransformationController _trans = TransformationController();
+  final TransformationController _trans = TransformationController();
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
@@ -77,7 +72,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                   children: <TextSpan>[
                     TextSpan(
                         text: value.selectedCustomer.alamat + '\n',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                     TextSpan(text: value.selectedCustomer.namaKendaraan),
                   ],
                 ),
@@ -85,11 +80,11 @@ class _CustomerDetailsState extends State<CustomerDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [   InteractiveViewer(
-                boundaryMargin: EdgeInsets.all(double.infinity),
+                boundaryMargin: const EdgeInsets.all(double.infinity),
                 clipBehavior: Clip.none,
                 transformationController: _trans,
                 child: Container(
-                    margin: EdgeInsets.only(right: 20),
+                    margin: const EdgeInsets.only(right: 20),
                     decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(8)),
@@ -123,137 +118,14 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                         // onTap: () {
                         //
                         // },
-                        child: Center(child: Text('g')))),
-              ),
-              InteractiveViewer(
-                  boundaryMargin: EdgeInsets.all(double.infinity),
-                  clipBehavior: Clip.none,
-                  panEnabled: false,
-                  child: Container(
-                      margin: EdgeInsets.only(right: 20),
-                      decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(8)),
-                      height: 297,
-                      width: 210,
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => RealizationDoc(
+                        child:  Center(child: InkWell(onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SpkDoc(
                                   customer: value.selectedCustomer),
                             ));
-                          },
-                          child: Text('g')))),
-
-              Container(
-                  margin: EdgeInsets.only(right: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(8)),
-                  height: 297,
-                  width: 210,
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                            SpkDoc(customer: value.selectedCustomer),
-                        ));
-                      },
-                      child: Text('g'))),
-              Container(
-                  margin: EdgeInsets.only(right: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(8)),
-                  height: 297,
-                  width: 210,
-                  child: InkWell(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => InvoiceDoc(),
-                        ));
-                      },
-                      child: Text('g'))),
-
-              // Transform.scale(
-              //     scale: 0.1,
-              //     child: SizedBox(
-              //       height: 300,
-              //       width: 400,
-              //       child: InkWell(
-              //           onTap: () {
-              //             Navigator.of(context).push(MaterialPageRoute(
-              //               builder: (context) =>
-              //                   SpkDoc(customer: value.selectedCustomer),
-              //             ));
-              //           },
-              //           child: Transform.rotate(
-              //               angle: -math.pi / 2.0,
-              //               child: SpkDoc(customer: value.selectedCustomer))),
-              //     )), Transform.scale(
-              //     scale: 0.1,
-              //     child: SizedBox(
-              //       height: 300,
-              //       width: 400,
-              //       child: InkWell(
-              //           onTap: () {
-              //             Navigator.of(context).push(MaterialPageRoute(
-              //               builder: (context) =>
-              //                   SpkDoc(customer: value.selectedCustomer),
-              //             ));
-              //           },
-              //           child: Transform.rotate(
-              //               angle: -math.pi / 2.0,
-              //               child: SpkDoc(customer: value.selectedCustomer))),
-              //     )), Transform.scale(
-              //     scale: 0.1,
-              //     child: SizedBox(
-              //       height: 300,
-              //       width: 400,
-              //       child: InkWell(
-              //           onTap: () {
-              //             Navigator.of(context).push(MaterialPageRoute(
-              //               builder: (context) =>
-              //                   SpkDoc(customer: value.selectedCustomer),
-              //             ));
-              //           },
-              //           child: Transform.rotate(
-              //               angle: -math.pi / 2.0,
-              //               child: SpkDoc(customer: value.selectedCustomer))),
-              //     )),
-
-              ///
-              // InkWell(
-              //     onTap: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) =>
-              //             RealizationDoc(customer: value.selectedCustomer),
-              //       ));
-              //     },
-              //     child: Transform.scale(
-              //         scale: 1,
-              //         child: MpiDoc(customer: value.selectedCustomer))),
-              ///
-              // InkWell(
-              //     onTap: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) =>
-              //             MpiDoc(customer: value.selectedCustomer),
-              //       ));
-              //     },
-              //     child: Transform.scale(
-              //         scale: 1,
-              //         child: RealizationDoc(customer: value.selectedCustomer))),
-              // InkWell(
-              //     onTap: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) =>
-              //             InvoiceDoc(customer: value.selectedCustomer),
-              //       ));
-              //     },
-              //     child: Transform.scale(
-              //         scale: 1,
-              //         child: InvoiceDoc(customer: value.selectedCustomer))),
+                        },child: Text('g'))))),
+              ),
+     
             ],
           )
         ]),

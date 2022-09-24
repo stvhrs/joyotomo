@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/stock_history.dart';

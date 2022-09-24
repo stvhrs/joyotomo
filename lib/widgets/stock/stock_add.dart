@@ -31,7 +31,7 @@ class AddPartName extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.only(bottom: 20),
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: 'Part Number',
                               ),
                               onChanged: (val) {

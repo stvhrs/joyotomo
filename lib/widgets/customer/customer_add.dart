@@ -1,9 +1,15 @@
 import 'package:bitsdojo_window_example/models/customer.dart';
+import 'package:bitsdojo_window_example/models/invoice/payment.dart';
+import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
+import 'package:bitsdojo_window_example/models/realization.dart';
 import 'package:bitsdojo_window_example/models/spk.dart';
+import 'package:bitsdojo_window_example/models/stock.dart';
+import 'package:bitsdojo_window_example/models/stockService/stock_realization.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
-import '../../models/customer.dart';
+import '../../models/invoice.dart';
+import '../../models/mpi.dart';
 import '../../objectbox.g.dart';
 
 class CustomerAdd extends StatelessWidget {
@@ -36,7 +42,7 @@ class CustomerAdd extends StatelessWidget {
                           Container(
                             margin: const EdgeInsets.only(bottom: 20),
                             child: TextFormField(
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: 'Nama Customer',
                               ),
                               onChanged: (val) {
@@ -148,30 +154,83 @@ class CustomerAdd extends StatelessWidget {
                                   12 - csId.toString().length,
                                   12,
                                   csId.toString()));
-                        
-                          customer.spk = ToOne<Spk>(
-                              target: Spk(
-                                  jtId: 'SPK/JT/000000'.replaceRange(
-                                      12 - csId.toString().length,
-                                      12,
-                                      csId.toString()),
-                                  customerName: namaCustomer,
-                                  policeNumber: nomorPolisi,
-                                  namaKendaraan: namaKendaraan,
-                                  date: 'jko9',
-                                  alamat: alamat,
-                                  analisa: 'analisa',
-                                  keluhanKonsumen: 'keluhanKonsumen',
-                                  catatan: 'catatan',
-                                  namaMekanik: 'namaMekanik',
-                                  estimasiBiyaya: 99.99,
-                                  estimasiSelesai: 'l',
-                                  namaAdvisor: 'namaAdvisor',
-                                  namaInspeektor: 'namaInspeektor'));
+
+                          customer.spk.target = Spk(
+                              jtId: 'SPK/JT/000000'.replaceRange(
+                                  12 - csId.toString().length,
+                                  12,
+                                  csId.toString()),
+                              customerName: namaCustomer,
+                              policeNumber: nomorPolisi,
+                              namaKendaraan: namaKendaraan,
+                              date: '3/2/2002',
+                              alamat: alamat,
+                              analisa: 'analisa',
+                              keluhanKonsumen: 'keluhanKonsumen',
+                              catatan: 'catatan',
+                              namaMekanik: 'namaMekanik',
+                              estimasiBiyaya: 99.99,
+                              estimasiSelesai: 'l',
+                              namaAdvisor: 'namaAdvisor',
+                              namaInspeektor: 'namaInspeektor');
+                          customer.mpi.target = Mpi(
+                            mpiId: 'MPI/JT/000000'.replaceRange(
+                                12 - csId.toString().length,
+                                12,
+                                csId.toString()),
+                          );
+                          customer.mpi.target!.items !=
+                              [
+                                MpiItem(
+                                    category: 'under',
+                                    name: 'Vechicale',
+                                    attention: 0,
+                                    price: 0,
+                                    remark: 'remark')
+                              ];
+                          customer.realization.target = Realization(
+                              rlId: 'RLT/JT/000000'.replaceRange(
+                                  12 - csId.toString().length,
+                                  12,
+                                  csId.toString()),
+                              selesai: 0,
+                              biyaya: 0,
+                              done: false);
+                          customer.realization.target!.mpiItems !=
+                              [
+                                MpiItem(
+                                    category: 'under',
+                                    name: 'Vechicale2',
+                                    attention: 1,
+                                    price: 100,
+                                    remark: 'remark')
+                              ];
+                          customer.realization.target!.stockItems !=
+                              [
+                                StockRalization(
+                                    partname: 'etst',
+                                    name: 'name',
+                                    desc: ' desc',
+                                    price: 1000,
+                                    count: 3,
+                                    servicePrice: 100,
+                                    toalPrice: 1100)
+                              ];
+                          customer.inv.target = Invoice(
+                              invId: 'INV/JT/000000'.replaceRange(
+                                  12 - csId.toString().length,
+                                  12,
+                                  csId.toString()),
+                              saldo: 0);
+                          customer.inv.target!.realization =
+                              customer.realization;
+                          customer.inv.target!.payments.add(Payment(
+                              pay: 123,
+                              name: 'name',
+                              date: ' date',
+                              keterangan: 'keterangan'));
                           objectBox.insertCustomer(customer);
-                          // }
-                          //  objectBox.insertcustomer(customer);
-                          //  objectBox.deleteAllcustomer();
+
                           Navigator.of(context).pop();
                         }
                       },
