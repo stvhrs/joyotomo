@@ -1,6 +1,8 @@
 
 // ignore_for_file: deprecated_member_use
 
+import 'dart:developer';
+
 import 'package:bitsdojo_window_example/provider/trigger.dart';
 
 import 'package:data_table_2/paginated_data_table_2.dart';
@@ -31,7 +33,11 @@ class _StockPageState extends State<StockPage> {
     _streamstocks = objectBox.getStocks();
     super.initState();
   }
-
+@override
+  void dispose() {
+    log('dis');
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context2) {
     return Scaffold(
@@ -117,7 +123,7 @@ class _StockPageState extends State<StockPage> {
                                                 decoration:
                                                     const InputDecoration(
                                                   hintText:
-                                                      'Search Part Name/Name',
+                                                      'Search Part Number/Name',
                                                   border: InputBorder.none,
                                                 )))),
                                   ),
@@ -152,14 +158,14 @@ class _StockPageState extends State<StockPage> {
                                         columns: const [
                                           DataColumn(
                                             label: Center(
-                                                child: Text('Part Name')),
+                                                child: Text('Part Number')),
                                           ),
                                           DataColumn(
                                             label: Center(child: Text('Name')),
                                           ),
                                           DataColumn(
                                             label: Center(
-                                                child: Text('Total Harga')),
+                                                child: Text('Total Cost')),
                                           ),
                                           DataColumn2(
                                             size: ColumnSize.S,

@@ -1,3 +1,4 @@
+import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/customer.dart';
@@ -8,12 +9,14 @@ class RealizationDoc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-        tag: customer,
-        child: Scaffold(
+    return  Scaffold(
           body: Container(
-            child: Text(customer.alamat),
+            child: Column(
+              children: [const Kop(),
+                Text(customer.alamat),
+              ],
+            ),
           ),
-        ));
+        );
   }
 }

@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import 'mpi/mpi_doc.dart';
+
 class CustomerDetails extends StatefulWidget {
   // final List<dynamic> CustomersHistory;
   // final bool empty;
@@ -27,9 +29,18 @@ class _CustomerDetailsState extends State<CustomerDetails> {
     // TODO: implement initState
     super.initState();
     _trans.addListener(() {});
+        _trans2.addListener(() {});
+            _trans3.addListener(() {});
+                _trans4.addListener(() {});
   }
 
   final TransformationController _trans = TransformationController();
+  
+  final TransformationController _trans2 = TransformationController();
+  
+  final TransformationController _trans3 = TransformationController();
+  
+  final TransformationController _trans4 = TransformationController();
   final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
   @override
   Widget build(BuildContext context) {
@@ -123,7 +134,142 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                               builder: (context) => SpkDoc(
                                   customer: value.selectedCustomer),
                             ));
-                        },child: Text('g'))))),
+                        },child: const Text('SPK'))))),
+              ),InteractiveViewer(
+                boundaryMargin: const EdgeInsets.all(double.infinity),
+                clipBehavior: Clip.none,
+                transformationController: _trans2,
+                child: Container(
+                    margin: const EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(8)),
+                    height: 297,
+                    width: 210,
+                    child: MouseRegion(
+                        cursor: SystemMouseCursors.zoomIn,
+                        onExit: (event) {
+                          _trans2.value = Matrix4.identity();
+                        },
+                        onEnter: (value) {
+                          _trans2.value = Matrix4(
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            -100,
+                            -150,
+                            0,
+                            1,
+                          );
+                        },
+                        // onTap: () {
+                        //
+                        // },
+                        child:  Center(child: InkWell(onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => MpiDoc(
+                                  customer: value.selectedCustomer),
+                            ));
+                        },child: const Text('MPI'))))),
+              ),InteractiveViewer(
+                boundaryMargin: const EdgeInsets.all(double.infinity),
+                clipBehavior: Clip.none,
+                transformationController: _trans3,
+                child: Container(
+                    margin: const EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.purple,
+                        borderRadius: BorderRadius.circular(8)),
+                    height: 297,
+                    width: 210,
+                    child: MouseRegion(
+                        cursor: SystemMouseCursors.zoomIn,
+                        onExit: (event) {
+                          _trans3.value = Matrix4.identity();
+                        },
+                        onEnter: (value) {
+                          _trans3.value = Matrix4(
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            -100,
+                            -150,
+                            0,
+                            1,
+                          );
+                        },
+                        // onTap: () {
+                        //
+                        // },
+                        child:  Center(child: InkWell(onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => RealizationDoc(
+                                  customer: value.selectedCustomer),
+                            ));
+                        },child: const Text('RLT'))))),
+              ),InteractiveViewer(
+                boundaryMargin: const EdgeInsets.all(double.infinity),
+                clipBehavior: Clip.none,
+                transformationController: _trans4,
+                child: Container(
+                    margin: const EdgeInsets.only(right: 20),
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(8)),
+                    height: 297,
+                    width: 210,
+                    child: MouseRegion(
+                        cursor: SystemMouseCursors.zoomIn,
+                        onExit: (event) {
+                          _trans4.value = Matrix4.identity();
+                        },
+                        onEnter: (value) {
+                          _trans4.value = Matrix4(
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            0,
+                            0,
+                            0,
+                            2.2,
+                            0,
+                            -100,
+                            -150,
+                            0,
+                            1,
+                          );
+                        },
+                        // onTap: () {
+                        //
+                        // },
+                        child:  Center(child: InkWell(onTap: () {
+                         Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const InvoiceDoc(
+                              )
+                            ));
+                        },child: const Text('INV'))))),
               ),
      
             ],

@@ -3,14 +3,12 @@ import 'package:bitsdojo_window_example/models/invoice/payment.dart';
 import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
 import 'package:bitsdojo_window_example/models/realization.dart';
 import 'package:bitsdojo_window_example/models/spk.dart';
-import 'package:bitsdojo_window_example/models/stock.dart';
 import 'package:bitsdojo_window_example/models/stockService/stock_realization.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../../models/invoice.dart';
 import '../../models/mpi.dart';
-import '../../objectbox.g.dart';
 
 class CustomerAdd extends StatelessWidget {
   final int csId;
@@ -150,15 +148,15 @@ class CustomerAdd extends StatelessWidget {
                               customerName: namaCustomer,
                               policeNumber: nomorPolisi,
                               namaKendaraan: namaKendaraan,
-                              csId: 'CS/JT/000000'.replaceRange(
-                                  12 - csId.toString().length,
-                                  12,
+                              csId: 'CST/JT/000000'.replaceRange(
+                                  13 - csId.toString().length,
+                                  13,
                                   csId.toString()));
 
                           customer.spk.target = Spk(
                               jtId: 'SPK/JT/000000'.replaceRange(
-                                  12 - csId.toString().length,
-                                  12,
+                                  13 - csId.toString().length,
+                                  13,
                                   csId.toString()),
                               customerName: namaCustomer,
                               policeNumber: nomorPolisi,
@@ -175,23 +173,203 @@ class CustomerAdd extends StatelessWidget {
                               namaInspeektor: 'namaInspeektor');
                           customer.mpi.target = Mpi(
                             mpiId: 'MPI/JT/000000'.replaceRange(
-                                12 - csId.toString().length,
-                                12,
+                                13 - csId.toString().length,
+                                13,
                                 csId.toString()),
                           );
-                          customer.mpi.target!.items !=
-                              [
-                                MpiItem(
-                                    category: 'under',
-                                    name: 'Vechicale',
-                                    attention: 0,
-                                    price: 0,
-                                    remark: 'remark')
-                              ];
+                          customer.mpi.target!.items.addAll([
+                            MpiItem(
+                                category: '1',
+                                name: 'FRT Brakes',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: '1',
+                                name: 'Rear Breaks',
+                                attention: 0,
+                                price: 0,
+                                remark: 'Alignment'),
+                            MpiItem(
+                                category: '1',
+                                name: 'Front Tire Depth',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: '1',
+                                name: 'Rear Tire Depth',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: '1',
+                                name: 'Tire Pressure',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Head Lights',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Front Wiper',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Rear Wiper',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Floor Mats',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Emergency Brake Adjustment',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Horn Operation',
+                                attention: 0,
+                                price: 0,
+                                remark: 'INTERIOR / EXTERIOR'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Cabin Air Filter',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'INTERIOR / EXTERIOR',
+                                name: 'Clutch Operation',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Suspension - Front',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Suspension - Rear',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Power Steering',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Mountings',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Engine Oil Leaks',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Drive Shaft (CV)',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Transmission',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Fuel Lines and Fuel line Connectors',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER VEHICLE',
+                                name: 'Inspect Nuts and bolts on Body Chassis',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name:
+                                    'Fluid Levels: Oil / Coolant / Battery / Brake Fluid',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Engine Air Filter',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Vechicale',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Drive Belts',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Engine Coolant',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Water Hoses',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Radiator Condition',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Battery Condition',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                            MpiItem(
+                                category: 'UNDER HOOD ',
+                                name: 'Battery Service',
+                                attention: 0,
+                                price: 0,
+                                remark: 'remark'),
+                          ]);
                           customer.realization.target = Realization(
-                              rlId: 'RLT/JT/000000'.replaceRange(
-                                  12 - csId.toString().length,
-                                  12,
+                              rlId: 'RLS/JT/000000'.replaceRange(
+                                  13 - csId.toString().length,
+                                  13,
                                   csId.toString()),
                               selesai: 0,
                               biyaya: 0,
@@ -199,7 +377,7 @@ class CustomerAdd extends StatelessWidget {
                           customer.realization.target!.mpiItems !=
                               [
                                 MpiItem(
-                                    category: 'under',
+                                    category: 'UNDER VEHICLE',
                                     name: 'Vechicale2',
                                     attention: 1,
                                     price: 100,
@@ -218,14 +396,14 @@ class CustomerAdd extends StatelessWidget {
                               ];
                           customer.inv.target = Invoice(
                               invId: 'INV/JT/000000'.replaceRange(
-                                  12 - csId.toString().length,
-                                  12,
+                                  13 - csId.toString().length,
+                                  13,
                                   csId.toString()),
                               saldo: 0);
                           customer.inv.target!.realization =
                               customer.realization;
                           customer.inv.target!.payments.add(Payment(
-                              pay: 123,
+                              pay: 133,
                               name: 'name',
                               date: ' date',
                               keterangan: 'keterangan'));

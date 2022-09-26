@@ -90,7 +90,7 @@ class _InvoiceDocState extends State<InvoiceDoc> {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(border: Border.all()),
-              width: MediaQuery.of(context).size.height / 1.4,
+              width:  constraints.maxHeight / 1.4,
               height: constraints.maxHeight,
               child: Column(children: [
               const Kop(),

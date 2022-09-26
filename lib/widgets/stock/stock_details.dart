@@ -96,7 +96,7 @@ class _StockDetailsState extends State<StockDetails> {
                     label: Center(child: Text('Supplier')),
                   ),
                   DataColumn(
-                    label: Center(child: Text('Satuan')),
+                    label: Center(child: Text('Item Cost')),
                   ),
                   DataColumn2(
                       label: Center(

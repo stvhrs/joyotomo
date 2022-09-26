@@ -32,7 +32,11 @@ class _SupplierPageState extends State<SupplierPage> {
     _streamSuppliers = objectBox.getSuppliers();
     super.initState();
   }
-
+@override
+  void dispose() {
+  
+    super.dispose();
+  }
   @override
   void didChangeDependencies() {
     Provider.of<Trigger>(context, listen: false).selectListSupplier([], false);
@@ -168,7 +172,7 @@ class _SupplierPageState extends State<SupplierPage> {
                                           ),
                                           DataColumn(
                                             label: Center(
-                                                child: Text('Total Harga')),
+                                                child: Text('Total Cost')),
                                           ),
                                           DataColumn2(
                                             size: ColumnSize.S,

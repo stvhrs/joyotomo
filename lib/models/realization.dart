@@ -1,5 +1,4 @@
 import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
-import 'package:bitsdojo_window_example/models/stock.dart';
 import 'package:bitsdojo_window_example/models/stockService/stock_realization.dart';
 import 'package:objectbox/objectbox.dart';
 

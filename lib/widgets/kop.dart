@@ -34,7 +34,7 @@ class Kop extends StatelessWidget {
                   ),
                   Text(
                     textAlign: TextAlign.justify,
-                    'Gemolong, Gandurejo, 4567',
+                    'Kauman RT 05 RW 01, Gemolong, Sragen',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -43,7 +43,7 @@ class Kop extends StatelessWidget {
                   ),
                   Text(
                     textAlign: TextAlign.justify,
-                    'TELP:08578181929    FAX:10283211',
+                    'TELP:08578181929',
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

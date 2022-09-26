@@ -64,7 +64,7 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                     label: Center(child: Text('PartName')),
                   ),
                   DataColumn(
-                    label: Center(child: Text('Satuan')),
+                    label: Center(child: Text('Item Cost')),
                   ),
                   DataColumn2(
                       label: Center(
