@@ -7,7 +7,7 @@ class Mpi {
   @Id(assignable: true)
   int id;
   String mpiId;
-  final items =ToMany<MpiItem>();
+ToMany<MpiItem >items =ToMany<MpiItem>();
 
   Mpi({
     this.id = 0,

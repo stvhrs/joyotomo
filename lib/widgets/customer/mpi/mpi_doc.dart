@@ -1,98 +1,360 @@
+import 'package:bitsdojo_window_example/helper/currency.dart';
 import 'package:bitsdojo_window_example/helper/sparated_column.dart';
+import 'package:bitsdojo_window_example/main.dart';
+import 'package:bitsdojo_window_example/models/mpi.dart';
 import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
+import 'package:bitsdojo_window_example/objectbox.g.dart';
 import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import '../../../models/customer.dart';
+import 'package:objectbox/src/relations/to_many.dart';
 
-class MpiDoc extends StatelessWidget {
+class MpiDoc extends StatefulWidget {
   final Customer customer;
   const MpiDoc({super.key, required this.customer});
 
   @override
+  State<MpiDoc> createState() => _MpiDocState();
+}
+
+class _MpiDocState extends State<MpiDoc> {
+  late List<MpiItem> data;
+  List<MpiItem> data2 = [];
+  @override
+  void initState() {
+    data = widget.customer.mpi.target!.items;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    List<MpiItem> data = customer.mpi.target!.items;
-    print(data.length);
     return Scaffold(
         body: LayoutBuilder(builder: (context, BoxConstraints constraints) {
       return Center(
-        child: Container(
-            decoration: BoxDecoration(border: Border.all()),
-            width: constraints.maxHeight / 1.4,
-            height: constraints.maxHeight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Kop(),
-             Container(
-                          width: constraints.maxHeight / 1.4 / 3,
-                          decoration: const BoxDecoration(
-                            border: Border(top: BorderSide(
-                                  width: 1,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                              bottom: BorderSide(
-                                  width: 1,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                              right: BorderSide(
-                                  width: 1,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                            ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+              decoration: BoxDecoration(border: Border.all()),
+              width: constraints.maxHeight / 1.4,
+              height: constraints.maxHeight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Customer asu = widget.customer;
+                        asu.mpi.target =
+                            Mpi(mpiId: widget.customer.mpi.target!.mpiId);
+                        for (var element in data) {
+                          asu.mpi.target!.items.add(MpiItem(
+                              category: element.category,
+                              name: element.name,
+                              attention: element.attention,
+                              price: element.price,
+                              remark: element.remark));
+                        }
+
+                        objectBox.insertCustomer(asu);
+                      },
+                      child: Text('SAVE')),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        "MULTI POINT INSPETION `MPI`",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 17),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 10, bottom: 10),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.green, border: Border.all()),
+                        child: Text('Checked and Okay',
+                            style: const TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold)),
+                        width: constraints.maxHeight / 1.4 / 3.2,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.yellow, border: Border.all()),
+                        child: Text('Attention Recomended',
+                            style: const TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold)),
+                        width: constraints.maxHeight / 1.4 / 3.2,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Colors.red, border: Border.all()),
+                        child: Text('Attention Required',
+                            style: const TextStyle(
+                                fontSize: 11, fontWeight: FontWeight.bold)),
+                        width: constraints.maxHeight / 1.4 / 3.2,
+                      )
+                    ],
+                  ),
+                  Container(
+                    width: constraints.maxHeight / 1.4,
+                    decoration: const BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 0, 0, 0)),
+                        bottom: BorderSide(
+                            width: 1, color: Color.fromARGB(255, 0, 0, 0)),
+                      ),
+                    ),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(4),
+                            width: constraints.maxHeight / 1.4 / 2.928,
+                            child: const Text('BRAKES - TIRES - ALIGNMENT',
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.bold)),
                           ),
-                          padding: const EdgeInsets.all(4),
-                          child: Text('BRAKES - TIRES - ALIGNMENT',style: const TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.bold)),
-                        ),
-                SeparatedColumn(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    separatorBuilder: (context, index) {
-                      if (data[index].category != data[index + 1].category) {
-                        return Container(
-                          width: constraints.maxHeight / 1.4 / 3,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                  width: 1,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                              right: BorderSide(
-                                  width: 1,
-                                  color: Color.fromARGB(255, 0, 0, 0)),
-                            ),
+                          VerticalDivider(
+                            color: Colors.black,
                           ),
-                          padding: const EdgeInsets.all(4),
-                          child: Text(data[index + 1].category,
-                              style: const TextStyle(
-                                  fontSize: 9, fontWeight: FontWeight.bold)),
-                        );
-                      }
-                      return const SizedBox();
-                    },
-                    children: data
-                        .mapIndexed((index, element) => Row(
+                          Container(
+                            width: 102.5,
+                            child: Text('PRICE',
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.bold)),
+                          ),
+                          const VerticalDivider(
+                            color: Colors.black,
+                          ),
+                          Container(
+                            width: 100,
+                            child: Text('REMARK',
+                                style: TextStyle(
+                                    fontSize: 11, fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SeparatedColumn(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      separatorBuilder: (context, index) {
+                        if (data[index].category != data[index + 1].category) {
+                          return Container(
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    width: 1,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            padding: const EdgeInsets.all(6),
+                            child: Row(
                               children: [
-                                Container(
-                                    width: constraints.maxHeight / 1.4 / 3,
-                                    padding: const EdgeInsets.all(2),
+                                Text(data[index + 1].category,
+                                    style: const TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold)),
+                                Spacer()
+                              ],
+                            ),
+                          );
+                        }
+                        return const SizedBox();
+                      },
+                      children: data.mapIndexed((index, element) {
+                        return Container(
+                            width: constraints.maxHeight / 1.4,
+                            decoration: const BoxDecoration(
+                              border: Border(
+                                bottom: BorderSide(
+                                    width: 1,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            child: IntrinsicHeight(
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: constraints.maxHeight / 1.4 / 2.8,
                                     decoration: const BoxDecoration(
                                       border: Border(
-                                        bottom: BorderSide(
-                                            width: 1,
-                                            color:
-                                                Color.fromARGB(255, 0, 0, 0)),
                                         right: BorderSide(
                                             width: 1,
                                             color:
                                                 Color.fromARGB(255, 0, 0, 0)),
                                       ),
                                     ),
-                                    child: Text(
-                                      data[index].name,
-                                      style: const TextStyle(fontSize: 8.8),
-                                    )),
-                              ],
-                            ))
-                        .toList()),
-              ],
-            )),
+                                    child: Stack(
+                                      clipBehavior: Clip.none,
+                                      children: [
+                                        Transform.scale(
+                                            alignment: Alignment.centerLeft,
+                                            scale: 0.6,
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                SizedBox(
+                                                  width: 30,
+                                                  height: 16,
+                                                  child: Checkbox(
+                                                      activeColor: Colors.green,
+                                                      materialTapTargetSize:
+                                                          MaterialTapTargetSize
+                                                              .shrinkWrap,
+                                                      value: data[index]
+                                                              .attention ==
+                                                          1,
+                                                      onChanged: (sd) {
+                                                        setState(() {});
+                                                        if (data[index]
+                                                                .attention ==
+                                                            1) {
+                                                          data[index]
+                                                              .attention = 0;
+                                                        } else {
+                                                          data[index]
+                                                              .attention = 1;
+                                                        }
+                                                      }),
+                                                ),
+                                                SizedBox(
+                                                  width: 30,
+                                                  height: 16,
+                                                  child: Checkbox(
+                                                      activeColor:
+                                                          Colors.yellow,
+                                                      materialTapTargetSize:
+                                                          MaterialTapTargetSize
+                                                              .shrinkWrap,
+                                                      value: data[index]
+                                                              .attention ==
+                                                          2,
+                                                      onChanged: (sd) {
+                                                        setState(() {});
+                                                        if (data[index]
+                                                                .attention ==
+                                                            2) {
+                                                          data[index]
+                                                              .attention = 0;
+                                                        } else {
+                                                          data[index]
+                                                              .attention = 2;
+                                                        }
+                                                      }),
+                                                ),
+                                                SizedBox(
+                                                  width: 30,
+                                                  height: 16,
+                                                  child: Checkbox(
+                                                      activeColor: Colors.red,
+                                                      materialTapTargetSize:
+                                                          MaterialTapTargetSize
+                                                              .shrinkWrap,
+                                                      value: data[index]
+                                                              .attention ==
+                                                          3,
+                                                      onChanged: (sd) {
+                                                        setState(() {});
+                                                        if (data[index]
+                                                                .attention ==
+                                                            3) {
+                                                          data[index]
+                                                              .attention = 0;
+                                                        } else {
+                                                          data[index]
+                                                              .attention = 3;
+                                                        }
+                                                      }),
+                                                )
+                                              ],
+                                            )),
+                                        Positioned(
+                                          left: 55,
+                                          top: 1,
+                                          child: Text(
+                                            data[index].name,
+                                            textAlign: TextAlign.left,
+                                            style:
+                                                const TextStyle(fontSize: 10),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 100,
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: TextFormField(
+                                        onChanged: (value) {
+                                          data[index].price =
+                                              NumberFormat.currency(
+                                                      locale: 'id_ID',
+                                                      symbol: 'Rp ')
+                                                  .parse(value)
+                                                  .toDouble();
+                                        },
+                                        inputFormatters: [
+                                          CurrencyInputFormatter(),
+                                          FilteringTextInputFormatter.digitsOnly
+                                        ],
+                                        scrollPadding: EdgeInsets.all(0),
+                                        decoration: const InputDecoration(
+                                          isDense: true, //
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          contentPadding: EdgeInsets.all(0),
+                                        ),
+                                        initialValue:
+                                            data[index].price.toString(),
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                        )),
+                                  ),
+                                  const VerticalDivider(
+                                    color: Colors.black,
+                                  ),
+                                  Container(
+                                    width: 100,
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: TextFormField(
+                                        scrollPadding: EdgeInsets.all(0),
+                                        decoration: const InputDecoration(
+                                          isDense: true, //
+                                          border: InputBorder.none,
+                                          focusedBorder: InputBorder.none,
+                                          enabledBorder: InputBorder.none,
+                                          errorBorder: InputBorder.none,
+                                          disabledBorder: InputBorder.none,
+                                          contentPadding: EdgeInsets.all(0),
+                                        ),
+                                        initialValue: data[index].remark,
+                                        style: const TextStyle(
+                                          fontSize: 10,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ));
+                      }).toList()),
+                ],
+              )),
+        ),
       );
     }));
   }

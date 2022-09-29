@@ -129,10 +129,9 @@ class _SupplierAddState extends State<SupplierAdd> {
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
                   const Color.fromARGB(255, 79, 117, 134))),
-          onPressed: stocks.isEmpty 
+          onPressed: stocks.isEmpty
               ? () {}
               : () {
-                
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -250,9 +249,10 @@ class _SupplierAddState extends State<SupplierAdd> {
                             actions: <Widget>[
                               ElevatedButton(
                                 onPressed: () {
-                                  if(_updatedStockHistory.any((element) => element.price<1)){
-                  return;
-                }
+                                  if (_updatedStockHistory
+                                      .any((element) => element.price < 1)) {
+                                    return;
+                                  }
                                   _supplier = _controller.text;
                                   int itemsCount = 0;
                                   double itemsTotalPrice = 0;
@@ -263,7 +263,8 @@ class _SupplierAddState extends State<SupplierAdd> {
                                       count: itemsCount,
                                       totalPrice: itemsTotalPrice);
 
-                                  if (_supplier != ''&&_desc != '' &&
+                                  if (_supplier != '' &&
+                                      _desc != '' &&
                                       _updatedStock.isNotEmpty) {
                                     //SUPPLEIER HISTORY
                                     for (var i = 0;
