@@ -264,7 +264,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                       totalPrice: itemsTotalPrice);
 
                                   if (_supplier != '' &&
-                                      _desc != '' &&
+                                     
                                       _updatedStock.isNotEmpty) {
                                     //SUPPLEIER HISTORY
                                     for (var i = 0;

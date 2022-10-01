@@ -20,7 +20,9 @@ class SupplierDetails extends StatefulWidget {
 
 class _SupplierDetailsState extends State<SupplierDetails> {
  
-  final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
+  final formatCurrency = NumberFormat.currency(
+    locale: "id_ID",decimalDigits: 0,symbol: 'Rp '
+  );
   @override
   Widget build(BuildContext context) {
 

@@ -23,10 +23,10 @@ class StockDetails extends StatefulWidget {
 }
 
 class _StockDetailsState extends State<StockDetails> {
-  final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
+  final formatCurrency =
+      NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: 'Rp ');
   @override
   Widget build(BuildContext context) {
-   
     return Consumer<Trigger>(builder: (context, value, cshild) {
       final List<StockHistory> history =
           value.selectedStock.items.reversed.toList();
@@ -69,7 +69,7 @@ class _StockDetailsState extends State<StockDetails> {
                   border: Border.all(),
                   borderRadius: BorderRadius.circular(5)),
               child: Text(value.selectedStock.desc)),
-          (value.selectedStock.count >0)
+          (value.selectedStock.count > 0)
               ? const StockRemove()
               : const SizedBox(),
           Expanded(
@@ -118,19 +118,18 @@ class _StockDetailsState extends State<StockDetails> {
                                     : Colors.white),
                             cells: [
                               DataCell(
-                                Text(DateFormat.yMMMMEEEEd("id_ID").format(
-                                    DateTime.parse(e.date).toLocal())),
+                                Text(DateFormat.yMMMMEEEEd("id_ID")
+                                    .format(DateTime.parse(e.date).toLocal())),
                               ),
                               DataCell(Text(e.supplier)),
                               DataCell(Center(
-                                  child:
-                                      Text(formatCurrency.format(e.price)))),
+                                  child: Text(formatCurrency.format(e.price)))),
                               DataCell(Center(
                                   child: Container(
                                 padding: const EdgeInsets.only(
                                     left: 10, right: 10, top: 2, bottom: 2),
                                 decoration: BoxDecoration(
-                                    color: e.count< 0
+                                    color: e.count < 0
                                         ? Colors.red.shade400
                                         : Colors.green.shade400,
                                     borderRadius: BorderRadius.circular(10)),

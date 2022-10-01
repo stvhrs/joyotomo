@@ -20,8 +20,8 @@ class CurrencyInputFormatter extends TextInputFormatter {
     }
 
     double value = double.parse(double.parse(newValueText).toStringAsFixed(2));
-    final formatter = NumberFormat.currency(locale: "id_ID", symbol: 'Rp ');
-    String newText = formatter.format(value / 100);
+    final formatter = NumberFormat.currency(locale: "id_ID", symbol: 'Rp ',decimalDigits: 0);
+    String newText = formatter.format(value / 1);
 
     return newValue.copyWith(
         text: newText,

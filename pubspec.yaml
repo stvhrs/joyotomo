@@ -30,6 +30,7 @@ dependencies:
   intl: ^0.17.0
   dropdownfield2: ^1.0.7
   auto_size_widget: ^0.0.4
+  auto_size_text: ^3.0.0
 dev_dependencies:
   build_runner: ^2.0.0
   objectbox_generator: ^1.6.0

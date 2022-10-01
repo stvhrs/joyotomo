@@ -210,7 +210,9 @@ class UserDataTableSource extends DataTableSource {
       : _userData = userData;
   final BuildContext context;
   final List<Stock> _userData;
-  final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
+  final formatCurrency = NumberFormat.currency(
+    locale: "id_ID",decimalDigits: 0,symbol: 'Rp '
+  );
   @override
   DataRow getRow(int index) {
     assert(index >= 0);

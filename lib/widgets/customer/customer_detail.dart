@@ -41,7 +41,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
   final TransformationController _trans3 = TransformationController();
   
   final TransformationController _trans4 = TransformationController();
-  final formatCurrency = NumberFormat.simpleCurrency(locale: "id_ID");
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Trigger>(builder: (context, value, cshild) {
@@ -91,7 +91,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [   InteractiveViewer(
-                boundaryMargin: const EdgeInsets.all(double.infinity),
+          
                 clipBehavior: Clip.none,
                 transformationController: _trans,
                 child: Container(
@@ -136,7 +136,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             ));
                         },child: const Text('SPK'))))),
               ),InteractiveViewer(
-                boundaryMargin: const EdgeInsets.all(double.infinity),
+          
                 clipBehavior: Clip.none,
                 transformationController: _trans2,
                 child: Container(
@@ -181,7 +181,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             ));
                         },child: const Text('MPI'))))),
               ),InteractiveViewer(
-                boundaryMargin: const EdgeInsets.all(double.infinity),
+          
                 clipBehavior: Clip.none,
                 transformationController: _trans3,
                 child: Container(
@@ -226,7 +226,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                             ));
                         },child: const Text('RLT'))))),
               ),InteractiveViewer(
-                boundaryMargin: const EdgeInsets.all(double.infinity),
+          
                 clipBehavior: Clip.none,
                 transformationController: _trans4,
                 child: Container(
