@@ -248,7 +248,7 @@ class UserDataTableSource extends DataTableSource {
                   ? Colors.amber.shade200
                   : Colors.transparent,
               child: Center(
-                child: Text(DateFormat.yMMMMEEEEd("id_ID")
+                child: Text(DateFormat('dd/MM/yyyy')
                     .format(DateTime.parse(_user.date).toLocal())),
               ))),
           DataCell(Container(
@@ -281,13 +281,13 @@ class UserDataTableSource extends DataTableSource {
             child: Container(
                 alignment: Alignment.center,
                 // margin: const EdgeInsets.only(
-                //     left: 30, right: 30, top: 10, bottom: 10),
-                decoration: BoxDecoration(
-                    color: Colors.green.shade400,
-                    borderRadius: BorderRadius.circular(10)),
+                //     left: 30, right: 30, top: 10, bottom: 10),lha 
+                // decoration: BoxDecoration(
+                //     color: Colors.green.shade400,
+                //     borderRadius: BorderRadius.circular(10)),
                 child: Text(
                   (_user.count.toString()),
-                  style: const TextStyle(color: Colors.white),
+                  // style: const TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 )),
           )))

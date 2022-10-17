@@ -21,7 +21,7 @@ class Kop extends StatelessWidget {
             ),
             SizedBox(
               width: 300,
-              child: Column(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.end,
                 children: const [
                   Text(
                     textAlign: TextAlign.justify,
@@ -29,7 +29,7 @@ class Kop extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 23,
+                        fontSize: 17,
                         fontStyle: FontStyle.italic),
                   ),
                   Text(
@@ -38,7 +38,7 @@ class Kop extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 10,
                     ),
                   ),
                   Text(
@@ -47,7 +47,7 @@ class Kop extends StatelessWidget {
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                      fontSize: 10,
                     ),
                   ),
                 ],

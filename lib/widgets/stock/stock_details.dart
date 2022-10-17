@@ -118,8 +118,7 @@ class _StockDetailsState extends State<StockDetails> {
                                     : Colors.white),
                             cells: [
                               DataCell(
-                                Text(DateFormat.yMMMMEEEEd("id_ID")
-                                    .format(DateTime.parse(e.date).toLocal())),
+                                Text( DateFormat('dd/MM/yyyy').format(DateTime.parse(e.date))),
                               ),
                               DataCell(Text(e.supplier)),
                               DataCell(Center(
@@ -129,13 +128,13 @@ class _StockDetailsState extends State<StockDetails> {
                                 padding: const EdgeInsets.only(
                                     left: 10, right: 10, top: 2, bottom: 2),
                                 decoration: BoxDecoration(
-                                    color: e.count < 0
-                                        ? Colors.red.shade400
-                                        : Colors.green.shade400,
+                                    // color: e.count < 0
+                                    //     ? Colors.red.shade400
+                                    //     : Colors.green.shade400,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Text(
                                   (e.count.toString()),
-                                  style: const TextStyle(color: Colors.white),
+                                  // style: const TextStyle(color: Colors.white),
                                   textAlign: TextAlign.center,
                                 ),
                               ))),

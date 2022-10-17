@@ -36,9 +36,7 @@ class _MpiDocState extends State<MpiDoc> {
     return Scaffold(
         body: LayoutBuilder(builder: (context, BoxConstraints constraints) {
       return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
+        child:  Container(
             decoration: BoxDecoration(border: Border.all()),
             width: constraints.maxHeight / 1.4,
             height: constraints.maxHeight,
@@ -362,7 +360,7 @@ class _MpiDocState extends State<MpiDoc> {
               ],
             )),
           ),
-        ),
+        
       );
     }));
   }

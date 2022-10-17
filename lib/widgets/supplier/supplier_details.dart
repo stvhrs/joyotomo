@@ -4,7 +4,6 @@ import 'package:bitsdojo_window_example/provider/trigger.dart';
 
 // ignore: deprecated_member_use
 import 'package:data_table_2/paginated_data_table_2.dart';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -91,13 +90,13 @@ class _SupplierDetailsState extends State<SupplierDetails> {
                             child: Container(
                           padding: const EdgeInsets.only(
                               left: 10, right: 10, top: 2, bottom: 2),
-                          decoration: BoxDecoration(
-                              color: 
-                                   Colors.green.shade400,
-                              borderRadius: BorderRadius.circular(10)),
+                          // decoration: BoxDecoration(
+                          //     color: 
+                          //          Colors.green.shade400,
+                          //     borderRadius: BorderRadius.circular(10)),
                           child: Text(
                             (e.count.toString()),
-                            style: const TextStyle(color: Colors.white),
+                            // style: const TextStyle(color: Colors.white),
                             textAlign: TextAlign.center,
                           ),
                         ))),

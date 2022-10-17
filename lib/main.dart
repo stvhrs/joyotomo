@@ -23,7 +23,7 @@ void main() async {
   initializeDateFormatting();
   doWhenWindowReady(() {
     final win = appWindow;
-    const initialSize = Size(1366, 768);
+    const initialSize = Size(1280, 720);
     win.minSize = initialSize;
     win.size = initialSize;
     win.alignment = Alignment.center;

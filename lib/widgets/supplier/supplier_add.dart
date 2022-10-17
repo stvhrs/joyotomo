@@ -135,195 +135,205 @@ class _SupplierAddState extends State<SupplierAdd> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                            actionsPadding:
-                                const EdgeInsets.only(right: 15, bottom: 15),
-                            title: const Text("Kulakan"),
-                            content: StatefulBuilder(
-                              builder: (BuildContext context,
-                                      StateSetter setState) =>
-                                  IntrinsicHeight(
-                                child: SizedBox(
-                                  width: 500,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      DropDownField(
-                                        required: true,
-                                        inputFormatters: const [],
-                                        strict: true,
-                                        controller: _controller,
-                                        labelText: 'Supplier',
-                                        onValueChanged: (v) {
-                                          _supplier = v;
-                                        },
-                                        items: itemsSupplier,
-                                      ),
-                                      Container(
-                                        margin:
-                                            const EdgeInsets.only(bottom: 20),
-                                        child: TextFormField(
-                                            onChanged: (val) {
-                                              _desc = val;
-                                            },
-                                            maxLines: 3,
-                                            decoration: InputDecoration(
-                                              hintText: 'Description',
-                                              contentPadding:
-                                                  const EdgeInsets.only(
-                                                      left: 10,
-                                                      top: 10,
-                                                      bottom: 10),
-                                              fillColor: Colors.white,
-                                              hintStyle: TextStyle(
-                                                  color: Colors.grey.shade600,
-                                                  fontSize: 15,
-                                                  height: 2),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        Colors.grey.shade300),
-                                              ),
-                                              enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                                borderSide: BorderSide(
-                                                    color:
-                                                        Colors.grey.shade300),
-                                              ),
-                                            )),
-                                      ),
-                                      ...List.generate(
-                                          jumlahOpsi,
-                                          (index) =>
-                                              _buildPartName(index, context)),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  if (jumlahOpsi > 1 &&
-                                                      jumlahOpsi ==
-                                                          _updatedStock
-                                                              .length) {
-                                                    _updatedStock.removeAt(
-                                                        jumlahOpsi - 1);
-                                                    _updatedStockHistory
-                                                        .removeAt(
-                                                            jumlahOpsi - 1);
-                                                    jumlahOpsi = jumlahOpsi - 1;
-                                                  }
-                                                });
+                        return
+                        AlertDialog(
+                              actionsPadding:
+                                  const EdgeInsets.only(right: 15, bottom: 15),
+                              title: const Text("Inventory"),
+                              content: StatefulBuilder(
+                                builder: (BuildContext context,
+                                        StateSetter setState) =>
+                                    IntrinsicHeight(
+                                  child: SizedBox(
+                                    width: 500,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        DropDownField(
+                                          required: true,
+                                          inputFormatters: const [],
+                                          strict: true,
+                                          controller: _controller,
+                                          labelText: 'Supplier',
+                                          onValueChanged: (v) {
+                                            _supplier = v;
+                                          },
+                                          items: itemsSupplier,
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(bottom: 20),
+                                          child: TextFormField(
+                                              onChanged: (val) {
+                                                _desc = val;
                                               },
-                                              icon: const Icon(
-                                                  Icons.remove_circle)),
-                                          // Text(jumlahOpsi.toString()),
-                                          IconButton(
-                                              onPressed: () {
-                                                if (jumlahOpsi ==
-                                                    _updatedStock.length) {
+                                              maxLines: 3,
+                                              decoration: InputDecoration(
+                                                hintText: 'Description',
+                                                contentPadding:
+                                                    const EdgeInsets.only(
+                                                        left: 10,
+                                                        top: 10,
+                                                        bottom: 10),
+                                                fillColor: Colors.white,
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey.shade600,
+                                                    fontSize: 15,
+                                                    height: 2),
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          Colors.grey.shade300),
+                                                ),
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(7),
+                                                  borderSide: BorderSide(
+                                                      color:
+                                                          Colors.grey.shade300),
+                                                ),
+                                              )),
+                                        ),
+                                        ...List.generate(
+                                            jumlahOpsi,
+                                            (index) =>
+                                                _buildPartName(index, context)),
+                                        Row(
+                                          children: [
+                                            IconButton(
+                                                onPressed: () {
                                                   setState(() {
-                                                    jumlahOpsi = jumlahOpsi + 1;
-                                                    _updatedStockHistory.add(
-                                                        StockHistory(
-                                                            supplier: '',
-                                                            date: '',
-                                                            price: 0,
-                                                            count: 1,
-                                                            totalPrice: 0));
+                                                    if (jumlahOpsi > 1 &&
+                                                        jumlahOpsi ==
+                                                            _updatedStock
+                                                                .length) {
+                                                      _updatedStock.removeAt(
+                                                          jumlahOpsi - 1);
+                                                      _updatedStockHistory
+                                                          .removeAt(
+                                                              jumlahOpsi - 1);
+                                                      jumlahOpsi =
+                                                          jumlahOpsi - 1;
+                                                    }
                                                   });
-                                                }
-                                              },
-                                              icon:
-                                                  const Icon(Icons.add_circle)),
-                                        ],
-                                      ),
-                                    ],
+                                                },
+                                                icon: const Icon(
+                                                    Icons.remove_circle)),
+                                            // Text(jumlahOpsi.toString()),
+                                            IconButton(
+                                                onPressed: () {
+                                                  if (jumlahOpsi ==
+                                                      _updatedStock.length) {
+                                                    setState(() {
+                                                      jumlahOpsi =
+                                                          jumlahOpsi + 1;
+                                                      _updatedStockHistory.add(
+                                                          StockHistory(
+                                                              supplier: '',
+                                                              date: '',
+                                                              price: 0,
+                                                              count: 1,
+                                                              totalPrice: 0));
+                                                    });
+                                                  }
+                                                },
+                                                icon: const Icon(
+                                                    Icons.add_circle)),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            actions: <Widget>[
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (_updatedStockHistory
-                                      .any((element) => element.price < 1)) {
-                                    return;
-                                  }
-                                  _supplier = _controller.text;
-                                  int itemsCount = 0;
-                                  double itemsTotalPrice = 0;
-                                  Supplier tempSupplier = Supplier(
-                                      date: DateTime.now().toIso8601String(),
-                                      supplier: _supplier,
-                                      desc: _desc,
-                                      count: itemsCount,
-                                      totalPrice: itemsTotalPrice);
-
-                                  if (_supplier != '' &&
-                                     
-                                      _updatedStock.isNotEmpty) {
-                                    //SUPPLEIER HISTORY
-                                    for (var i = 0;
-                                        i < _updatedStock.length;
-                                        i++) {
-                                      tempSupplier.items.add(SupplierHistory(
-                                          name: _updatedStock[i].name,
-                                          partName: _updatedStock[i].partname,
-                                          count: _updatedStockHistory[i].count,
-                                          price: _updatedStockHistory[i].price,
-                                          totalPrice: _updatedStockHistory[i]
-                                                  .price *
-                                              _updatedStockHistory[i].count));
+                              actions: <Widget>[
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (_updatedStockHistory
+                                        .any((element) => element.price < 1)) {
+                                      return;
                                     }
+                                    _supplier = _controller.text;
+                                    int itemsCount = 0;
+                                    double itemsTotalPrice = 0;
+                                    Supplier tempSupplier = Supplier(
+                                        date: DateTime.now().toIso8601String(),
+                                        supplier: _supplier,
+                                        desc: _desc,
+                                        count: itemsCount,
+                                        totalPrice: itemsTotalPrice);
 
-                                    /// UPDATE STOCK HISTORY
-                                    for (var i = 0;
-                                        i < _updatedStock.length;
-                                        i++) {
-                                      StockHistory history = StockHistory(
-                                          supplier: _supplier,
-                                          date:
-                                              DateTime.now().toIso8601String(),
-                                          price: _updatedStockHistory[i].price,
-                                          count: _updatedStockHistory[i].count,
-                                          totalPrice: _updatedStockHistory[i]
-                                                  .price *
-                                              _updatedStockHistory[i].count);
-                                      //UPDATE STOCK
-                                      _updatedStock[i].items.add(history);
+                                    if (_supplier != '' &&
+                                        _updatedStock.isNotEmpty) {
+                                      //SUPPLEIER HISTORY
+                                      for (var i = 0;
+                                          i < _updatedStock.length;
+                                          i++) {
+                                        tempSupplier.items.add(SupplierHistory(
+                                            name: _updatedStock[i].name,
+                                            partName: _updatedStock[i].partname,
+                                            count:
+                                                _updatedStockHistory[i].count,
+                                            price:
+                                                _updatedStockHistory[i].price,
+                                            totalPrice: _updatedStockHistory[i]
+                                                    .price *
+                                                _updatedStockHistory[i].count));
+                                      }
 
-                                      _updatedStock[i].totalPrice =
-                                          _updatedStock[i].totalPrice +
-                                              (_updatedStockHistory[i].price *
-                                                  _updatedStockHistory[i]
-                                                      .count);
+                                      /// UPDATE STOCK HISTORY
+                                      for (var i = 0;
+                                          i < _updatedStock.length;
+                                          i++) {
+                                        StockHistory history = StockHistory(
+                                            supplier: _supplier,
+                                            date: DateTime.now()
+                                                .toIso8601String(),
+                                            price:
+                                                _updatedStockHistory[i].price,
+                                            count:
+                                                _updatedStockHistory[i].count,
+                                            totalPrice: _updatedStockHistory[i]
+                                                    .price *
+                                                _updatedStockHistory[i].count);
+                                        //UPDATE STOCK
+                                        _updatedStock[i].items.add(history);
 
-                                      _updatedStock[i].count =
-                                          _updatedStock[i].count +
-                                              _updatedStockHistory[i].count;
+                                        _updatedStock[i].totalPrice =
+                                            _updatedStock[i].totalPrice +
+                                                (_updatedStockHistory[i].price *
+                                                    _updatedStockHistory[i]
+                                                        .count);
 
-                                      ///ADD SUPPLIER
-                                      tempSupplier.count = tempSupplier.count +
-                                          _updatedStockHistory[i].count;
+                                        _updatedStock[i].count =
+                                            _updatedStock[i].count +
+                                                _updatedStockHistory[i].count;
 
-                                      tempSupplier.totalPrice =
-                                          tempSupplier.totalPrice +
-                                              _updatedStockHistory[i].price *
-                                                  _updatedStockHistory[i].count;
+                                        ///ADD SUPPLIER
+                                        tempSupplier.count =
+                                            tempSupplier.count +
+                                                _updatedStockHistory[i].count;
 
-                                      objectBox.insertStock(_updatedStock[i]);
+                                        tempSupplier.totalPrice = tempSupplier
+                                                .totalPrice +
+                                            _updatedStockHistory[i].price *
+                                                _updatedStockHistory[i].count;
+
+                                        objectBox.insertStock(_updatedStock[i]);
+                                      }
+                                      objectBox.insertSupplier(tempSupplier);
+                                      Navigator.of(context).pop();
                                     }
-                                    objectBox.insertSupplier(tempSupplier);
-                                    Navigator.of(context).pop();
-                                  }
-                                },
-                                child: const Text("Reduce"),
-                              ),
-                            ]);
+                                  },
+                                  child: const Text("Enter"),
+                                ),
+                              ]);
+                        
                       }).then((value) {
                     _desc = '';
                     jumlahOpsi = 1;

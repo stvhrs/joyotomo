@@ -63,7 +63,7 @@ packages:
       name: barcode
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.3"
   bitsdojo_window:
     dependency: "direct main"
     description:
@@ -204,6 +204,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
+  coverage:
+    dependency: transitive
+    description:
+      name: coverage
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.5.0"
   crypto:
     dependency: transitive
     description:
@@ -444,6 +451,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  node_preamble:
+    dependency: transitive
+    description:
+      name: node_preamble
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   objectbox:
     dependency: "direct main"
     description:
@@ -536,12 +550,12 @@ packages:
     source: hosted
     version: "2.0.7"
   pdf:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
-      name: pdf
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.8.2"
+      path: "library/pdf"
+      relative: true
+    source: path
+    version: "3.8.4"
   petitparser:
     dependency: transitive
     description:
@@ -675,6 +689,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.2"
+  shelf_packages_handler:
+    dependency: transitive
+    description:
+      name: shelf_packages_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  shelf_static:
+    dependency: transitive
+    description:
+      name: shelf_static
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.1"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -694,6 +722,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.2"
+  source_map_stack_trace:
+    dependency: transitive
+    description:
+      name: source_map_stack_trace
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+  source_maps:
+    dependency: transitive
+    description:
+      name: source_maps
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.10.10"
   source_span:
     dependency: transitive
     description:
@@ -743,6 +785,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
+  test:
+    dependency: "direct dev"
+    description:
+      name: test
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.21.4"
   test_api:
     dependency: transitive
     description:
@@ -750,6 +799,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.12"
+  test_core:
+    dependency: transitive
+    description:
+      name: test_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.16"
   timing:
     dependency: transitive
     description:
@@ -799,6 +855,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
+  webkit_inspection_protocol:
+    dependency: transitive
+    description:
+      name: webkit_inspection_protocol
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
   win32:
     dependency: transitive
     description:

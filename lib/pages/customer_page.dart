@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../main.dart';
 
-
 class CustomerPage extends StatefulWidget {
   const CustomerPage({Key? key}) : super(key: key);
 
@@ -41,7 +40,7 @@ class _CustomerPageState extends State<CustomerPage> {
             if (snapshot.data!.isEmpty) {
               return const Center(
                   child: CustomerAdd(
-                csId:1,
+                csId: 1,
               ));
             } else {
               List<Customer> customers = [];
@@ -78,7 +77,8 @@ class _CustomerPageState extends State<CustomerPage> {
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [  CustomerAdd(csId:customers.length+1),
+                              children: [
+                                CustomerAdd(csId: customers.length + 1),
                                 Container(
                                   width: MediaQuery.of(context).size.width / 6,
                                   padding: const EdgeInsets.only(
@@ -110,12 +110,10 @@ class _CustomerPageState extends State<CustomerPage> {
                                                 );
                                               },
                                               decoration: const InputDecoration(
-                                                hintText:
-                                                    'Pemilik / Kendaraan',
+                                                hintText: 'Pemilik / Kendaraan',
                                                 border: InputBorder.none,
                                               )))),
                                 ),
-                               
                               ],
                             ),
                           ),
@@ -124,17 +122,33 @@ class _CustomerPageState extends State<CustomerPage> {
                                   width: MediaQuery.of(context).size.width / 6,
                                   child: Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 8, left: 16, right: 16),
+                                          top: 8, right: 16),
                                       child: ListView(
-                                        children: customers
-                                            .map((e) => InkWell(
-                                                onTap: () {
-                                                  Provider.of<Trigger>(context,
-                                                          listen: false)
-                                                      .selectCustomer(e, true);
-                                                },
-                                                child: Text(e.csId)))
-                                            .toList(),
+                                        children: customers.map((e) {
+                                          Customer _selectedCustomers =
+                                              Provider.of<Trigger>(context,
+                                                      listen: true)
+                                                  .selectedCustomer;
+                                          return Container(
+                                              decoration: BoxDecoration(
+                                                  color:
+                                                      _selectedCustomers.csId ==
+                                                              e.csId
+                                                          ? Colors.amber
+                                                          : Colors.transparent,
+                                                  border: Border(
+                                                      top: BorderSide())),
+                                              padding: EdgeInsets.all(3),
+                                              child: InkWell(
+                                                  onTap: () {
+                                                    Provider.of<Trigger>(
+                                                            context,
+                                                            listen: false)
+                                                        .selectCustomer(
+                                                            e, true);
+                                                  },
+                                                  child: Text(e.csId)));
+                                        }).toList(),
                                       ))))
                         ]),
                         _divier_,
