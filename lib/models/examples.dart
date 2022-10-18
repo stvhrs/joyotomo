@@ -3,15 +3,10 @@ import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:bitsdojo_window_example/models/customer.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:intl/intl.dart';
-import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 
 Future<Uint8List> generateCalendar(
   Customer customer,
@@ -22,7 +17,7 @@ Future<Uint8List> generateCalendar(
   String? bg;
 
   document.addPage(pw.Page(
-      margin: pw.EdgeInsets.all(20),
+      margin: const pw.EdgeInsets.all(20),
       pageFormat: PdfPageFormat.a4,
       build: ((pw.Context context) => pw.Container(
           height: 1000 * 1.4,

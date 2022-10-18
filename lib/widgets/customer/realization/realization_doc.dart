@@ -1,9 +1,5 @@
-import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
-import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import '../../../helper/currency.dart';
 import '../../../models/customer.dart';
 
 class RealizationDoc extends StatefulWidget {
@@ -40,7 +36,7 @@ class _RealizationDocState extends State<RealizationDoc> {
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       "REALISASI",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
@@ -138,7 +134,7 @@ class _RealizationDocState extends State<RealizationDoc> {
                                 ),
                                 Container(
                                     width: 100,
-                                    margin: EdgeInsets.only(left: 10),
+                                    margin: const EdgeInsets.only(left: 10),
                                     child: Text(
                                         formatCurrency.format(element.price),
                                         style: const TextStyle(
@@ -147,7 +143,7 @@ class _RealizationDocState extends State<RealizationDoc> {
                                 const VerticalDivider(
                                   color: Colors.black,
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 200,
                                   // margin: EdgeInsets.only(left: 10),
                                   child: Text(element.remark,

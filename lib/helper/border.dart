@@ -1,6 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Kotak extends StatelessWidget {
   final Widget child;
@@ -14,10 +12,10 @@ class Kotak extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(margin: EdgeInsets.zero,
+    return Container(margin: EdgeInsets.zero,padding: const EdgeInsets.only(left: 4,right: 4),
       height: height,
       width: width,
-      decoration: BoxDecoration(border: Border.all()),
+      decoration: BoxDecoration(border: Border.all(width: 1)),
       child: child,
     );
   }

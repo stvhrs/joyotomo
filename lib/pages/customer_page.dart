@@ -136,9 +136,9 @@ class _CustomerPageState extends State<CustomerPage> {
                                                               e.csId
                                                           ? Colors.amber
                                                           : Colors.transparent,
-                                                  border: Border(
+                                                  border: const Border(
                                                       top: BorderSide())),
-                                              padding: EdgeInsets.all(3),
+                                              padding: const EdgeInsets.all(3),
                                               child: InkWell(
                                                   onTap: () {
                                                     Provider.of<Trigger>(

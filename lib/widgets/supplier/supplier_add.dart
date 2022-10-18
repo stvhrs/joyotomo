@@ -169,35 +169,7 @@ class _SupplierAddState extends State<SupplierAdd> {
                                                 _desc = val;
                                               },
                                               maxLines: 3,
-                                              decoration: InputDecoration(
-                                                hintText: 'Description',
-                                                contentPadding:
-                                                    const EdgeInsets.only(
-                                                        left: 10,
-                                                        top: 10,
-                                                        bottom: 10),
-                                                fillColor: Colors.white,
-                                                hintStyle: TextStyle(
-                                                    color: Colors.grey.shade600,
-                                                    fontSize: 15,
-                                                    height: 2),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(7),
-                                                  borderSide: BorderSide(
-                                                      color:
-                                                          Colors.grey.shade300),
-                                                ),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(7),
-                                                  borderSide: BorderSide(
-                                                      color:
-                                                          Colors.grey.shade300),
-                                                ),
-                                              )),
+                                             ),
                                         ),
                                         ...List.generate(
                                             jumlahOpsi,

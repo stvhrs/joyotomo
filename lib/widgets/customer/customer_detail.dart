@@ -42,7 +42,9 @@ class _CustomerDetailsState extends State<CustomerDetails> {
   final TransformationController _trans3 = TransformationController();
 
   final TransformationController _trans4 = TransformationController();
-
+  final formatCurrendcy = NumberFormat.currency(
+    locale: "id_ID",decimalDigits: 0,symbol: 'Rp '
+  );
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -290,7 +292,7 @@ class _CustomerDetailsState extends State<CustomerDetails> {
                                   },
                                   child: PdfPreview(
                                     useActions: false,
-                                    previewPageMargin: EdgeInsets.all(12),
+                                    previewPageMargin: const EdgeInsets.all(12),
                                    
                                     build: (format) => examples[0]
                                         .builder(value.selectedCustomer),

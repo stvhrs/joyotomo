@@ -15,7 +15,7 @@
  */
 
 export 'package:barcode/barcode.dart';
-export 'src/widgets/sparatde.dart';
+
 export 'src/widgets/annotations.dart';
 export 'src/widgets/barcode.dart';
 export 'src/widgets/basic.dart';
@@ -51,6 +51,7 @@ export 'src/widgets/partitions.dart';
 export 'src/widgets/placeholders.dart';
 export 'src/widgets/progress.dart';
 export 'src/widgets/shape.dart';
+export 'src/widgets/sparatde.dart';
 export 'src/widgets/stack.dart';
 export 'src/widgets/svg.dart';
 export 'src/widgets/table.dart';

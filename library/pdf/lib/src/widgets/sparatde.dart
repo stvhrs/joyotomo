@@ -1,17 +1,7 @@
 
 import '../../widgets.dart';
-import 'widget.dart';
 
 class SeparatedColumn extends StatelessWidget {
-  final List<Widget> children;
- 
-  final bool includeOuterSeparators;
-  final TextDirection? textDirection;
-  final MainAxisSize mainAxisSize;
-  final VerticalDirection verticalDirection;
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
-  final IndexedWidgetBuilder separatorBuilder;
 
  SeparatedColumn({
  
@@ -25,6 +15,15 @@ class SeparatedColumn extends StatelessWidget {
     this.crossAxisAlignment = CrossAxisAlignment.center,
     required this.separatorBuilder,
   }) ;
+  final List<Widget> children;
+ 
+  final bool includeOuterSeparators;
+  final TextDirection? textDirection;
+  final MainAxisSize mainAxisSize;
+  final VerticalDirection verticalDirection;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final IndexedWidgetBuilder separatorBuilder;
 
   @override
   Widget build(Context context) {
@@ -36,7 +35,7 @@ class SeparatedColumn extends StatelessWidget {
         children.add(separatorBuilder(context, 0));
       }
 
-      for (int i = 0; i < this.children.length; i++) {
+      for (var i = 0; i < this.children.length; i++) {
         children.add(this.children[i]);
 
         if (this.children.length - i != 1) {

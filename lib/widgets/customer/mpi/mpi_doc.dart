@@ -1,16 +1,14 @@
 import 'package:bitsdojo_window_example/helper/currency.dart';
-import 'package:bitsdojo_window_example/helper/sparated_column.dart';
+
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/models/mpi.dart';
 import 'package:bitsdojo_window_example/models/mpi/mpiItem.dart';
-import 'package:bitsdojo_window_example/objectbox.g.dart';
-import 'package:bitsdojo_window_example/widgets/kop.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import '../../../helper/sparated_column.dart';
 import '../../../models/customer.dart';
-import 'package:objectbox/src/relations/to_many.dart';
 
 class MpiDoc extends StatefulWidget {
   final Customer customer;
@@ -60,13 +58,13 @@ class _MpiDocState extends State<MpiDoc> {
 
                       objectBox.insertCustomer(asu);
                     },
-                    child: Text('SAVE')),
+                    child: const Text('SAVE')),
                 Center(
                   child: InkWell(
                     onTap: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       "MULTI POINT INSPETION `MPI`",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
@@ -77,12 +75,12 @@ class _MpiDocState extends State<MpiDoc> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(top: 10, bottom: 10),
+                      margin: const EdgeInsets.only(top: 10, bottom: 10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.green, border: Border.all()),
-                      child: Text('Checked and Okay',
-                          style: const TextStyle(
+                      child: const Text('Checked and Okay',
+                          style: TextStyle(
                               fontSize: 11, fontWeight: FontWeight.bold)),
                       width: constraints.maxHeight / 1.4 / 3.2,
                     ),
@@ -90,8 +88,8 @@ class _MpiDocState extends State<MpiDoc> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.yellow, border: Border.all()),
-                      child: Text('Attention Recomended',
-                          style: const TextStyle(
+                      child: const Text('Attention Recomended',
+                          style: TextStyle(
                               fontSize: 11, fontWeight: FontWeight.bold)),
                       width: constraints.maxHeight / 1.4 / 3.2,
                     ),
@@ -99,8 +97,8 @@ class _MpiDocState extends State<MpiDoc> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                           color: Colors.red, border: Border.all()),
-                      child: Text('Attention Required',
-                          style: const TextStyle(
+                      child: const Text('Attention Required',
+                          style: TextStyle(
                               fontSize: 11, fontWeight: FontWeight.bold)),
                       width: constraints.maxHeight / 1.4 / 3.2,
                     )
@@ -120,16 +118,16 @@ class _MpiDocState extends State<MpiDoc> {
                     child: Row(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           width: constraints.maxHeight / 1.4 / 2.928,
                           child: const Text('BRAKES - TIRES - ALIGNMENT',
                               style: TextStyle(
                                   fontSize: 11, fontWeight: FontWeight.bold)),
                         ),
-                        VerticalDivider(
+                        const VerticalDivider(
                           color: Colors.black,
                         ),
-                        Container(
+                        const SizedBox(
                           width: 102.5,
                           child: Text('PRICE',
                               style: TextStyle(
@@ -138,7 +136,7 @@ class _MpiDocState extends State<MpiDoc> {
                         const VerticalDivider(
                           color: Colors.black,
                         ),
-                        Container(
+                        const SizedBox(
                           width: 100,
                           child: Text('REMARK',
                               style: TextStyle(
@@ -167,7 +165,7 @@ class _MpiDocState extends State<MpiDoc> {
                                   style: const TextStyle(
                                       fontSize: 11,
                                       fontWeight: FontWeight.bold)),
-                              Spacer()
+                              const Spacer()
                             ],
                           ),
                         );
@@ -294,7 +292,7 @@ class _MpiDocState extends State<MpiDoc> {
                                 ),
                                 Container(
                                   width: 100,
-                                  margin: EdgeInsets.only(left: 10),
+                                  margin: const EdgeInsets.only(left: 10),
                                   child: TextFormField(
                                       onChanged: (value) {
                                         data[index].price =
@@ -309,7 +307,7 @@ class _MpiDocState extends State<MpiDoc> {
                                         FilteringTextInputFormatter.digitsOnly,
                                         CurrencyInputFormatter(),
                                       ],
-                                      scrollPadding: EdgeInsets.all(0),
+                                      scrollPadding: const EdgeInsets.all(0),
                                       decoration: const InputDecoration(
                                         isDense: true, //
                                         border: InputBorder.none,
@@ -331,14 +329,14 @@ class _MpiDocState extends State<MpiDoc> {
                                 const VerticalDivider(
                                   color: Colors.black,
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 200,
                                   // margin: EdgeInsets.only(left: 10),
                                   child: TextFormField(
                                       onChanged: (v) {
                                         data[index].remark = v;
                                       },
-                                      scrollPadding: EdgeInsets.all(0),
+                                      scrollPadding: const EdgeInsets.all(0),
                                       decoration: const InputDecoration(
                                         isDense: true, //
                                         border: InputBorder.none,

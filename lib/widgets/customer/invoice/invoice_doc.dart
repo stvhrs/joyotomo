@@ -25,7 +25,7 @@ class _InvoiceDocState extends State<InvoiceDoc> {
     var img = (await rootBundle.load('images/logo.png')).buffer.asUint8List();
 
     asu = pw.Document();
-    asu.addPage(pw.Page(margin: pw.EdgeInsets.all(20),
+    asu.addPage(pw.Page(margin: const pw.EdgeInsets.all(20),
         pageFormat: PdfPageFormat.a4,
         build: ((pw.Context context) =>  pw.Container(
                 height: base * 1.4,

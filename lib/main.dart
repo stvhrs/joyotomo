@@ -56,11 +56,11 @@ class MyApp extends StatelessWidget {
                   color: Colors.grey.shade600, fontSize: 15, height: 2),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(color: Colors.grey.shade300),
+                borderSide: const BorderSide(color:  Color.fromARGB(255, 79, 117, 134)),
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(7),
-                borderSide: BorderSide(color: Colors.grey.shade300),
+                borderSide: const BorderSide(color:  Color.fromARGB(255, 79, 117, 134)),
               ),
             ),
             primaryColor: Colors.green,
