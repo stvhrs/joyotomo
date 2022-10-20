@@ -1,4 +1,3 @@
-
 import 'package:bitsdojo_window_example/helper/currency.dart';
 import 'package:bitsdojo_window_example/main.dart';
 import 'package:bitsdojo_window_example/widgets/kop.dart';
@@ -27,9 +26,9 @@ class _SpkDocState extends State<SpkDoc> {
     spk = widget.customer.spk.target!;
     dateinput.text = spk.date;
   }
- final formatCurrendcy = NumberFormat.currency(
-    locale: "id_ID",decimalDigits: 0,symbol: 'Rp '
-  );
+
+  final formatCurrendcy =
+      NumberFormat.currency(locale: "id_ID", decimalDigits: 0, symbol: 'Rp ');
   TextStyle small = const TextStyle(fontSize: 10);
   TextStyle med = const TextStyle(fontSize: 10, fontWeight: FontWeight.bold);
   TextStyle big = const TextStyle(fontSize: 11, fontWeight: FontWeight.bold);
@@ -83,7 +82,8 @@ class _SpkDocState extends State<SpkDoc> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color.fromARGB(255, 78, 77, 77).withOpacity(0.5),
+                      color: const Color.fromARGB(255, 78, 77, 77)
+                          .withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
                       offset: const Offset(0, 3), // changes position of shadow
@@ -122,7 +122,10 @@ class _SpkDocState extends State<SpkDoc> {
                                           children: [
                                             Kotak(
                                                 width: width1,
-                                                height:  MediaQuery.of(context).size.height/25,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    25,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -143,7 +146,10 @@ class _SpkDocState extends State<SpkDoc> {
                                                 )),
                                             Kotak(
                                               width: width2,
-                                              height:  MediaQuery.of(context).size.height/25,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  25,
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -167,7 +173,10 @@ class _SpkDocState extends State<SpkDoc> {
                                             ),
                                             Kotak(
                                               width: width2,
-                                              height:  MediaQuery.of(context).size.height/25,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  25,
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -176,22 +185,27 @@ class _SpkDocState extends State<SpkDoc> {
                                                   ),
                                                   Flexible(
                                                     child: TextFormField(
+                                                        inputFormatters: [
+                                                          FilteringTextInputFormatter
+                                                              .digitsOnly,
+                                                        ],
                                                         style: small,
                                                         onChanged: (v) {
                                                           setState(() {});
-                                                          widget.customer
-                                                              .customerName = v;
+                                                          spk.km = int.parse(v);
                                                         },
-                                                        initialValue: widget
-                                                            .customer
-                                                            .customerName),
+                                                        initialValue:
+                                                            spk.km.toString()),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             Kotak(
                                                 width: width2,
-                                                height:  MediaQuery.of(context).size.height/25,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    25,
                                                 child: Row(
                                                   children: [
                                                     Text(
@@ -200,6 +214,7 @@ class _SpkDocState extends State<SpkDoc> {
                                                     ),
                                                     Flexible(
                                                         child: TextFormField(
+                                                      
                                                       controller: dateinput,
                                                       //editing controller of this TextField
 
@@ -224,7 +239,8 @@ class _SpkDocState extends State<SpkDoc> {
                                                                             TextButtonThemeData(
                                                                           style:
                                                                               TextButton.styleFrom(
-                                                                            foregroundColor: Colors.green, // button text color
+                                                                            foregroundColor:
+                                                                                Colors.green, // button text color
                                                                           ),
                                                                         ),
                                                                       ),
@@ -279,7 +295,10 @@ class _SpkDocState extends State<SpkDoc> {
                                           children: [
                                             Kotak(
                                               width: width1,
-                                              height:  MediaQuery.of(context).size.height/12.5,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  12.5,
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -305,7 +324,10 @@ class _SpkDocState extends State<SpkDoc> {
                                               children: [
                                                 Kotak(
                                                   width: width3,
-                                                  height:  MediaQuery.of(context).size.height/25,
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      25,
                                                   child: Row(
                                                     children: [
                                                       Text(
@@ -329,7 +351,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                 ),
                                                 Kotak(
                                                     width: width3,
-                                                    height:  MediaQuery.of(context).size.height/25,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            25,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -345,11 +371,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                                         (v) {
                                                                       setState(
                                                                           () {});
-                                                                      spk.policeNumber =
+                                                                      spk.tipeKendaraan =
                                                                           v;
                                                                     },
                                                                     initialValue:
-                                                                        spk.policeNumber)),
+                                                                        spk.tipeKendaraan)),
                                                       ],
                                                     )),
                                               ],
@@ -360,7 +386,10 @@ class _SpkDocState extends State<SpkDoc> {
                                           children: [
                                             Kotak(
                                               width: width1,
-                                              height:  MediaQuery.of(context).size.height/12.5,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height /
+                                                  12.5,
                                               child: Row(
                                                 children: [
                                                   Text(
@@ -373,11 +402,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                         style: small,
                                                         onChanged: (v) {
                                                           setState(() {});
-                                                          widget.customer
-                                                              .alamat = v;
+
+                                                          spk.catatan = v;
                                                         },
-                                                        initialValue: widget
-                                                            .customer.alamat),
+                                                        initialValue:
+                                                            spk.catatan),
                                                   ),
                                                 ],
                                               ),
@@ -386,7 +415,11 @@ class _SpkDocState extends State<SpkDoc> {
                                               children: [
                                                 Kotak(
                                                     width: width3,
-                                                    height:  MediaQuery.of(context).size.height/25,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            25,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -402,16 +435,20 @@ class _SpkDocState extends State<SpkDoc> {
                                                                         (v) {
                                                                       setState(
                                                                           () {});
-                                                                      spk.policeNumber =
+                                                                      spk.noPkb =
                                                                           v;
                                                                     },
                                                                     initialValue:
-                                                                        spk.policeNumber)),
+                                                                        spk.noPkb)),
                                                       ],
                                                     )),
                                                 Kotak(
                                                     width: width3,
-                                                    height:  MediaQuery.of(context).size.height/25,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            25,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -427,11 +464,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                                         (v) {
                                                                       setState(
                                                                           () {});
-                                                                      spk.policeNumber =
+                                                                      spk.noRangka =
                                                                           v;
                                                                     },
                                                                     initialValue:
-                                                                        spk.policeNumber)),
+                                                                        spk.noRangka)),
                                                       ],
                                                     )),
                                               ],
@@ -442,7 +479,10 @@ class _SpkDocState extends State<SpkDoc> {
                                           children: [
                                             Kotak(
                                                 width: width4,
-                                                height:  MediaQuery.of(context).size.height/6,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    6,
                                                 child: Column(
                                                   children: [
                                                     Text('KELUHAN', style: big),
@@ -452,16 +492,19 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.keluhanKonsumen =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .keluhanKonsumen)),
                                                   ],
                                                 )),
                                             Kotak(
                                                 width: width4,
-                                                height:  MediaQuery.of(context).size.height/6,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    6,
                                                 child: Column(
                                                   children: [
                                                     Text(
@@ -474,11 +517,10 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
-                                                                  v;
+                                                              spk.analisa = v;
                                                             },
-                                                            initialValue: spk
-                                                                .policeNumber)),
+                                                            initialValue:
+                                                                spk.analisa)),
                                                   ],
                                                 )),
                                           ],
@@ -487,7 +529,10 @@ class _SpkDocState extends State<SpkDoc> {
                                           children: [
                                             Kotak(
                                                 width: width4,
-                                                height:  MediaQuery.of(context).size.height/6,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    6,
                                                 child: Column(
                                                   children: [
                                                     Text('JENIS PEKERJAAN',
@@ -498,16 +543,19 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.jenisPekrjaan =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .jenisPekrjaan)),
                                                   ],
                                                 )),
                                             Kotak(
                                                 width: width4,
-                                                height:  MediaQuery.of(context).size.height/6,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    6,
                                                 child: Column(
                                                   children: [
                                                     Text(
@@ -520,11 +568,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.sukuCadang =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .sukuCadang)),
                                                   ],
                                                 )),
                                           ],
@@ -535,7 +583,11 @@ class _SpkDocState extends State<SpkDoc> {
                                               children: [
                                                 Kotak(
                                                     width: width5,
-                                                    height: MediaQuery.of(context).size.height/23,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            23,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -551,16 +603,20 @@ class _SpkDocState extends State<SpkDoc> {
                                                                         (v) {
                                                                       setState(
                                                                           () {});
-                                                                      spk.policeNumber =
+                                                                      spk.namaMekanik =
                                                                           v;
                                                                     },
                                                                     initialValue:
-                                                                        spk.policeNumber)),
+                                                                        spk.namaMekanik)),
                                                       ],
                                                     )),
                                                 Kotak(
                                                     width: width5,
-                                                    height:  MediaQuery.of(context).size.height/23,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            23,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -586,16 +642,22 @@ class _SpkDocState extends State<SpkDoc> {
                                                                             'Rp ')
                                                                     .parse(v)
                                                                     .toDouble();
-                                                                     
                                                           },
-                                                          initialValue:formatCurrendcy
-                                                .format(spk.estimasiBiyaya).toString(),
+                                                          initialValue:
+                                                              formatCurrendcy
+                                                                  .format(spk
+                                                                      .estimasiBiyaya)
+                                                                  .toString(),
                                                         )),
                                                       ],
                                                     )),
                                                 Kotak(
                                                     width: width5,
-                                                    height: MediaQuery.of(context).size.height/23,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            23,
                                                     child: Row(
                                                       children: [
                                                         Text(
@@ -611,18 +673,21 @@ class _SpkDocState extends State<SpkDoc> {
                                                                         (v) {
                                                                       setState(
                                                                           () {});
-                                                                      spk.policeNumber =
+                                                                      spk.estimasiSelesai =
                                                                           v;
                                                                     },
                                                                     initialValue:
-                                                                        spk.policeNumber)),
+                                                                        spk.estimasiSelesai)),
                                                       ],
                                                     )),
                                               ],
                                             ),
                                             Kotak(
                                                 width: width6,
-                                                height: MediaQuery.of(context).size.height/7.65,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    7.65,
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -637,16 +702,19 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.customerName =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .customerName)),
                                                   ],
                                                 )),
                                             Kotak(
                                                 width: width6,
-                                                height: MediaQuery.of(context).size.height/7.65,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    7.65,
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -661,16 +729,19 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.namaAdvisor =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .namaAdvisor)),
                                                   ],
                                                 )),
                                             Kotak(
                                                 width: width6,
-                                                height: MediaQuery.of(context).size.height/7.65,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    7.65,
                                                 child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -685,11 +756,11 @@ class _SpkDocState extends State<SpkDoc> {
                                                             style: small,
                                                             onChanged: (v) {
                                                               setState(() {});
-                                                              spk.policeNumber =
+                                                              spk.namaInspeektor =
                                                                   v;
                                                             },
                                                             initialValue: spk
-                                                                .policeNumber)),
+                                                                .namaInspeektor)),
                                                   ],
                                                 )),
                                           ],
@@ -707,20 +778,28 @@ class _SpkDocState extends State<SpkDoc> {
                                     const Color.fromARGB(255, 79, 117, 134))),
                             onPressed: () {
                               widget.customer.spk.target = Spk(
-                                  jtId: spk.jtId,
-                                  customerName: spk.customerName,
-                                  policeNumber: spk.policeNumber,
-                                  namaKendaraan: spk.namaKendaraan,
-                                  date: spk.date,
-                                  alamat: spk.alamat,
-                                  analisa: spk.analisa,
-                                  keluhanKonsumen: spk.keluhanKonsumen,
-                                  catatan: spk.catatan,
-                                  namaMekanik: spk.namaMekanik,
-                                  estimasiBiyaya: spk.estimasiBiyaya,
-                                  estimasiSelesai: spk.estimasiSelesai,
-                                  namaAdvisor: spk.namaAdvisor,
-                                  namaInspeektor: spk.namaInspeektor);
+                                jtId: spk.jtId,
+                                customerName: spk.customerName,
+                                policeNumber: spk.policeNumber,
+                                namaKendaraan: spk.namaKendaraan,
+                                date: spk.date,
+                                alamat: spk.alamat,
+                                analisa: spk.analisa,
+                                keluhanKonsumen: spk.keluhanKonsumen,
+                                catatan: spk.catatan,
+                                namaMekanik: spk.namaMekanik,
+                                estimasiBiyaya: spk.estimasiBiyaya,
+                                estimasiSelesai: spk.estimasiSelesai,
+                                namaAdvisor: spk.namaAdvisor,
+                                namaInspeektor: spk.namaInspeektor,
+                                jenisPekrjaan: spk.jenisPekrjaan,
+                                km: spk.km,
+                                levelPekerjaan: 1,
+                                noPkb: spk.noPkb,
+                                noRangka: spk.noRangka,
+                                sukuCadang: spk.sukuCadang,
+                                tipeKendaraan: spk.tipeKendaraan,
+                              );
 
                               objectBox.insertCustomer(widget.customer);
                             },

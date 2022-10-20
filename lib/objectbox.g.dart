@@ -330,7 +330,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(9, 4284014222613450838),
       name: 'Spk',
-      lastPropertyId: const IdUid(21, 6684694647969855585),
+      lastPropertyId: const IdUid(28, 1099200807123548546),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -406,6 +406,41 @@ final _entities = <ModelEntity>[
         ModelProperty(
             id: const IdUid(21, 6684694647969855585),
             name: 'namaAdvisor',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(22, 169868071269454151),
+            name: 'tipeKendaraan',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(23, 2984428843813561492),
+            name: 'levelPekerjaan',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(24, 7131020106459314220),
+            name: 'km',
+            type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(25, 2376674532353750652),
+            name: 'noPkb',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(26, 5702405919189622202),
+            name: 'noRangka',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(27, 5131673562776984214),
+            name: 'jenisPekrjaan',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(28, 1099200807123548546),
+            name: 'sukuCadang',
             type: 9,
             flags: 0)
       ],
@@ -991,7 +1026,12 @@ ModelDefinition getObjectBoxModel() {
           final estimasiSelesaiOffset = fbb.writeString(object.estimasiSelesai);
           final namaInspeektorOffset = fbb.writeString(object.namaInspeektor);
           final namaAdvisorOffset = fbb.writeString(object.namaAdvisor);
-          fbb.startTable(22);
+          final tipeKendaraanOffset = fbb.writeString(object.tipeKendaraan);
+          final noPkbOffset = fbb.writeString(object.noPkb);
+          final noRangkaOffset = fbb.writeString(object.noRangka);
+          final jenisPekrjaanOffset = fbb.writeString(object.jenisPekrjaan);
+          final sukuCadangOffset = fbb.writeString(object.sukuCadang);
+          fbb.startTable(29);
           fbb.addInt64(0, object.id);
           fbb.addOffset(7, jtIdOffset);
           fbb.addOffset(8, customerNameOffset);
@@ -1007,6 +1047,13 @@ ModelDefinition getObjectBoxModel() {
           fbb.addOffset(18, estimasiSelesaiOffset);
           fbb.addOffset(19, namaInspeektorOffset);
           fbb.addOffset(20, namaAdvisorOffset);
+          fbb.addOffset(21, tipeKendaraanOffset);
+          fbb.addInt64(22, object.levelPekerjaan);
+          fbb.addInt64(23, object.km);
+          fbb.addOffset(24, noPkbOffset);
+          fbb.addOffset(25, noRangkaOffset);
+          fbb.addOffset(26, jenisPekrjaanOffset);
+          fbb.addOffset(27, sukuCadangOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -1020,18 +1067,25 @@ ModelDefinition getObjectBoxModel() {
                   .vTableGet(buffer, rootOffset, 18, ''),
               customerName: const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 20, ''),
-              policeNumber: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 22, ''),
-              namaKendaraan: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 24, ''),
-              date: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 26, ''),
-              alamat: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 28, ''),
-              analisa: const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 30, ''),
-              keluhanKonsumen:
-                  const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 32, ''),
+              levelPekerjaan:
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 48, 0),
+              jenisPekrjaan: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 56, ''),
+              noPkb: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 52, ''),
+              noRangka: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 54, ''),
+              tipeKendaraan: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 46, ''),
+              sukuCadang: const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 58, ''),
+              km: const fb.Int64Reader().vTableGet(buffer, rootOffset, 50, 0),
+              policeNumber: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 22, ''),
+              namaKendaraan: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 24, ''),
+              date: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 26, ''),
+              alamat: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 28, ''),
+              analisa: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 30, ''),
+              keluhanKonsumen: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 32, ''),
               catatan: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 34, ''),
               namaMekanik: const fb.StringReader(asciiOptimization: true).vTableGet(buffer, rootOffset, 36, ''),
               estimasiBiyaya: const fb.Float64Reader().vTableGet(buffer, rootOffset, 38, 0),
@@ -1464,6 +1518,31 @@ class Spk_ {
   /// see [Spk.namaAdvisor]
   static final namaAdvisor =
       QueryStringProperty<Spk>(_entities[7].properties[14]);
+
+  /// see [Spk.tipeKendaraan]
+  static final tipeKendaraan =
+      QueryStringProperty<Spk>(_entities[7].properties[15]);
+
+  /// see [Spk.levelPekerjaan]
+  static final levelPekerjaan =
+      QueryIntegerProperty<Spk>(_entities[7].properties[16]);
+
+  /// see [Spk.km]
+  static final km = QueryIntegerProperty<Spk>(_entities[7].properties[17]);
+
+  /// see [Spk.noPkb]
+  static final noPkb = QueryStringProperty<Spk>(_entities[7].properties[18]);
+
+  /// see [Spk.noRangka]
+  static final noRangka = QueryStringProperty<Spk>(_entities[7].properties[19]);
+
+  /// see [Spk.jenisPekrjaan]
+  static final jenisPekrjaan =
+      QueryStringProperty<Spk>(_entities[7].properties[20]);
+
+  /// see [Spk.sukuCadang]
+  static final sukuCadang =
+      QueryStringProperty<Spk>(_entities[7].properties[21]);
 }
 
 /// [MpiItem] entity fields to define ObjectBox queries.

@@ -153,24 +153,12 @@ class CustomerAdd extends StatelessWidget {
                                   13,
                                   csId.toString()));
 
-                          customer.spk.target = Spk(
-                              jtId: 'SPK/JT/000000'.replaceRange(
-                                  13 - csId.toString().length,
-                                  13,
-                                  csId.toString()),
-                              customerName: namaCustomer,
-                              policeNumber: nomorPolisi,
-                              namaKendaraan: namaKendaraan,
-                              date: '3/2/2002',
-                              alamat: alamat,
-                              analisa: 'analisa',
-                              keluhanKonsumen: 'keluhanKonsumen',
-                              catatan: 'catatan',
-                              namaMekanik: 'namaMekanik',
-                              estimasiBiyaya: 99.99,
-                              estimasiSelesai: 'l',
-                              namaAdvisor: 'namaAdvisor',
-                              namaInspeektor: 'namaInspeektor');
+                          customer.spk.target = Spk(policeNumber: nomorPolisi,
+                            jtId: 'SPK/JT/000000'.replaceRange(
+                                13 - csId.toString().length,
+                                13,
+                                csId.toString()),
+                          );
                           customer.mpi.target = Mpi(
                             mpiId: 'MPI/JT/000000'.replaceRange(
                                 13 - csId.toString().length,
